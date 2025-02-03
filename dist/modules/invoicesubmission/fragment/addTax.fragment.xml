@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>AddTax}" afterClose="afterCloseAddTaxDialog">
+		<content>
+			<f:SimpleForm id="idUpdateFreightOrderId" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+				singleContainerFullSize="false">
+				<f:content>
+					<!--{i18n>TaxType}-->
+					<Label text="{_oMainService>/#ZWCP_C_SETLOrderChargesType/ChargeTypeCode/@sap:label}" required="true"/>
+					<ComboBox id="idAddTaxTaxType" items="{path:'_MD>/TaxTypeCodes'}" change="onAddNewTaxTypeValidation">
+						<items>
+							<core:Item key="{path:'_MD>Code'}" text="{_MD>Description}"/>
+						</items>
+					</ComboBox>
+					<!--{i18n>Amount}-->
+					<Label text="{_oMainService>/#ZWCP_C_SETLOrderChargesType/RateAmount/@sap:label}"/>
+					<Input id="idAddTaxAmount" change="formattingAmountsInLocale"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="{i18nhome>Cancel}" press="onAddTaxCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18nhome>OK}" press="onAddTaxConfirmed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

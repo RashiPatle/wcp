@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>UpdateCharge}" afterClose="afterCloseUpdateChargeDialog">
+		<content>
+			<f:SimpleForm id="idUpdateFreightOrderId" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+				singleContainerFullSize="false">
+				<f:content>
+					<!--{i18n>RateAmount}-->
+					<Label text="{_oMainService>/#ZWCP_C_SETLOrderChargesType/RateAmount/@sap:label}"/>
+					<Input id="idUpdateChargeAmount" width="100%" fieldWidth="50%" change="formattingAmountsInLocale" value="{ChangedRateAmount}"
+						description="{RateCurrency}"/>
+					<!--{i18n>Quantity}-->
+					<Label text="{_oMainService>/#ZWCP_C_SETLOrderChargesType/Quantity/@sap:label}"/>
+					<HBox>
+						<items>
+							<Input id="idUpdateChargeQuantity" width="100%" fieldWidth="100%" value="{= ${Quantity} ? parseFloat(${Quantity}).toFixed(2) : ''}"
+								editable="false"/>
+							<Title text="{QuantityUnitOfMeasure}" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+						</items>
+					</HBox>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="{i18nhome>Cancel}" press="onUpdateChargeCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18nhome>OK}" press="onUpdateChargeConfirmed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,135 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.westernacher.collaborationPortal.freightBooking",
+		"type": "component",
+		"i18n": "i18n/i18n.properties",
+		"title": "",
+		"description": "",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			
+		},
+		"embeddedBy": "../"
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize_hcw",
+			"sap_belize_hcb",
+			"sap_belize",
+			"sap_belize_plus"
+		]
+	},
+	"sap.ui5": {
+		"resourceRoots": {
+			"com.westernacher.collaborationPortal.freightBooking": "./"
+		},
+		"autoPrefixId": true,
+		"dependencies": {
+			"minUI5Version": "1.48.3",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.uxap": {},
+				"sap.ui.unified": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName":  "com.westernacher.collaborationPortal.core.modules.freightBooking.i18n.i18n"
+				}
+			},
+			"i18nhome": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+				}
+			},
+			"_AM": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true,
+				"uri": "model/ControlManagementModel.json"
+			},
+			"_FO": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true
+			},
+			"_MD": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true
+			},
+			"_SD": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true
+			},
+			"_DV": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"rootView": {
+			"viewName": "com.westernacher.collaborationPortal.freightBooking.view.freightBookingApp",
+			"id": "rootViewOffreightBookingComponent",
+			"type": "XML",
+			"async": true
+		},
+		"routing": {
+			"routes": [{
+				"pattern": "",
+				"name": "master",
+				"target": "master"
+				
+			}, {
+
+				"pattern": "FreightOrder/{Key}",
+				"name": "object",
+				"target": "object"
+				
+			}],
+			"targets": {
+				"master": {
+					"viewId": "masterView",
+					"viewName": "freightBookingWorklistTable",
+					"targetAggregation": "pages",
+					"clearAggregation": true
+
+				},
+				"object": {
+					"viewId": "objectView",
+					"viewName": "freightBookingObjectPage",
+					"targetAggregation": "pages",
+					"clearAggregation": true
+				}
+			},
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"async": true,
+				"viewType": "XML",
+				"viewPath": "com.westernacher.collaborationPortal.freightBooking.view",
+				"controlId": "idAppControlfreightBooking",
+				"controlAggregation": "pages"
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		}
+	}
+}

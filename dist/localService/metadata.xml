@@ -1,0 +1,90 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWCP_HOME_SRV_01" xml:lang="en" sap:schema-version="1"
+			sap:extending-service-id="ZNBR_GW04_SRV.0001">
+			<EntityType Name="ZWCP_C_BP_INFOType" sap:label="Business Partner Info and Module" sap:content-version="1">
+				<Key><PropertyRef Name="BusinessPartner"/></Key><Property Name="BusinessPartner" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase"
+					sap:text="BusinessPartnerFullName" sap:label="Business Partner" sap:quickinfo="Business Partner Number"/><Property Name="BusinessPartnerFullName" Type="Edm.String" MaxLength="81" sap:display-format="UpperCase" sap:creatable="false"
+					sap:updatable="false"/><Property Name="BusinessPartnerRole" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="BP Role"/><NavigationProperty Name="to_Roles" Relationship="ZWCP_HOME_SRV_01.assoc_E2D23B188A50FBF1047B31CD6A7BB2DF"
+					FromRole="FromRole_assoc_E2D23B188A50FBF1047B31CD6A7BB2DF" ToRole="ToRole_assoc_E2D23B188A50FBF1047B31CD6A7BB2DF"/></EntityType>
+			<EntityType Name="ZWCP_I_PartnerRoleType" sap:label="Business Partner Roles" sap:content-version="1">
+				<Key><PropertyRef Name="BusinessPartnerRole"/></Key><Property Name="BusinessPartnerRole" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase"
+					sap:text="BusinessPartnerRoleShortName" sap:label="BP Role"/><Property Name="BusinessPartnerRoleShortName" Type="Edm.String" MaxLength="25" sap:label="Title" sap:quickinfo="BP Role Title"/><Property Name="DefaultFlag" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Indicator" sap:quickinfo="General Flag"/><Property Name="MicroChart1" Type="Edm.String" sap:label="Fragment Name" sap:quickinfo="Frontend Fragment name for mapping with Roles"/><Property Name="MicroChart2" Type="Edm.String" sap:label="Fragment Name" sap:quickinfo="Frontend Fragment name for mapping with Roles"/><Property Name="QuickAction1" Type="Edm.String" sap:label="Fragment Name" sap:quickinfo="Frontend Fragment name for mapping with Roles"/><Property Name="QuickAction2" Type="Edm.String" sap:label="Fragment Name" sap:quickinfo="Frontend Fragment name for mapping with Roles"/><NavigationProperty Name="to_Modules" Relationship="ZWCP_HOME_SRV_01.assoc_18E61338ABB70DEF7545EFACB7F9D9A8"
+					FromRole="FromRole_assoc_18E61338ABB70DEF7545EFACB7F9D9A8" ToRole="ToRole_assoc_18E61338ABB70DEF7545EFACB7F9D9A8"/></EntityType>
+			<EntityType Name="ZWCP_I_PartnerRoleFunctionsType" sap:label="Business Partner Role and Functions" sap:content-version="1">
+				<Key><PropertyRef Name="BusinessPartnerRole"/><PropertyRef Name="ModuleName"/></Key><Property Name="BusinessPartnerRole" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="UpperCase" sap:label="BP Role"/><Property Name="ModuleName" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:text="ModuleText"
+					sap:label="Char20" sap:quickinfo="Char 20"/><Property Name="ModuleText" Type="Edm.String" MaxLength="40" sap:label="Desc." sap:quickinfo="Description"/><Property Name="ServiceBaseURL" Type="Edm.String" sap:label="Text" sap:quickinfo="Generic String Data Element - Case sensitive"/><Property Name="ServiceURL" Type="Edm.String" sap:label="Text" sap:quickinfo="Generic String Data Element - Case sensitive"/><Property Name="TileIcon" Type="Edm.String" sap:label="Tile Icon" sap:quickinfo="AppDescriptor Mass Maintenance: Tile Icon"/><Property Name="RefreshInterval" Type="Edm.Int32"/></EntityType>
+			<EntityType Name="ZTest01" sap:content-version="1">
+				<Key><PropertyRef Name="key"/></Key><Property Name="key" Type="Edm.Int16" Nullable="false" sap:label="TEst" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<Association Name="assoc_E2D23B188A50FBF1047B31CD6A7BB2DF" sap:content-version="1"><End Type="ZWCP_HOME_SRV_01.ZWCP_C_BP_INFOType" Multiplicity="1" Role="FromRole_assoc_E2D23B188A50FBF1047B31CD6A7BB2DF"/><End Type="ZWCP_HOME_SRV_01.ZWCP_I_PartnerRoleType" Multiplicity="*" Role="ToRole_assoc_E2D23B188A50FBF1047B31CD6A7BB2DF"/></Association>
+			<Association Name="assoc_18E61338ABB70DEF7545EFACB7F9D9A8" sap:content-version="1"><End Type="ZWCP_HOME_SRV_01.ZWCP_I_PartnerRoleType" Multiplicity="1" Role="FromRole_assoc_18E61338ABB70DEF7545EFACB7F9D9A8"/><End Type="ZWCP_HOME_SRV_01.ZWCP_I_PartnerRoleFunctionsType" Multiplicity="*" Role="ToRole_assoc_18E61338ABB70DEF7545EFACB7F9D9A8"/></Association>
+			<EntityContainer Name="ZWCP_HOME_SRV_01_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZTest01Set" EntityType="ZWCP_HOME_SRV_01.ZTest01" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ZWCP_C_BP_INFO" EntityType="ZWCP_HOME_SRV_01.ZWCP_C_BP_INFOType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZWCP_I_PartnerRole" EntityType="ZWCP_HOME_SRV_01.ZWCP_I_PartnerRoleType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZWCP_I_PartnerRoleFunctions" EntityType="ZWCP_HOME_SRV_01.ZWCP_I_PartnerRoleFunctionsType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_E2D23B188A50FBF1047B31CD6A7BB2DF" Association="ZWCP_HOME_SRV_01.assoc_E2D23B188A50FBF1047B31CD6A7BB2DF"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZWCP_C_BP_INFO" Role="FromRole_assoc_E2D23B188A50FBF1047B31CD6A7BB2DF"/><End EntitySet="ZWCP_I_PartnerRole" Role="ToRole_assoc_E2D23B188A50FBF1047B31CD6A7BB2DF"/></AssociationSet>
+				<AssociationSet Name="assoc_18E61338ABB70DEF7545EFACB7F9D9A8" Association="ZWCP_HOME_SRV_01.assoc_18E61338ABB70DEF7545EFACB7F9D9A8"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZWCP_I_PartnerRole" Role="FromRole_assoc_18E61338ABB70DEF7545EFACB7F9D9A8"/><End EntitySet="ZWCP_I_PartnerRoleFunctions" Role="ToRole_assoc_18E61338ABB70DEF7545EFACB7F9D9A8"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZWCP_HOME_SRV_01.ZWCP_HOME_SRV_01_Entities/ZWCP_I_PartnerRole">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="MicroChart1"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="MicroChart2"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="QuickAction1"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="QuickAction2"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>MicroChart1</PropertyPath>
+								<PropertyPath>MicroChart2</PropertyPath>
+								<PropertyPath>QuickAction1</PropertyPath>
+								<PropertyPath>QuickAction2</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZWCP_HOME_SRV_01.ZWCP_HOME_SRV_01_Entities/ZWCP_I_PartnerRoleFunctions">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="ServiceBaseURL"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="ServiceURL"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="TileIcon"/><PropertyValue Property="AllowedExpressions" String="SearchExpression"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>ServiceBaseURL</PropertyPath>
+								<PropertyPath>ServiceURL</PropertyPath>
+								<PropertyPath>TileIcon</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZWCP_HOME_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZWCP_HOME_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

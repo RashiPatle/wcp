@@ -1,0 +1,149 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	controllerName="com.westernacher.collaborationPortal.fosExecution.controller.FOExecutionObject" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:DynamicPage preserveHeaderStateOnScroll="false" headerExpanded="true" class="sapUiNoContentPadding" showNavButton="true"
+		navButtonPress="onNavBack">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<!--{i18n>FONumberLabel}-->
+					<Title text="{FreightOrder/#@sap:label}: {FreightOrder}" wrapping="true"/>
+				</f:heading>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18nhome>Detail}">
+						<Link text="{i18nhome>Home}" press="onHomeLinkPress"/>
+						<Link text="{i18n>FreightOrderExecutionList}" press="onPressBack"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:actions>
+					<!--<Button text="{i18n>SetToComplete}" type="Transparent" visible="{_AM>/V_ASetComplete}" enabled="{_AM>/E_ASetComplete}"-->
+					<!--	press="onCancelFOPress" customData:actionName="setComplete" customData:entitySet="ZWCP_C_Execution"/>-->
+					<!--<Button text="{i18n>SetToCancel}" type="Transparent" visible="{_AM>/V_ASetCancelled}" customData:actionName="setCancelled"-->
+					<!--	customData:entitySet="ZWCP_C_Execution" enabled="{_AM>/E_ASetCancelled}" press="onCompleteFOPress"/>-->
+					<Button text="{i18n>Edit}" type="Transparent" visible="{_AM>/V_AUpdateFreightOrder}" enabled="{_AM>/E_AUpdateFreightOrder}"
+						press="onUpdateFOPress"/>
+					<Button press="onRefreshObjectView" icon="sap-icon://synchronize" tooltip="{i18nhome>refreshBtn}"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<layout:Grid hSpacing="1" defaultSpan="L4 M12 S12">
+					<layout:content>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>GeneralInfoFormTitle}" labelSpanXL="4" labelSpanL="4"
+							width="100%" labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0"
+							columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content>
+								<!--{i18n>TransportationModeFormLabel}-->
+								<Label text="{TransportationModeDesc/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TransportationModeDesc', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{TransportationModeDesc}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TransportationModeDesc', formatter:'.coreFormatter.fProperties'}"/>
+								<!--{i18n>MeansOfTransportFormLabel}-->
+								<Label text="{MeansOfTransportDesc/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/MeansOfTransportDesc', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{MeansOfTransportDesc}" visible="{path:'_PM>/ZWCP_C_Execution/MeansOfTransportDesc', formatter:'.coreFormatter.fProperties'}"/>
+								<!--{i18n>TransportationOrderTypeFormLabel}-->
+								<Label text="{TransportationOrderTypeDesc/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TransportationOrderTypeDesc', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{TransportationOrderTypeDesc}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TransportationOrderTypeDesc', formatter:'.coreFormatter.fProperties'}"/>
+								<!--<Label text="{i18n>VolumeLDMFormLabel}"-->
+								<!--	visible="{path:'_PM>/ZWCP_C_Execution/TransportationModeDesc', formatter:'.coreFormatter.fProperties'}"/>-->
+								<!--<Text text=""/>-->
+								<Label text="{TotalDistance/#@sap:label}" visible="{path:'_PM>/ZWCP_C_Execution/TotalDistance', formatter:'.coreFormatter.fProperties'}"/>
+								<Text
+									text="{parts : [ 'TotalDistance', 'TotalDistanceUnit' ], formatter:'.coreFormatter.customUnitForDistanceOnlyNumber'} {path:'TotalDistanceUnit', formatter:'.coreFormatter.customUnitForDistanceOnlyUnit'}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TotalDistance', formatter:'.coreFormatter.fProperties'}"/>
+								<Label text="{TranspOrdGrossWeight/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TranspOrdGrossWeight', formatter:'.coreFormatter.fProperties'}"/>
+								<Text
+									text="{parts : [ 'TranspOrdGrossWeight', 'TranspOrdGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {= ${TranspOrdGrossWeight}? ${TranspOrdGrossWeightUnit} : ''}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TranspOrdGrossWeight', formatter:'.coreFormatter.fProperties'}"/>
+								<Label text="{TranspOrdGrossVolume/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TranspOrdGrossVolume', formatter:'.coreFormatter.fProperties'}"/>
+								<Text
+									text="{parts : [ 'TranspOrdGrossVolume', 'TranspOrdGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {= ${TranspOrdGrossVolume}? ${TranspOrdGrossVolumeUnit} : ''}"
+									visible="{path:'_PM>/ZWCP_C_Execution/TranspOrdGrossVolume', formatter:'.coreFormatter.fProperties'}"/>
+								<Label text="{DangerousGoods/#@sap:label}"/>
+								<core:Icon src="{path:'DangerousGoods', formatter:'.coreFormatter.formatDGCustomIcon'}" color="Negative" tooltip="{i18n>DangerousGoods}"
+									width="30px"></core:Icon>
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>PickupInfoFormTitle}" labelSpanXL="4" labelSpanL="4"
+							width="100%" labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+							columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<!--{i18n>ShipperFormLabel}-->
+								<!--<Label text="{Shipper/#@sap:label}" visible="{path:'_PM>/ZWCP_C_Execution/Shipper', formatter:'.coreFormatter.fProperties'}"/>-->
+								<!--<Text text="{Shipper}" visible="{path:'_PM>/ZWCP_C_Execution/Shipper', formatter:'.coreFormatter.fProperties'}"/>-->
+								<!--{i18n>PickupLocationFormLabel}-->
+								<Label text="{SourceLocationName/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/SourceLocationName', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{SourceLocationName}" visible="{path:'_PM>/ZWCP_C_Execution/SourceLocationName', formatter:'.coreFormatter.fProperties'}"/>
+								<Label text="{i18n>Address}"/>
+								<Text text="{SourceStreetName}, {SourceCityName}, {SourceRegionName}, {SourceCountryName}, {SourcePostalCode}"/>
+								<!--{i18n>PlannedPickupDateFormLabel}-->
+								<Label text="{SrcTransportationPlanningDateF/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/SrcTransportationPlanningDateF', formatter:'.coreFormatter.fProperties'}"/>
+								<Text
+									text="{path:'SrcTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime' , formatOptions: {UTC: true}} {SrcLocationTimeZone}"
+									visible="{path:'_PM>/ZWCP_C_Execution/SrcTransportationPlanningDateF', formatter:'.coreFormatter.fProperties'}"/>
+								<!--{i18n>ConfirmedPickupTimeFormLabel}-->
+								<Label text="{SrcCarrierConfimedDateF/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/SrcCarrierConfimedDateF', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{path:'SrcCarrierConfimedDateF', type:'sap.ui.model.odata.type.DateTime', formatOptions: {UTC: true}} {SrcLocationTimeZone}"
+									visible="{path:'_PM>/ZWCP_C_Execution/SrcCarrierConfimedDateF', formatter:'.coreFormatter.fProperties'}"/>
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>DeliveryInfoFormTitle}" labelSpanXL="4" labelSpanL="4"
+							width="100%" labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+							columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<!--{i18n>ConsigneeFormLabel}-->
+								<!--<Label text="{Consignee/#@sap:label}" visible="{path:'_PM>/ZWCP_C_Execution/Consignee', formatter:'.coreFormatter.fProperties'}"/>-->
+								<!--<Text text="{Consignee}" visible="{path:'_PM>/ZWCP_C_Execution/Consignee', formatter:'.coreFormatter.fProperties'}"/>-->
+								<!--{i18n>DeliveryLocationFormLabel}-->
+								<Label text="{DestinationLocationName/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/DestinationLocationName', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{DestinationLocationName}"
+									visible="{path:'_PM>/ZWCP_C_Execution/DestinationLocationName', formatter:'.coreFormatter.fProperties'}"/>
+								<Label text="{i18n>Address}"/>
+								<Text text="{DestStreetName}, {DestCityName}, {DestRegionName}, {DestCountryName}, {DestPostalCode}"/>
+								<!--{i18n>PlannedDeliveryTimeFormLabel}-->
+								<Label text="{DesTransportationPlanningDateF/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/DesTransportationPlanningDateF', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{path:'DesTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime', formatOptions: {UTC: true}} {DesLocationTimeZone}"
+									visible="{path:'_PM>/ZWCP_C_Execution/DesTransportationPlanningDateF', formatter:'.coreFormatter.fProperties'}"/>
+								<!--{i18n>ConfirmedDeliveryTimeFormLabel}-->
+								<Label text="{DesCarrierConfimedDateF/#@sap:label}"
+									visible="{path:'_PM>/ZWCP_C_Execution/DesCarrierConfimedDateF', formatter:'.coreFormatter.fProperties'}"/>
+								<Text text="{path:'DesCarrierConfimedDateF', type:'sap.ui.model.odata.type.DateTime', formatOptions: {UTC: true}} {DesLocationTimeZone}"
+									visible="{path:'_PM>/ZWCP_C_Execution/DesCarrierConfimedDateF', formatter:'.coreFormatter.fProperties'}"/>
+							</form:content>
+						</form:SimpleForm>
+					</layout:content>
+				</layout:Grid>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<layout:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L8 M12 S12">
+				<layout:content>
+					<VBox>
+						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsExecutionSection" type="XML"/>
+						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.ResourceSection" type="XML"/>
+						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.AttachmentsSection" type="XML"/>
+					</VBox>
+					<VBox visible="{_PM>/V_ExecutionSet}">
+						<Text text="{_PM>/V_ExecutionSet}"/>
+						<layoutData>
+							<layout:GridData span="L4 M12 S12" linebreakL="false" linebreakM="true" linebreakS="true"/>
+						</layoutData>
+						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.EventsTimeline" type="XML"/>
+					</VBox>
+				</layout:content>
+			</layout:Grid>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

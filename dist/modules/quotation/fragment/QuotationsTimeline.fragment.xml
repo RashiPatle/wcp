@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:commons="sap.suite.ui.commons" xmlns:grid="sap.ui.layout.cssgrid">
+	<Toolbar class="tablesborder">
+		<!--{i18n>freightRFQTitle}-->
+		<Title text="{TenderingRequestNumber/#@sap:label} {TenderingRequestNumber}"/>
+		<ToolbarSpacer/>
+	</Toolbar>
+	<commons:Timeline enableDoubleSided="false" content="{path:'to_Quotes'}" class="timelineborder" enableScroll="false">
+		<commons:content>
+			<!--dateTime="{TenderingSubmissionDateTime}"-->
+			<commons:TimelineItem  title="{TenderingResponseCodeDesc}" userNameClickable="false"
+				userName="{i18nhome>Quotation} {TenderingResponseSqncNumber}" icon="sap-icon://notification-2"
+				status="{path:'TenderingAwardStatus', formatter:'.formatter.QuotationStatus'}">
+				<commons:embeddedControl>
+					<f:SimpleForm class="sapUiNoContentPadding" id="idEventsPost" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4"
+						labelSpanM="4" labelSpanS="6" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+						columnsL="1" columnsM="1" singleContainerFullSize="false">
+						<f:content>
+							<Label text="{TenderingSubmissionDateTime/#@sap:label}"></Label>
+							<Text text="{path:'TenderingSubmissionDateTime', formatter:'.coreFormatter.toUserSettingTimezoneDate'}"></Text>
+							<!--{i18nhome>AwardStatus}-->
+							<Label text="{TenderingAwardStatusDesc/#@sap:label}"></Label>
+							<Text text="{TenderingAwardStatusDesc}"></Text>
+							<!--{i18nhome>FreightQuotationStatus}-->
+							<Label text="{FreightQuotationStatusDesc/#@sap:label}"></Label>
+							<Text text="{FreightQuotationStatusDesc}"></Text>
+							<!--{i18nhome>RejectionReason}-->
+							<Label text="{TenderingRejectionReasonDesc/#@sap:label}" visible="{= ${TenderingResponseCode}==='RE'? true: false}"></Label>
+							<Text text="{TenderingRejectionReasonDesc}" visible="{= ${TenderingResponseCode}==='RE'? true: false}"></Text>
+							<!--{i18nhome>SubmittedAmount}-->
+							<Label text="{TndrgRspSubmdAmt/#@sap:label}" visible="{= ${TenderingResponseCode}==='AX'? true: false}"></Label>
+							<ObjectNumber
+								number="{ parts: [{path: 'TndrgRspSubmdAmt'}, {path: 'TndrgRspSubmdAmtCrcy'}], type: 'sap.ui.model.type.Currency', formatter:'.coreFormatter.customNumberUnit', formatOptions:{ showMeasure: false } }"
+								visible="{= ${TenderingResponseCode}==='AX'? true: false}"></ObjectNumber>
+							<!--numberUnit="{= ${TndrgRspSubmdAmt} ? ${TndrgRspSubmdAmtCrcy} : '' }"-->
+						</f:content>
+					</f:SimpleForm>
+				</commons:embeddedControl>
+			</commons:TimelineItem>
+		</commons:content>
+	</commons:Timeline>
+</core:FragmentDefinition>

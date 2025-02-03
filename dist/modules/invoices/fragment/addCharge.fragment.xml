@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>AddCharge}" afterClose="afterCloseAddChargeDialog">
+		<content>
+			<f:SimpleForm id="idUpdateFreightOrderId" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+				singleContainerFullSize="false">
+				<f:content>
+					<!--{i18n>ChargeType}-->
+					<Label text="{_oMainService>/#ZWCP_C_SETLOrderChargesType/ChargeTypeCode/@sap:label}" required="true"/>
+					<ComboBox forceSelection="true" id="idAddChargeChargeType" items="{path:'_MD>/ChargeTypeCodes'}" change="onAddNewChargeTypeValidation">
+						<items>
+							<core:Item key="{path:'_MD>Code'}" text="{_MD>Description}"/>
+						</items>
+					</ComboBox>
+					<!--{i18n>Quantity}-->
+					<Label text="{_oMainService>/#ZWCP_C_SETLOrderChargesType/Quantity/@sap:label}"/>
+					<Input id="idAddChargeQuantity" type="Number"/>
+					<!--{i18n>Amount}-->
+					<Label text="{_oMainService>/#ZWCP_C_SETLOrderChargesType/RateAmount/@sap:label}"/>
+					<Input id="idAddChargeAmount" change="formattingAmountsInLocale"/>
+					<!--	<Label text="{i18n>Price}"/>
+					<Input id="idAddChargePrice" liveChange="ValidatingAmountsInLocale" change="formattingAmountsInLocale"/>-->
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="{i18nhome>Cancel}" press="onAddChargeCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18nhome>OK}" press="onAddChargeConfirmed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

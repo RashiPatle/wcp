@@ -1,0 +1,243 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="TM_COLL_FAGRFQ_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="RFQExcel" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="FrtAgrmtReqForQuotationUUID"/></Key><Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Character 100"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FrtAgrmtReqForQuotationUUID" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="NodeID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FileData" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="Binary String" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="C_CollabnApplFrtAgrmtRFQType" sap:label="Freight Agreement RFQ" sap:content-version="1">
+				<Key><PropertyRef Name="FrtAgrmtReqForQuotationUUID"/></Key><Property Name="SubmitConfForFrtAgrmtRFQ_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SubmitResponseForFrtAgrmtRFQ_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="FrtAgrmtReqForQuotationUUID" Type="Edm.Guid" Nullable="false" sap:label="NodeID" sap:heading=""/><Property Name="FreightAgreementRFQ" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:text="TransportationAgreementDesc"
+					sap:label="Request for Quotation"/><Property Name="TransportationAgreementDesc" Type="Edm.String" MaxLength="75" sap:label="Description"/><Property Name="TransportationAgreementDocCrcy" Type="Edm.String" MaxLength="5" sap:label="Document Currency" sap:semantics="currency-code"/><Property Name="TransportationMode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:text="TransportationModeDesc"
+					sap:label="Transportation Mode" sap:value-list="fixed-values"/><Property Name="TransportationModeDesc" Type="Edm.String" MaxLength="20" sap:label="Description"/><Property Name="TransportationShippingType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase"
+					sap:text="TranspOrdShippingTypeDesc" sap:label="Shipping Type" sap:value-list="fixed-values"/><Property Name="TranspOrdShippingTypeDesc" Type="Edm.String" MaxLength="40" sap:label="Description"/><Property Name="FreightAgrmtRFQIsSealedBid" Type="Edm.Boolean" sap:label="Sealed Bid"/><Property Name="TranspAgreementRFQStatus" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"
+					sap:text="TranspAgreementRFQStatusText" sap:label="RFQ Life Cycle Sts" sap:quickinfo="RFQ Life Cycle Status"/><Property Name="TranspAgreementRFQStatusText" Type="Edm.String" MaxLength="60" sap:display-format="UpperCase"
+					sap:label="Agreement Status Desc." sap:quickinfo="Agreement Status Description"/><Property Name="FreightAgreementRFQStatus" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="RFQ/Quotation Status"/><Property Name="FreightAgreementRFQStatusText" Type="Edm.String" MaxLength="60" sap:display-format="UpperCase" sap:label="RFQ Status"
+					sap:quickinfo="Agreement Status Description"/><Property Name="FrtAgrmtRFQRspDueByCriticality" Type="Edm.Byte" sap:label="Response Deadline"/><Property Name="AwdConfDeadlineDuByCriticality" Type="Edm.Byte" sap:label="Award Confirmation"
+					sap:quickinfo="Freight Agreement RFQ Award Confirmation"/><Property Name="TranspAgreementValidFrom" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Agreement Valid From"
+					sap:quickinfo="Start Date of Validity"/><Property Name="TranspAgreementValidTo" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Agreement Valid To"
+					sap:quickinfo="End Date of Validity"/><Property Name="FrtAgrmtRFQAwdConfDeadlineDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"
+					sap:label="Award Confirmation Deadline"/><Property Name="FreightAgreementRFQPublishDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"
+					sap:filter-restriction="interval" sap:label="Date Published" sap:quickinfo="Publication Date"/><Property Name="FrtAgrmtRFQResponseDeadlineDte" Type="Edm.DateTime" Precision="0" sap:display-format="Date"
+					sap:filter-restriction="interval" sap:label="Response Deadline"/><Property Name="FrtAgrmtRFQResponseDueBy" Type="Edm.String" MaxLength="20" sap:label="Response Due In"/><Property Name="AwardConfDeadlineDueBy" Type="Edm.String" MaxLength="20" sap:label="Award Confirmation Due In"
+					sap:quickinfo="Award Confirmation Deadline"/><Property Name="BusinessPartner" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Business Partner"
+					sap:quickinfo="Business Partner Number"/><Property Name="TranspAgrmtIsRespondedHidden" Type="Edm.Boolean" sap:label="TRUE"
+					sap:quickinfo="Data element for domain BOOLE: TRUE (='X') and FALSE (=' ')"/><Property Name="TranspAgrmtIsConfirmedHidden" Type="Edm.Boolean" sap:label="TRUE"
+					sap:quickinfo="Data element for domain BOOLE: TRUE (='X') and FALSE (=' ')"/><NavigationProperty Name="to_CollabnApplFrtAgrmtRFQItem" Relationship="TM_COLL_FAGRFQ_SRV.assoc_A14B912E24C0DC144CC4A566221D3A94"
+					FromRole="FromRole_assoc_A14B912E24C0DC144CC4A566221D3A94" ToRole="ToRole_assoc_A14B912E24C0DC144CC4A566221D3A94"/></EntityType>
+			<EntityType Name="C_CollabnApplFrtAgrmtRFQItemType" sap:label="Freight Agreement RFQ Item" sap:content-version="1">
+				<Key><PropertyRef Name="FrtAgrmtRFQItemUUID"/></Key><Property Name="ConfirmItemOfFrtAgrmtRFQ_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="RejectItemOfFrtAgrmtRFQ_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="FrtAgrmtRFQItemUUID" Type="Edm.Guid" Nullable="false" sap:label="NodeID" sap:heading=""/><Property Name="FrtAgrmtReqForQuotationUUID" Type="Edm.Guid" sap:label="NodeID" sap:heading=""/><Property Name="FreightAgreementRFQ" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Agreement"/><Property Name="FreightAgreementRFQItem" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Item Number"
+					sap:quickinfo="Agreement Item Number"/><Property Name="TranspAgrmtItmValidityStartDte" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid-From Date"
+					sap:quickinfo="Start Date of Validity"/><Property Name="TranspAgrmtItmValidityEndDte" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid-To Date"
+					sap:quickinfo="End Date of Validity"/><Property Name="TransportationMode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:text="TransportationModeDesc"
+					sap:label="Transportation Mode"/><Property Name="TransportationModeDesc" Type="Edm.String" MaxLength="20" sap:label="Description"/><Property Name="TransportationShippingType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase"
+					sap:text="TranspOrdShippingTypeDesc" sap:label="Shipping Type"/><Property Name="TranspOrdShippingTypeDesc" Type="Edm.String" MaxLength="40" sap:label="Description"/><Property Name="TranspMeansOfTransport" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase"
+					sap:text="TranspMeansOfTransportText" sap:label="Means of Transport"/><Property Name="TranspMeansOfTransportText" Type="Edm.String" MaxLength="40" sap:label="MTr Description"
+					sap:quickinfo="Means of Transport Description"/><Property Name="TranspAgrmtItmIsResponded" Type="Edm.Boolean" sap:label="TRUE" sap:quickinfo="Responded"/><Property Name="TranspAgrmtItmIsConfirmed" Type="Edm.Boolean" sap:label="Award Confirmation" sap:quickinfo="Confirmation by Carrier"/><Property Name="TranspAgrmtIsRespondedHidden" Type="Edm.Boolean" sap:label="TRUE"
+					sap:quickinfo="Data element for domain BOOLE: TRUE (='X') and FALSE (=' ')"/><Property Name="TranspAgrmtIsConfirmedHidden" Type="Edm.Boolean" sap:label="TRUE"
+					sap:quickinfo="Data element for domain BOOLE: TRUE (='X') and FALSE (=' ')"/><Property Name="TranspCapacityDimension" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase"
+					sap:text="TranspCalculationBaseText" sap:label="Capacity Dimension"/><Property Name="TranspCalculationBaseText" Type="Edm.String" MaxLength="80" sap:label="Description"/><Property Name="TranspCapacityUoM" Type="Edm.String" MaxLength="3" sap:label="Unit of Measure" sap:semantics="unit-of-measure"/><Property Name="TranspOfferedCapacityInCapUoM" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM"
+					sap:label="Responded Capacity"/><Property Name="TranspRequestedCapInCapUoM" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM"
+					sap:label="Requested Capacity"/><Property Name="TranspConfirmedCapInCapUoM" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM"
+					sap:label="Confirmed Capacity"/><Property Name="TransportationPeriodicity" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"
+					sap:text="TransportationPeriodicityText" sap:label="Periodicity"/><Property Name="TransportationPeriodicityText" Type="Edm.String" MaxLength="50" sap:label="Periodicity Desc."
+					sap:quickinfo="Periodicity Description"/><Property Name="TranspMinimumCapacity" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM" sap:label="Minimum Capacity"/><Property Name="TranspAgrmtPreConditionUUID" Type="Edm.Guid" sap:label="NodeID" sap:heading=""/><Property Name="TranspAgreementRFQStatus" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="RFQ Life Cycle Sts"
+					sap:quickinfo="RFQ Life Cycle Status"/><NavigationProperty Name="to_CollabnApplFrtAgrmtRFQ" Relationship="TM_COLL_FAGRFQ_SRV.assoc_55C15AD9B8D85C3389667491ED5F08F1"
+					FromRole="FromRole_assoc_55C15AD9B8D85C3389667491ED5F08F1" ToRole="ToRole_assoc_55C15AD9B8D85C3389667491ED5F08F1"/><NavigationProperty Name="to_CollabnFrtAgrmtRFQTrdLane" Relationship="TM_COLL_FAGRFQ_SRV.assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"
+					FromRole="FromRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6" ToRole="ToRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"/></EntityType>
+			<EntityType Name="C_CollabnFrtAgrmtRFQTrdLaneType" sap:label="Trade Lanes" sap:content-version="1">
+				<Key><PropertyRef Name="TradeLaneUUID"/></Key><Property Name="TradeLaneUUID" Type="Edm.Guid" Nullable="false" sap:label="NodeID" sap:heading=""/><Property Name="TranspAgrmtPreConditionUUID" Type="Edm.Guid" sap:label="NodeID" sap:heading=""/><Property Name="TradeLane" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Trade Lane"/><Property Name="TradeLaneOrientation" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:text="TradeLaneOrientationDesc"
+					sap:label="Orientation" sap:quickinfo="Transportation Orientation"/><Property Name="TradeLaneOrientationDesc" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/><Property Name="SourceGeographicalEntityType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"
+					sap:text="SrceGeogrlEntityTypeDesc" sap:label="Source Type" sap:quickinfo="Source Geographical Entity Type"/><Property Name="SrceGeogrlEntityTypeDesc" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/><Property Name="SourceLocationDescription" Type="Edm.String" MaxLength="40" sap:label="Source Location" sap:quickinfo="Location Description"/><Property Name="DestinationGeogrlEntityType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase"
+					sap:text="DestGeogrlEntityTypeDesc" sap:label="Destination Type" sap:quickinfo="Destination Geographical Entity Type"/><Property Name="DestGeogrlEntityTypeDesc" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/><Property Name="DestinationLocationDescription" Type="Edm.String" MaxLength="40" sap:label="Destination Location"
+					sap:quickinfo="Location Description"/><Property Name="TranspAgreementItemUUID" Type="Edm.Guid" sap:label="NodeID" sap:heading=""/></EntityType>
+			<EntityType Name="C_TransportationModeVHType" sap:label="Transportation Mode VH" sap:value-list="true" sap:content-version="1">
+				<Key><PropertyRef Name="TransportationMode"/></Key><Property Name="TransportationMode" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase"
+					sap:text="TransportationModeDesc" sap:label="Transportation Mode" sap:quickinfo="Mode of Transport"/><Property Name="TransportationModeDesc" Type="Edm.String" MaxLength="20" sap:label="Description"/><Property Name="TransportationModeCategory" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="TrM Category"
+					sap:quickinfo="Transportation Mode Category"/><Property Name="TransportationModeCategoryDesc" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/></EntityType>
+			<EntityType Name="C_TransportationShippingTypeVHType" sap:label="Transportation Shipping Type VH" sap:value-list="true"
+				sap:content-version="1">
+				<Key><PropertyRef Name="TransportationShippingType"/></Key><Property Name="TransportationShippingType" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase"
+					sap:text="TransportationShippingTypeText" sap:label="Shipping Type"/><Property Name="TransportationShippingTypeText" Type="Edm.String" MaxLength="40" sap:label="Description"/></EntityType>
+			<ComplexType Name="CCollabnapplfrtagrmtrfq"><Property Name="AwardConfDeadlineDueBy" Type="Edm.String" MaxLength="20" sap:label="Award Confirmation Deadline"/><Property Name="AwdConfDeadlineDuByCriticality" Type="Edm.Byte" sap:label="Award Confirmation"/><Property Name="BusinessPartner" Type="Edm.String" MaxLength="10" sap:label="Business Partner"/><Property Name="FreightAgreementRFQ" Type="Edm.String" MaxLength="20" sap:label="Agreement"/><Property Name="FreightAgreementRFQPublishDate" Type="Edm.DateTime" Precision="0" sap:label="Publication Date"/><Property Name="FreightAgreementRFQStatus" Type="Edm.String" MaxLength="2" sap:label="RFQ/Quotation Status"/><Property Name="FreightAgreementRFQStatusText" Type="Edm.String" MaxLength="60" sap:label="Agreement Status Desc."/><Property Name="FreightAgrmtRFQIsSealedBid" Type="Edm.String" MaxLength="1" sap:label="Sealed Bid"/><Property Name="FrtAgrmtReqForQuotationUUID" Type="Edm.Guid" sap:label="NodeID"/><Property Name="FrtAgrmtRFQAwdConfDeadlineDate" Type="Edm.DateTime" Precision="0"/><Property Name="FrtAgrmtRFQResponseDeadlineDte" Type="Edm.DateTime" Precision="0"/><Property Name="FrtAgrmtRFQResponseDueBy" Type="Edm.String" MaxLength="20" sap:label="Response Due Desc."/><Property Name="FrtAgrmtRFQRspDueByCriticality" Type="Edm.Byte" sap:label="Response Deadline"/><Property Name="TranspAgreementRFQStatus" Type="Edm.String" MaxLength="2" sap:label="RFQ Life Cycle Sts"/><Property Name="TranspAgreementRFQStatusText" Type="Edm.String" MaxLength="60" sap:label="Agreement Status Desc."/><Property Name="TranspAgreementValidFrom" Type="Edm.DateTime" Precision="0" sap:label="Valid-From Date"/><Property Name="TranspAgreementValidTo" Type="Edm.DateTime" Precision="0" sap:label="Valid-To Date"/><Property Name="TranspAgrmtIsConfirmedHidden" Type="Edm.Boolean" sap:label="TRUE"/><Property Name="TranspAgrmtIsRespondedHidden" Type="Edm.Boolean" sap:label="TRUE"/><Property Name="TranspOrdShippingTypeDesc" Type="Edm.String" MaxLength="40" sap:label="Description"/><Property Name="TransportationAgreementDesc" Type="Edm.String" MaxLength="75" sap:label="Description"/><Property Name="TransportationAgreementDocCrcy" Type="Edm.String" MaxLength="5" sap:label="Document Currency" sap:semantics="currency-code"/><Property Name="TransportationMode" Type="Edm.String" MaxLength="2" sap:label="Transportation Mode"/><Property Name="TransportationModeDesc" Type="Edm.String" MaxLength="20" sap:label="Description"/><Property Name="TransportationShippingType" Type="Edm.String" MaxLength="3" sap:label="Shipping Type"/></ComplexType>
+			<ComplexType Name="CCollabnapplfrtagrmtrfqitem"><Property Name="FreightAgreementRFQ" Type="Edm.String" MaxLength="20" sap:label="Agreement"/><Property Name="FreightAgreementRFQItem" Type="Edm.String" MaxLength="10" sap:label="Agreement Item No."/><Property Name="FrtAgrmtReqForQuotationUUID" Type="Edm.Guid" sap:label="NodeID"/><Property Name="FrtAgrmtRFQItemUUID" Type="Edm.Guid" sap:label="NodeID"/><Property Name="TranspAgreementRFQStatus" Type="Edm.String" MaxLength="2" sap:label="RFQ Life Cycle Sts"/><Property Name="TranspAgrmtIsConfirmedHidden" Type="Edm.Boolean" sap:label="TRUE"/><Property Name="TranspAgrmtIsRespondedHidden" Type="Edm.Boolean" sap:label="TRUE"/><Property Name="TranspAgrmtItmIsConfirmed" Type="Edm.String" MaxLength="1" sap:label="Award Confirmation"/><Property Name="TranspAgrmtItmIsResponded" Type="Edm.Boolean" sap:label="TRUE"/><Property Name="TranspAgrmtItmValidityEndDte" Type="Edm.DateTime" Precision="0" sap:label="Valid-To Date"/><Property Name="TranspAgrmtItmValidityStartDte" Type="Edm.DateTime" Precision="0" sap:label="Valid-From Date"/><Property Name="TranspAgrmtPreConditionUUID" Type="Edm.Guid" sap:label="NodeID"/><Property Name="TranspCalculationBaseText" Type="Edm.String" MaxLength="80" sap:label="Description"/><Property Name="TranspCapacityDimension" Type="Edm.String" MaxLength="30" sap:label="Capacity Dimension"/><Property Name="TranspCapacityUoM" Type="Edm.String" MaxLength="3" sap:label="Chargeable Wt UoM" sap:semantics="unit-of-measure"/><Property Name="TranspConfirmedCapInCapUoM" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM"
+				sap:label="Confirmed Capacity"/><Property Name="TranspMeansOfTransport" Type="Edm.String" MaxLength="10" sap:label="Means of Transport"/><Property Name="TranspMeansOfTransportText" Type="Edm.String" MaxLength="40" sap:label="MTr Description"/><Property Name="TranspMinimumCapacity" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM" sap:label="Minimum Capacity"/><Property Name="TranspOfferedCapacityInCapUoM" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM"
+				sap:label="Responded Capacity"/><Property Name="TranspOrdShippingTypeDesc" Type="Edm.String" MaxLength="40" sap:label="Description"/><Property Name="TransportationMode" Type="Edm.String" MaxLength="2" sap:label="Transportation Mode"/><Property Name="TransportationModeDesc" Type="Edm.String" MaxLength="20" sap:label="Description"/><Property Name="TransportationPeriodicity" Type="Edm.String" MaxLength="1" sap:label="Periodicity"/><Property Name="TransportationPeriodicityText" Type="Edm.String" MaxLength="50" sap:label="Periodicity Desc."/><Property Name="TransportationShippingType" Type="Edm.String" MaxLength="3" sap:label="Shipping Type"/><Property Name="TranspRequestedCapInCapUoM" Type="Edm.Decimal" Precision="31" Scale="2" sap:unit="TranspCapacityUoM"
+				sap:label="Requested Capacity"/></ComplexType>
+			<Association Name="assoc_A14B912E24C0DC144CC4A566221D3A94" sap:content-version="1">
+				<End Type="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType" Multiplicity="1" Role="FromRole_assoc_A14B912E24C0DC144CC4A566221D3A94"><OnDelete Action="Cascade"/></End><End Type="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQItemType" Multiplicity="*" Role="ToRole_assoc_A14B912E24C0DC144CC4A566221D3A94"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_A14B912E24C0DC144CC4A566221D3A94"><PropertyRef Name="FrtAgrmtReqForQuotationUUID"/></Principal>
+					<Dependent Role="ToRole_assoc_A14B912E24C0DC144CC4A566221D3A94"><PropertyRef Name="FrtAgrmtReqForQuotationUUID"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_55C15AD9B8D85C3389667491ED5F08F1" sap:content-version="1"><End Type="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQItemType" Multiplicity="1" Role="FromRole_assoc_55C15AD9B8D85C3389667491ED5F08F1"/><End Type="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType" Multiplicity="1" Role="ToRole_assoc_55C15AD9B8D85C3389667491ED5F08F1"/></Association>
+			<Association Name="assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6" sap:content-version="1">
+				<End Type="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQItemType" Multiplicity="1" Role="FromRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"><OnDelete Action="Cascade"/></End><End Type="TM_COLL_FAGRFQ_SRV.C_CollabnFrtAgrmtRFQTrdLaneType" Multiplicity="*" Role="ToRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"><PropertyRef Name="FrtAgrmtRFQItemUUID"/></Principal>
+					<Dependent Role="ToRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"><PropertyRef Name="TranspAgreementItemUUID"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="TM_COLL_FAGRFQ_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="RFQExcelSet" EntityType="TM_COLL_FAGRFQ_SRV.RFQExcel" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="C_CollabnApplFrtAgrmtRFQ" EntityType="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_CollabnApplFrtAgrmtRFQItem" EntityType="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQItemType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="C_CollabnFrtAgrmtRFQTrdLane" EntityType="TM_COLL_FAGRFQ_SRV.C_CollabnFrtAgrmtRFQTrdLaneType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="C_TransportationModeVH" EntityType="TM_COLL_FAGRFQ_SRV.C_TransportationModeVHType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="C_TransportationShippingTypeVH" EntityType="TM_COLL_FAGRFQ_SRV.C_TransportationShippingTypeVHType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_55C15AD9B8D85C3389667491ED5F08F1" Association="TM_COLL_FAGRFQ_SRV.assoc_55C15AD9B8D85C3389667491ED5F08F1"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="C_CollabnApplFrtAgrmtRFQItem" Role="FromRole_assoc_55C15AD9B8D85C3389667491ED5F08F1"/><End EntitySet="C_CollabnApplFrtAgrmtRFQ" Role="ToRole_assoc_55C15AD9B8D85C3389667491ED5F08F1"/></AssociationSet>
+				<AssociationSet Name="assoc_A14B912E24C0DC144CC4A566221D3A94" Association="TM_COLL_FAGRFQ_SRV.assoc_A14B912E24C0DC144CC4A566221D3A94"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="C_CollabnApplFrtAgrmtRFQ" Role="FromRole_assoc_A14B912E24C0DC144CC4A566221D3A94"/><End EntitySet="C_CollabnApplFrtAgrmtRFQItem" Role="ToRole_assoc_A14B912E24C0DC144CC4A566221D3A94"/></AssociationSet>
+				<AssociationSet Name="assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6" Association="TM_COLL_FAGRFQ_SRV.assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="C_CollabnApplFrtAgrmtRFQItem" Role="FromRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"/><End EntitySet="C_CollabnFrtAgrmtRFQTrdLane" Role="ToRole_assoc_5B92FBCE98FFB3E8AA14B2B25CC003A6"/></AssociationSet>
+				<FunctionImport Name="SubmitConfForFrtAgrmtRFQ" ReturnType="TM_COLL_FAGRFQ_SRV.CCollabnapplfrtagrmtrfq" m:HttpMethod="POST"
+					sap:action-for="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType" sap:applicable-path="SubmitConfForFrtAgrmtRFQ_ac"><Parameter Name="FrtAgrmtReqForQuotationUUID" Type="Edm.Guid" Mode="In"/></FunctionImport>
+				<FunctionImport Name="SubmitResponseForFrtAgrmtRFQ" ReturnType="TM_COLL_FAGRFQ_SRV.CCollabnapplfrtagrmtrfq" m:HttpMethod="POST"
+					sap:action-for="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType" sap:applicable-path="SubmitResponseForFrtAgrmtRFQ_ac"><Parameter Name="FrtAgrmtReqForQuotationUUID" Type="Edm.Guid" Mode="In"/></FunctionImport>
+				<FunctionImport Name="ConfirmItemOfFrtAgrmtRFQ" ReturnType="TM_COLL_FAGRFQ_SRV.CCollabnapplfrtagrmtrfqitem" m:HttpMethod="POST"
+					sap:action-for="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQItemType" sap:applicable-path="ConfirmItemOfFrtAgrmtRFQ_ac"><Parameter Name="FrtAgrmtRFQItemUUID" Type="Edm.Guid" Mode="In"/></FunctionImport>
+				<FunctionImport Name="RejectItemOfFrtAgrmtRFQ" ReturnType="TM_COLL_FAGRFQ_SRV.CCollabnapplfrtagrmtrfqitem" m:HttpMethod="POST"
+					sap:action-for="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQItemType" sap:applicable-path="RejectItemOfFrtAgrmtRFQ_ac"><Parameter Name="FrtAgrmtRFQItemUUID" Type="Edm.Guid" Mode="In"/></FunctionImport>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType/TransportationMode">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Transportation Mode VH"/><PropertyValue Property="CollectionPath" String="C_TransportationModeVH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="TransportationMode"/><PropertyValue Property="ValueListProperty" String="TransportationMode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TransportationModeDesc"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TransportationModeCategory"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TransportationModeCategoryDesc"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation><Annotation Term="Common.ValueListWithFixedValues"/></Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType/TransportationShippingType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Transportation Shipping Type VH"/><PropertyValue Property="CollectionPath" String="C_TransportationShippingTypeVH"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="TransportationShippingType"/><PropertyValue Property="ValueListProperty" String="TransportationShippingType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="TransportationShippingTypeText"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation><Annotation Term="Common.ValueListWithFixedValues"/></Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="TM_COLL_FAGRFQ_SRV.TM_COLL_FAGRFQ_SRV_Entities"><Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="TM_COLL_FAGRFQ_SRV.TM_COLL_FAGRFQ_SRV_Entities/C_CollabnApplFrtAgrmtRFQ">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>SubmitConfForFrtAgrmtRFQ_ac</PropertyPath>
+								<PropertyPath>SubmitResponseForFrtAgrmtRFQ_ac</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record><PropertyValue Property="Property" PropertyPath="FreightAgreementRFQPublishDate"/><PropertyValue Property="AllowedExpressions" String="SingleRange"/></Record>
+								<Record><PropertyValue Property="Property" PropertyPath="FrtAgrmtRFQResponseDeadlineDte"/><PropertyValue Property="AllowedExpressions" String="SingleRange"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>SubmitConfForFrtAgrmtRFQ_ac</PropertyPath>
+								<PropertyPath>SubmitResponseForFrtAgrmtRFQ_ac</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="TM_COLL_FAGRFQ_SRV.TM_COLL_FAGRFQ_SRV_Entities/C_CollabnApplFrtAgrmtRFQItem">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>ConfirmItemOfFrtAgrmtRFQ_ac</PropertyPath>
+								<PropertyPath>RejectItemOfFrtAgrmtRFQ_ac</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>ConfirmItemOfFrtAgrmtRFQ_ac</PropertyPath>
+								<PropertyPath>RejectItemOfFrtAgrmtRFQ_ac</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQItemType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>FreightAgreementRFQItem</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="TM_COLL_FAGRFQ_SRV.C_CollabnApplFrtAgrmtRFQType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>FreightAgreementRFQ</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="TM_COLL_FAGRFQ_SRV.C_CollabnFrtAgrmtRFQTrdLaneType">
+				<Annotation Term="Common.SemanticKey">
+					<Collection>
+						<PropertyPath>TradeLane</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/TM_COLL_FAGRFQ_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/TM_COLL_FAGRFQ_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

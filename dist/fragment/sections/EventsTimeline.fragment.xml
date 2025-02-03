@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:commons="sap.suite.ui.commons">
+	<Toolbar class="tablesborder" design="Solid">
+		<Title text="{i18nhome>Events}"/>
+		<ToolbarSpacer/>
+		<Button icon="sap-icon://message-popup" tooltip="{i18nhome>ReportUnexpectedEvent}" type="Transparent" press="onReportUnexpectedEvent"
+			visible="{_AM>/V_ExecutionSet}"/>
+	</Toolbar>
+	<commons:Timeline id="idEventsSectionTimeline" enableDoubleSided="false" groupBy="eventTime" growingThreshold="0" sortOldestFirst="false"
+		enableScroll="false" content="{path: '/ExecutionSet', suspended: true}" class="timelineborder" dateTimePath="{ActualDateTime}">
+		<commons:content>
+			<!--dateTime="{SortOrderDateTime}"-->
+			<commons:TimelineItem id="idTimelineItem" userNameClickable="false" text="{LocationName}"
+				icon="{path:'EventStatusCode', formatter:'.formatter.EventsReportIcon'}"
+				status="{path:'EventStatusCode', formatter:'.formatter.EventsReportStatus'}" userName="{EventDescription}">
+				<commons:embeddedControl>
+					<VBox class="sapUiNoContentPadding">
+						<Label text="{/#Execution/ExpectedDateTime/@sap:label}" visible="{= ${ExpectedDateTime}? true: false}"/>
+						<!--value="{path: 'ExpectedDateTime', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC: true}}"-->
+						<!--dateValue="{ExpectedDateTime}-->
+						<!--displayFormat="{path:'/displayFormatByLocale'}"-->
+						<DateTimePicker editable="false" value=" {path: 'ExpectedDateTime' , type: 'sap.ui.model.type.DateTime' , formatOptions: {UTC: true}}"
+							visible="{= ${ExpectedDateTime}? true: false}"/>
+						<!--{i18nhome>ActualDateTime}-->
+						<Label text="{/#Execution/ActualDateTime/@sap:label}" visible="{= ${EventStatusCode}=== 'R'? true: false}"/>
+						<!--value="{path: 'ActualDateTime', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC: true}}"-->
+						<!--dateValue="{= ${EventStatusCode}=== 'R'? ${ActualDateTime}: null}"-->
+						<!--displayFormat="{path:'/displayFormatByLocale'}"-->
+						<DateTimePicker editable="false" value=" {path: 'ActualDateTime' , type: 'sap.ui.model.type.DateTime' , formatOptions: {UTC: true}}"
+							visible="{= ${EventStatusCode}=== 'R' &amp;&amp; typeof(${path: 'ActualDateTime', formatter:'.formatter.getDateBeforeOrAfterDays'}) === 'object' ? true: false}"/>
+						<!--text="{= typeof(${path: 'ActualDateTime', formatter:'.formatter.getDateBeforeOrAfterDays'}) === 'object' ? '' : ${path: 'ActualDateTime', formatter:'.formatter.getDateBeforeOrAfterDays'} }"-->
+						<Text id="idAlternateOfActualDate"
+							visible="{= typeof(${path: 'ActualDateTime', formatter:'.formatter.getDateBeforeOrAfterDays'}) === 'object' ? false : true}"
+							text="{path: 'ActualDateTime' , type: 'sap.ui.model.type.DateTime' , formatOptions: {UTC: true}}"></Text>
+						<!--{i18nhome>Location}-->
+						<Label class="sapUiTinyMarginTop" text="{/#Execution/LocationName/@sap:label}" visible="{= ${EventStatusCode}=== 'N'? false:true}"/>
+						<Toolbar class="noborders sapUiNoContentPadding" visible="{= ${EventStatusCode}=== 'N'? false:true}">
+							<Text text="{LocationName}"/>
+							<ToolbarSpacer/>
+							<Text text="{LocationTimeZone}"/>
+						</Toolbar>
+						<!--{i18nhome>Reason}-->
+						<Label class="sapUiTinyMarginTop" text="{/#Execution/EventReasonDescription/@sap:label}"
+							visible="{= ${EventStatusCode}=== 'N'? true: false}"/>
+						<Toolbar class="noborders sapUiNoContentPadding">
+							<Text text="{EventReasonDescription}" visible="{= ${EventStatusCode}=== 'N'? true: false}"/>
+							<ToolbarSpacer/>
+							<Text text="{ActualTimezone}" visible="{= ${EventStatusCode}=== 'N'? true: false}"/>
+						</Toolbar>
+						<Toolbar class="noborders" visible="{path:'EventStatusCode', formatter:'.formatter.EventsReportVisible'}">
+							<ToolbarSpacer/>
+							<Button text="{i18nhome>ReportEvent}" icon="sap-icon://notification-2" press="onReportExpectedEvent" visible="{_AM>/V_ExecutionSet}"></Button>
+						</Toolbar>
+					</VBox>
+				</commons:embeddedControl>
+			</commons:TimelineItem>
+		</commons:content>
+	</commons:Timeline>
+</core:FragmentDefinition>

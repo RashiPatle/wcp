@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:smartField="sap.ui.comp.smartfield">
+	<Dialog title="{i18nhome>UpdateContainer}" afterClose="afterCloseUpdateContainerDialog" resizable="true">
+		<content>
+			<f:SimpleForm id="idUpdateFreightOrderId" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+				singleContainerFullSize="false">
+				<f:content>
+					<Label text="{to_Items/ContainerNumber/#@sap:label}"/>
+					<Input id="idEditContainerNumber" value="{path:'ContainerNumber'}"></Input>
+					<Label text="{to_Items/TranspOrdItemGrossWeight/#@sap:label}"/>
+					<Input id="idEditGrossWeight"
+						value="{parts : [ 'TranspOrdItemGrossWeight', 'TranspOrdItemGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+						change="formattingAmountsInLocale"></Input>
+					<smartField:SmartLabel labelFor="idEditGrossWeightUoM"/>
+					<smartField:SmartField id="idEditGrossWeightUoM" value="{TranspOrdItemGrossWeightUnit}"/>
+					<Label text="{to_Items/TranspOrdItemGrossVolume/#@sap:label}"/>
+					<Input id="idEditGrossVolume"
+						value=" {parts : [ 'TranspOrdItemGrossVolume', 'TranspOrdItemGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+						change="formattingAmountsInLocale"></Input>
+					<smartField:SmartLabel labelFor="idEditGrossVolumeUoM"/>
+					<smartField:SmartField id="idEditGrossVolumeUoM" value="{TranspOrdItemGrossVolumeUnit}"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="{i18nhome>Cancel}" press="onUpdateContainerCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18nhome>OK}" press="onUpdateContainerConfirmed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,21 @@
+/* Enter your custom styles here */
+
+.tablesborder {
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-width: 1px;
+}
+.timelineborder {
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-width: 1px;
+}
+
+.noborders {
+  border-color : transparent ;
+}

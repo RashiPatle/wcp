@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<List headerText="{i18n>FreightOrdersToBeLoaded}"
+		items="{ path: ''}">
+		<ObjectListItem title="{eventDescription}" type="Active" press="onListItemPress"
+			number="{ parts:[{path:'Price'},{path:'CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+			numberUnit="{CurrencyCode}" intro="{foID}">
+			<firstStatus>
+			<ObjectStatus text="{path:'eventTime', type:'sap.ui.model.odata.type.DateTime', formatOptions: {style: 'medium'}}" />
+		</firstStatus>
+			<attributes>
+				<ObjectAttribute text="{eventReasonDescription}"/>
+				<!--<ObjectAttribute text="{eventReasonDescription}"/>-->
+				<ObjectAttribute text="{eventLocation}"/>
+			</attributes>
+		</ObjectListItem>
+	</List>
+</core:FragmentDefinition>

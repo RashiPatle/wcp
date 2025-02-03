@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<Table inset="false" id="idResourceTable"
+		items="{ path: 'to_Items', filters: [{path:'TranspOrdItemCategory', operator:'EQ', value1:'AVR'}]}"
+		class="tablesborder sapUiMediumMarginTop" backgroundDesign="Solid">
+		<headerToolbar>
+			<Toolbar design="Solid">
+				<Title text="{i18nhome>Resource}"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<!--<Column width="12em" hAlign="Begin" demandPopin="false" class="sapUiTinyMarginRight">-->
+			<!--{i18nhome>Resource}-->
+			<!--	<Text text="{to_Items/ResourceID/#@sap:label}"/>-->
+			<!--</Column>-->
+			<Column minScreenWidth="Small" width="12em" hAlign="Begin" demandPopin="true">
+				<!--{i18nhome>PlateNumber}-->
+				<Text text="{to_Items/PlateNumber/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" width="6em" hAlign="Begin" demandPopin="true">
+				<!--{i18nhome>Country}-->
+				<Text text="{to_Items/Country/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" width="4em" hAlign="End" demandPopin="true">
+				<Text text="{i18nhome>Action}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<!--<Text text="{ResourceID}"/>-->
+					<Text text="{PlateNumber}" wrapping="true"/>
+					<Text text="{Country}"/>
+					<OverflowToolbar class="noborders sapUiNoMarginBottom">
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://edit" press="onUpdateResourceButtonPress" type="Transparent" tooltip="{i18n>resourceEditTooltip}"
+							enabled="{_AM>/E_AEditItem}" visible="{_AM>/V_AEditItem}"/>
+					</OverflowToolbar>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

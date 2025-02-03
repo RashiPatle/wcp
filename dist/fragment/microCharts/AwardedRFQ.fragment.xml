@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mc="sap.suite.ui.microchart" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:layout="sap.ui.layout">
+	<viz:VizFrame height="230px" class="sapUiNoContentPadding" id="idVizFrameRFQ" uiConfig="{applicationSet:'fiori'}" vizType="line"
+		vizProperties="{ plotArea: { dataLabel:{visible: true} }, title: { text: 'Awarded RFQ Ratio in %' } }">
+		<viz:dataset>
+			<viz.data:FlattenedDataset data="{_RFQAWARDEDRATIO>/ZWCP_C_RFQAwardedRatio}">
+				<viz.data:dimensions>
+					<viz.data:DimensionDefinition name="Calendar Week" value="{_RFQAWARDEDRATIO>CalendarWeek}"/>
+				</viz.data:dimensions>
+				<viz.data:measures>
+					<!--<viz.data:MeasureDefinition name="Total RFQ" value="{_RFQAWARDEDRATIO>RFQCount}"/>
+						<viz.data:MeasureDefinition name="Awarded RFQ" value="{_RFQAWARDEDRATIO>AwardedCount}"/>-->
+					<viz.data:MeasureDefinition name="Awarded Ratio" value="{_RFQAWARDEDRATIO>AwardedRatio}"/>
+				</viz.data:measures>
+			</viz.data:FlattenedDataset>
+		</viz:dataset>
+		<viz:feeds>
+			<!--<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="TotalRFQ,AwardedRFQ"/>
+				<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="CalendarWeek"/>-->
+			<!--	<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Total RFQ"/>
+				<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Awarded RFQ"/>-->
+			<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Awarded Ratio"/>
+			<viz.feeds:FeedItem id="feedCategoryAxis" uid="categoryAxis" type="Dimension" values="Calendar Week"/>
+		</viz:feeds>
+	</viz:VizFrame>
+</core:FragmentDefinition>

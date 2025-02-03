@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns="sap.m">
+	<Dialog horizontalScrolling="false" id="idDNewDoorAssignment" showHeader="true" stretch="false" title="{i18n>reportUnexpectedEventTitle}"
+		type="Standard" verticalScrolling="true" afterClose="onCancelReportUnexpectedEvent">
+		<content>
+			<l:VerticalLayout class="sapUiSmallMargin">
+				<f:Form id="FormToolbarEvent" editable="true" ariaLabelledBy="Title1">
+					<f:layout>
+						<f:ResponsiveGridLayout/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer ariaLabelledBy="addEvent">
+							<f:formElements>
+								<f:FormElement label="{i18n>eventLabel}">
+									<f:fields>
+										<ComboBox id="IdEvent" items="{_MD>/ZWCP_C_FOEvents}" selectionChange="onSelectionChangeEventCode">
+											<core:Item text="{_MD>TranspOrdEventCode_Text}" key="{_MD>TranspOrdEventCode}"/>
+										</ComboBox>
+									</f:fields>
+								</f:FormElement>
+								<!--{i18n>actualDateLabel}-->
+								<f:FormElement label="{/#Execution/ActualDateTime/@sap:label}">
+									<f:fields>
+										<DateTimePicker id="idReportedDate" secondaryCalendarType="Gregorian" showValueStateMessage="false"></DateTimePicker>
+										<Text id="idReportedDateTimeZone" text="{_MD>/DefaultTimeZoneSet}"></Text>
+									</f:fields>
+								</f:FormElement>
+								<!--{i18n>eventCommentLabel}-->
+								<f:FormElement label="{/#Execution/EventComment/@sap:label}">
+									<f:fields>
+										<Input value="" id="idEventComment"/>
+									</f:fields>
+								</f:FormElement>
+								<!--{i18n>reasonDescriptionLabel}-->
+								<f:FormElement label="{/#Execution/EventReasonCode/@sap:label}">
+									<f:fields>
+										<ComboBox id="idReasonCode" items="{path: '_MD>/SelectedZWCP_C_ReasonByEvent'}" editable="false">
+											<core:Item text="{_MD>EventReason_Text}" key="{_MD>EventReason}"/>
+										</ComboBox>
+									</f:fields>
+								</f:FormElement>
+								<!--{i18n>reasonDescriptionLabel}-->
+								<f:FormElement label="{/#Execution/EventReasonDescription/@sap:label}">
+									<f:fields>
+										<Input value="" id="idReasonDescription"/>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</l:VerticalLayout>
+		</content>
+		<buttons >
+			<Button press="onCancelReportUnexpectedEvent" text="{i18n>cancelBtn}"/>
+			<Button press="onReportUnxpectedEventConfirm" text="{i18n>okBtn}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

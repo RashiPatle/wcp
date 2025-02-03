@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>ChangeSettingTableHeader}" afterClose="afterCloseChangeSettingDialog">
+		<content>
+			<!--<f:SimpleForm id="idChangeSettingForm" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"-->
+			<!--	labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"-->
+			<!--	singleContainerFullSize="false">-->
+			<!--	<f:content>-->
+			<!--		<Label text="Unit for Distances:"/>-->
+			<!--		<Select forceSelection="true" id="idSelectRole" items="{path:'_MD>/UserRoles'}" selectedKey="{_MD>/UserInfo/BusinessPartnerRole}">-->
+			<!--			<items>-->
+			<!--				<core:Item key="{path:'_MD>BusinessPartnerRole'}" text="{_MD>BusinessPartnerRoleShortName}"/>-->
+			<!--			</items>-->
+			<!--		</Select>-->
+			<!--	</f:content>-->
+			<!--</f:SimpleForm>-->
+			<VBox class="sapUiSmallMargin">
+				<Label labelFor="idUnitForDistRBG" text="Unit for Distances:"/>
+				<RadioButtonGroup id="idUnitForDistRBG" columns="1" class="sapUiMediumMarginBottom">
+					<RadioButton id="idUFDKM" text="Kilometer" selected="{= ${_MD>/DefaultUnitForDistSet} === 'KM' ? true: false}" groupName="UnitForDistance"/>
+					<RadioButton id="idUFDMI" text="Mile" selected="{= ${_MD>/DefaultUnitForDistSet} === 'MI' ? true: false}" groupName="UnitForDistance"/>
+				</RadioButtonGroup>
+				<Label labelFor="idTimeZoneInput" text="User Time Zone:"/>
+				<Input id="idTimeZoneInput" type="Text" width="100px" fieldWidth="60%" maxLength="3" class="sapUiSmallMarginBottom" liveChange="onTimeZoneInputLiveChange"/>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="{i18n>Cancel}" press="onChangeSettingCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>OK}" press="onChangeSettingConfirm"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

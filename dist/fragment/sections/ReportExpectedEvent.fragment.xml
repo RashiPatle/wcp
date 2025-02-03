@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns="sap.m">
+	<Dialog horizontalScrolling="false" id="idDNewDoorAssignment" showHeader="true" stretch="false" title="{i18n>reportExpectedEventTitle}"
+		type="Standard" verticalScrolling="false" afterClose="onCancelReportExpectedEvent">
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:Form id="FormToolbarEvent" editable="true" ariaLabelledBy="Title1">
+					<f:layout>
+						<f:ResponsiveGridLayout/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer ariaLabelledBy="addEvent">
+							<f:formElements>
+								<f:FormElement label="{i18n>eventLabel}">
+									<f:fields>
+										<Text id="idEventInfo" text="{EventDescription}"/>
+									</f:fields>
+								</f:FormElement>
+								<!--{i18n>expectedDateTimeLabel}-->
+								<f:FormElement label="{/#Execution/ExpectedDateTime/@sap:label}">
+									<f:fields>
+										<DateTimePicker width="100%" editable="false" showValueStateMessage="false" id="idEventExpectedDateTime"
+											dateValue="{path:'ExpectedDateTime'}"/>
+										<Text text="{LocationTimeZone}"></Text>
+									</f:fields>
+								</f:FormElement>
+								<!--{i18n>actualDateTimeLabel}-->
+								<f:FormElement label="{/#Execution/ActualDateTime/@sap:label}" class="sapUiTopSmallMargin">
+									<f:fields>
+										<DateTimePicker width="100%" secondaryCalendarType="Gregorian" showValueStateMessage="false" id="idEventReportedDateTime"/>
+										<Text text="{LocationTimeZone}"></Text>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{/#Execution/EventComment/@sap:label}">
+									<f:fields>
+										<TextArea id="idEventComment"/>
+									</f:fields>
+								</f:FormElement>
+								<!--<f:FormElement label="{i18n>ReasonCode}">-->
+								<!--	<f:fields>-->
+								<!--		<Select id="idReasonCodeEXP">-->
+								<!--			<core:Item text="Carrier Late"/>-->
+								<!--			<core:Item text="Gate Occupied"/>-->
+								<!--		</Select>-->
+								<!--	</f:fields>-->
+								<!--</f:FormElement>-->
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+		</content>
+		<buttons >
+			<Button press="onCancelReportExpectedEvent" text="{i18n>cancelBtn}"/>
+			<Button press="onReportExpectedEventConfirm" text="{i18n>okBtn}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,345 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.suite.ui.commons"
+	controllerName="com.westernacher.collaborationPortal.invoices.controller.EditInvoice" xmlns:html="http://www.w3.org/1999/xhtml">
+	<f:DynamicPage preserveHeaderStateOnScroll="false" headerExpanded="true" class="sapUiNoContentPadding" showNavButton="true"
+		navButtonPress="onNavBackFromInvoice">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<!--{i18n>Invoice}-->
+					<Title text="{CarrierReference/#@sap:label}: {CarrierReference}" wrapping="true"/>
+				</f:heading>
+				<f:actions>
+					<Button text="{i18n>SubmitInvoice}" type="Transparent" customData:actionName="submitInvoice"
+						customData:entitySet="ZWCP_C_SETLCarrierInvoices" press="onSubmitInvoicePress" visible="{_AM>/V_ASubmitInvoice}"
+						enabled="{_AM>/E_ASubmitInvoice}">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow"/>
+						</layoutData>
+					</Button>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<layout:Grid hSpacing="1" defaultSpan="L4 M12 S12">
+					<layout:content>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>GeneralInfoFormTitle}" labelSpanXL="4" labelSpanL="4"
+							width="100%" labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0"
+							columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content>
+								<!--{i18n>CarrierReference}-->
+								<Label text="{CarrierReference/#@sap:label}"/>
+								<Text text="{CarrierReference}"/>
+								<!--{i18n>InvoiceDate}-->
+								<Label text="{InvoiceDate/#@sap:label}"/>
+								<DatePicker width="100%" value="{path:'InvoiceDate', type:'sap.ui.model.odata.type.DateTime', constraints:{displayFormat:'Date'}}"
+									editable="false"/>
+								<!--<Label text="{i18n>DG}"/>-->
+								<!--<Text text="{DangerousGoodsAreContained}"/>-->
+								<!--<Label text="{i18n>VolumeLDMFormLabel}"/>-->
+								<!--<Text text="{TranspOrdGrossVolume} {TranspOrdGrossVolumeUnit}"/>-->
+								<!--<Label text="{i18n>Resource}"/>-->
+								<!--<Text text="{TranspOrdItemCategory} "/>-->
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>Amount}" labelSpanXL="4" labelSpanL="4" width="100%"
+							labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+							columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<!--{i18n>NetAmount}-->
+								<Label text="{NetAmount/#@sap:label}"/>
+								<Text text="{ parts : [ 'NetAmount', 'NetAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+								<!--{i18n>TaxAmount}-->
+								<Label text="{TaxAmount/#@sap:label}"/>
+								<Text text="{ parts : [ 'TaxAmount', 'TaxAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+								<!--{i18n>GrossAmount}-->
+								<Label text="{GrossAmount/#@sap:label}"/>
+								<Text text="{ parts : [ 'GrossAmount', 'GrossAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+								<!--<Label text="{i18n>PlannedDeliveryTimeFormLabel}"/>-->
+								<!--<Text text="{path:'DesTransportationPlanningDate', type:'sap.ui.model.type.DateTime', formatOptions:{ style: 'short' }}"/>-->
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>ChangedAmount}" labelSpanXL="4" labelSpanL="4" width="100%"
+							labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+							columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<!--{i18n>ChangedNetAmount}-->
+								<Label text="{ChangedNetAmount/#@sap:label}"/>
+								<Text text="{ parts : [ 'ChangedNetAmount', 'NetAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+								<!--{i18n>ChangedTaxAmount}-->
+								<Label text="{ChangedTaxAmount/#@sap:label}"/>
+								<Text text="{ parts : [ 'ChangedTaxAmount', 'TaxAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+								<!--{i18n>ChangedGrossAmount}-->
+								<Label text="{ChangedGrossAmount/#@sap:label}"/>
+								<Text text="{ parts : [ 'ChangedGrossAmount', 'GrossAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+							</form:content>
+						</form:SimpleForm>
+					</layout:content>
+				</layout:Grid>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<!--<layout:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="XL12 L12 M12 S12">-->
+			<!--	<layout:content>-->
+			<VBox>
+				<f:GridList id="gridListInv" headerText="{i18n>FreightOrders}" items="{ path: '_CI>/FreightOrders', templateShareable:true}">
+					<f:customLayout>
+						<grid:GridResponsiveLayout layoutChange="onLayoutChange">
+							<grid:layoutS>
+								<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 100%)" gridGap="0.25rem 0.25rem"></grid:GridSettings>
+							</grid:layoutS>
+							<grid:layoutM>
+								<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 100%)" gridGap="0.5rem 0.5rem"></grid:GridSettings>
+							</grid:layoutM>
+							<grid:layoutL>
+								<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 100%)" gridGap="0.75rem 0.75rem"></grid:GridSettings>
+							</grid:layoutL>
+							<grid:layoutXL>
+								<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 100%)" gridGap="1rem 1rem"></grid:GridSettings>
+							</grid:layoutXL>
+						</grid:GridResponsiveLayout>
+					</f:customLayout>
+					<f:GridListItem class="sapUiSmallMargin">
+						<VBox height="100%">
+							<VBox class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiNoMarginBotton">
+								<Toolbar>
+									<!--{i18n>FreightOrder}-->
+									<Title text="{TransportationOrder/#@sap:label} {_CI>TransportationOrder}" level="H4" titleStyle="H4"/>
+									<ToolbarSpacer/>
+									<Button text="{i18n>UpdateFOValues}" icon="sap-icon://edit" type="Transparent" visible="{_CI>QuantityChangeAllowed}"
+										press="onUpdateFOQuantitiesPress"/>
+								</Toolbar>
+							</VBox>
+							<form:SimpleForm id="idFOForInvoiceUpadeForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+								labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="2" emptySpanM="2" emptySpanS="2" columnsXL="3" columnsL="2" columnsM="2"
+								singleContainerFullSize="false" class="sapUiNoMargin">
+								<!--<form:toolbar>-->
+								<!--	<Toolbar>-->
+								<!--		<Title text="{i18n>FreightOrder} {_CI>TransportationOrder}" level="H4" titleStyle="H4"/>-->
+								<!--		<ToolbarSpacer/>-->
+								<!--		<Button text="{i18n>RecalculateCharges}" icon="sap-icon://simulate"/>-->
+								<!--	</Toolbar>-->
+								<!--</form:toolbar>-->
+								<form:content>
+									<!--<core:Title text="" />-->
+									<Toolbar class="NoToolbar"/>
+									<!--{i18n>TotalDistance}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/TotalDistance/@sap:label}"/>
+									<Text text="{path: '_CI>TotalDistance', formatter: '.coreFormatter.numberUnit'} {= ${_CI>TotalDistance}? ${_CI>TotalDistanceUnit} : ''}"/>
+									<!--{i18n>GrossVolume}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/TranspOrdGrossVolume/@sap:label}"/>
+									<Text
+										text="{path: '_CI>TranspOrdGrossVolume', formatter: '.coreFormatter.numberUnit'} {= ${_CI>TranspOrdGrossVolume}? ${_CI>TranspOrdGrossVolumeUnit} : ''}"/>
+									<!--{i18n>GrossWeight}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/TranspOrdGrossWeight/@sap:label}"/>
+									<Text
+										text="{path: '_CI>TranspOrdGrossWeight', formatter: '.coreFormatter.numberUnit'} {= ${_CI>TranspOrdGrossWeight}? ${_CI>TranspOrdGrossWeightUnit} : ''}"/>
+									<!--{i18n>TotalAmount}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/TotalAmount/@sap:label}"/>
+									<Text text="{ parts : [ '_CI>TotalAmount', '_CI>TotalAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+									<!--<core:Title text=""/>-->
+									<Toolbar class="NoToolbar"/>
+									<!--{i18n>ChangedTotalDistance}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/ChangedTotalDistance/@sap:label}"/>
+									<Text
+										text="{path: '_CI>ChangedTotalDistance', formatter: '.coreFormatter.numberUnit'} {= ${_CI>ChangedTotalDistance}? ${_CI>TotalDistanceUnit} : ''}"/>
+									<!--{i18n>ChangedGrossVolume}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/ChangedGrossVolumeValue/@sap:label}"/>
+									<Text
+										text="{path: '_CI>ChangedGrossVolumeValue', formatter: '.coreFormatter.numberUnit'} {= ${_CI>ChangedGrossVolumeValue}? ${_CI>TranspOrdGrossVolumeUnit} : ''}"/>
+									<!--{i18n>ChangedGrossWeight}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/ChangedGrossWeight/@sap:label}"/>
+									<Text
+										text="{path: '_CI>ChangedGrossWeight', formatter: '.coreFormatter.numberUnit'} {= ${_CI>ChangedGrossWeight}? ${_CI>TranspOrdGrossWeightUnit} : ''}"/>
+									<!--{i18n>ChangedTotalAmount}-->
+									<Label text="{/#ZWCP_C_SETLFreightOrdersType/ChangedTotalAmount/@sap:label}"/>
+									<Text text="{ parts : [ '_CI>ChangedTotalAmount', '_CI>ChangedTotalAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"/>
+								</form:content>
+							</form:SimpleForm>
+						</VBox>
+						<Panel expandable="true" expanded="true" width="auto" class="sapUiNoMargin NoBottomBorder">
+							<headerToolbar>
+								<OverflowToolbar height="3rem" style="Clear">
+									<Title text="{i18n>Charges}"/>
+									<ToolbarSpacer/>
+									<Button width="10rem" icon="sap-icon://add" text="{i18n>AddChargeItem}" type="Transparent" visible="{_CI>NewChargeAllowed}"
+										press="onAddChargePress" tooltip="addButtonTooltip"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<Table id="idChargesInInvoiceTable" items="{ path: '_CI>to_ChargeItems', templateShareable: true}">
+									<columns>
+										<Column>
+											<!--{i18n>ChargeType}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/ChargeTypeDescription/@sap:label}"/>
+										</Column>
+										<Column>
+											<!--{i18n>Quantity}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/Quantity/@sap:label}"/>
+										</Column>
+										<Column visible="{path: '_CI>TransportationOrderUUID', formatter: '.proposedQuantityColumnVisibilityCheck'}">
+											<!--{i18n>ChangedQuantity}-->
+											<Text text="Changed Quantity"/>
+										</Column>
+										<Column>
+											<!--{i18n>RateAmount}-->
+											<Text text="{i18n>RateAmount}"/>
+										</Column>
+										<Column visible="{path: '_CI>TransportationOrderUUID', formatter: '.proposedAmountColumnVisibilityCheck'}">
+											<!--{i18n>ProposedRateAmount}-->
+											<Text text="{i18n>ProposedRateAmount}"/>
+										</Column>
+										<Column>
+											<!--{i18n>FinalAmount}-->
+											<Text text="{i18n>FinalAmount}"/>
+										</Column>
+										<Column visible="{path: '_CI>TransportationOrderUUID', formatter: '.proposedFinalAmountColumnVisibility'}">
+											<!--{i18n>ProposedFinalAmount}-->
+											<Text text="{i18n>ProposedFinalAmount}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>Edit}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>Remove}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem highlight="{= ${_CI>InvoiceIrrelevanceIndicator}? 'Warning' : 'None'}">
+											<cells>
+												<Text text="{_CI>ChargeTypeDescription}"/>
+												<Text text="{ parts : [ '_CI>Quantity', '_CI>QuantityUnitOfMeasure' ], formatter: '.coreFormatter.customUnitFormat' }"/>
+												<Text text="{ parts : [ '_CI>ChangedQuantity', '_CI>ChangedQuantityUnitOfMeasure' ], formatter: '.coreFormatter.customUnitFormat' }"
+													visible="{parts:['_CI>ChangedQuantity', '_CI>Quantity'], formatter:'.checkChangedQuantityVisibility'}"/>
+												<!-- HBox for Rate field to show disabled values after edit of charge item. Toggling based on visibility conditions of proposed fields -->
+												<HBox>
+													<items>
+														<Text class="changedChargeValue"
+															visible="{= (${parts:['_CI>ChangedRateAmount', '_CI>TaxIndicator'], formatter:'.checkChangedRateAmountVisibility'}) }"
+															text="{parts:['_CI>RateAmount', '_CI>RateCurrency'], formatter:'.coreFormatter.customUnitFormat'} {= ${_CI>PriceUnit} &amp;&amp; ${_CI>PriceUnit} !== '0.00' ? ${i18n>per} + ' ' + ${_CI>PriceUnit} + ' ' + ${_CI>PriceUnitUnitOfMeasure} : ''}"/>
+														<Text visible="{= !(${parts:['_CI>ChangedRateAmount', '_CI>TaxIndicator'], formatter:'.checkChangedRateAmountVisibility'}) }"
+															text="{parts:['_CI>RateAmount', '_CI>RateCurrency'], formatter:'.coreFormatter.customUnitFormat'} {= ${_CI>PriceUnit} &amp;&amp; ${_CI>PriceUnit} !== '0.00' ? ${i18n>per} + ' ' + ${_CI>PriceUnit} + ' ' + ${_CI>PriceUnitUnitOfMeasure} : ''}"/>
+													</items>
+												</HBox>
+												<Text text="{ parts : [ '_CI>ChangedRateAmount', '_CI>ChangedRateCurrency' ], formatter: '.coreFormatter.customUnitFormat' }"
+													visible="{parts:['_CI>ChangedRateAmount', '_CI>TaxIndicator'], formatter:'.checkChangedRateAmountVisibility'}"/>
+												<!-- HBox for final/invoiced field to show disabled values after edit of charge item. Toggling based on visibility conditions of proposed fields -->
+												<HBox>
+													<items>
+														<Text class="changedChargeValue"
+															visible="{= (${parts: ['_CI>ChangedFinalAmount', '_CI>TaxIndicator'], formatter:'.checkChangedFinalAmountVisibility'}) }"
+															text="{ parts : [ '_CI>FinalAmount', '_CI>FinalAmountCurrency' ], formatter: '.coreFormatter.customUnitFormat' }"/>
+														<Text visible="{= !(${parts: ['_CI>ChangedFinalAmount', '_CI>TaxIndicator'], formatter:'.checkChangedFinalAmountVisibility'}) }"
+															text="{ parts : [ '_CI>FinalAmount', '_CI>FinalAmountCurrency' ], formatter: '.coreFormatter.customUnitFormat' }"/>
+													</items>
+												</HBox>
+												<Text text="{ parts : [ '_CI>ChangedFinalAmount', '_CI>ChangedFinalAmountCurrency' ], formatter: '.coreFormatter.customUnitFormat' }"
+													visible="{parts:['_CI>ChangedFinalAmount', '_CI>TaxIndicator'], formatter:'.checkChangedFinalAmountVisibility'}"/>
+												<HBox>
+													<Button id="idButtonEditChargeInv" icon="sap-icon://edit" type="Transparent" press="onUpdateChargePress" tooltip="{i18n>EditButtonTooltip}"
+														visible="{= ${_CI>InvoiceIrrelevanceIndicator}? false: true}"/>
+													<Button id="idButtonRemoveProposalChargeInv" icon="sap-icon://less" type="Transparent" press="onRemoveChargeProposalPress"
+														visible="{path:'_CI>ChangedFinalAmount', formatter:'.checkRemoveProposalButtonVisibility'}" tooltip="{i18n>UndoButtonTooltip}"/>
+												</HBox>
+												<HBox>
+													<Button id="idButtonIncludeChargeInv" icon="sap-icon://undo" type="Transparent" press="onIncludeChargeItemPress"
+														tooltip="{i18n>UndoDeleteButtonTooltip}" visible="{path: '_CI>InvoiceIrrelevanceIndicator'}"/>
+													<Button id="idButtonExcludeChargeInv" icon="sap-icon://delete" type="Transparent" press="onExcludeChargeItemPress"
+														tooltip="{i18n>DeleteButtonTooltip}"
+														visible="{parts:['_CI>ChangedFinalAmount', '_CI>InvoiceIrrelevanceIndicator'], formatter:'.checkDeleteButtonVisibility'}"/>
+												</HBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</content>
+						</Panel>
+						<Panel expandable="true" expanded="{_DV>/TaxPanelExpanded}" width="auto" class="sapUiNoMargin">
+							<headerToolbar>
+								<OverflowToolbar height="3rem" style="Clear">
+									<Title text="{i18n>Taxes}"/>
+									<ToolbarSpacer/>
+									<Button width="10rem" icon="sap-icon://add" text="{i18n>AddTaxItem}" type="Transparent" visible="{_DV>/NewTaxesAllowed}"
+										press="onAddTaxPress" tooltip="addButtonTooltip"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<Table id="idTaxesInInvoiceTable" noDataText="{i18n>NoTaxItems}" items="{ path: '_CI>to_TaxItems', templateShareable: true}">
+									<columns>
+										<Column>
+											<!--{i18n>ChargeType}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/ChargeTypeDescription/@sap:label}"/>
+										</Column>
+										<Column>
+											<!--{i18n>Quantity}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/Quantity/@sap:label}"/>
+										</Column>
+										<Column>
+											<!--{i18n>RateAmount}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/RateAmount/@sap:label}"/>
+										</Column>
+										<Column visible="{path: '_CI>TransportationOrderUUID', formatter: '.proposedTaxAmountColumnVisibilityCheck'}">
+											<!--{i18n>ProposedRateAmount}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/ChangedRateAmount/@sap:label}"/>
+										</Column>
+										<Column>
+											<!--{i18n>FinalAmount}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/FinalAmount/@sap:label}"/>
+										</Column>
+										<Column visible="{path: '_CI>TransportationOrderUUID', formatter: '.proposedTaxFinalAmountColumnVisibility'}">
+											<!--{i18n>ProposedFinalAmount}-->
+											<Text text="{/#ZWCP_C_SETLOrderChargesType/ChangedFinalAmount/@sap:label}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>Edit}"/>
+										</Column>
+										<Column>
+											<Text text="{i18n>Remove}"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem highlight="{= ${_CI>InvoiceIrrelevanceIndicator}? 'Warning' : 'None'}">
+											<cells>
+												<Text text="{_CI>ChargeTypeDescription}"/>
+												<Text text="{ parts : [ '_CI>Quantity', '_CI>QuantityUnitOfMeasure' ], formatter: '.coreFormatter.customUnitFormat' }"/>
+												<Text
+													text="{ parts : [ '_CI>RateAmount', '_CI>RateCurrency' ], formatter: '.coreFormatter.customUnitFormat' } {= ${_CI>PriceUnit} &amp;&amp; ${_CI>PriceUnit} !== '0.00' ? ${i18n>per} + '' + ${_CI>PriceUnit} + ' ' + ${_CI>PriceUnitUnitOfMeasure} : ''}"/>
+												<Text text="{ parts : [ '_CI>ChangedRateAmount', '_CI>ChangedRateCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"
+													visible="{parts:['_CI>ChangedRateAmount', '_CI>TaxIndicator'], formatter:'.checkChangedRateAmountVisibility'}"/>
+												<Text text="{ parts : [ '_CI>FinalAmount', '_CI>FinalAmountCurrency' ], formatter: '.coreFormatter.customUnitFormat' }"/>
+												<Text text="{ parts : [ '_CI>ChangedFinalAmount', '_CI>ChangedFinalAmountCurrency' ], formatter: '.coreFormatter.customNumberUnit' }"
+													visible="{parts:['_CI>ChangedFinalAmount', '_CI>TaxIndicator'], formatter:'.checkChangedFinalAmountVisibility'}"/>
+												<HBox>
+													<Button id="idButtonEditTaxInv" icon="sap-icon://edit" type="Transparent" press="onUpdateChargePress" tooltip="{i18n>EditButtonTooltip}"
+														visible="{= ${_CI>InvoiceIrrelevanceIndicator}? false: true}"/>
+													<Button id="idButtonRemoveProposalTaxInv" icon="sap-icon://less" type="Transparent" press="onRemoveChargeProposalPress"
+														visible="{path:'_CI>ChangedFinalAmount', formatter:'.checkRemoveProposalButtonVisibility'}" tooltip="{i18n>UndoButtonTooltip}"/>
+												</HBox>
+												<HBox>
+													<Button id="idButtonIncludeTaxInv" icon="sap-icon://undo" type="Transparent" press="onIncludeChargeItemPress"
+														tooltip="{i18n>UndoDeleteButtonTooltip}" visible="{path: '_CI>InvoiceIrrelevanceIndicator'}"/>
+													<Button id="idButtonExcludeTaxInv" icon="sap-icon://delete" type="Transparent" press="onExcludeChargeItemPress"
+														tooltip="{i18n>DeleteButtonTooltip}"
+														visible="{parts:['_CI>ChangedFinalAmount', '_CI>InvoiceIrrelevanceIndicator'], formatter:'.checkDeleteButtonVisibility'}"/>
+												</HBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</content>
+						</Panel>
+					</f:GridListItem>
+				</f:GridList>
+				<layout:Grid class="sapUiSmallMarginBottom" hSpacing="2" defaultSpan="L12 M12 S12">
+					<layout:content>
+						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.AttachmentsSection" type="XML"/>
+					</layout:content>
+				</layout:Grid>
+			</VBox>
+			<!--</layout:content>-->
+			<!--</layout:Grid>-->
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

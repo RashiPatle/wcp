@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:tt="http://www.sap.com/transformation-templates" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/Communication.xml">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZWCP_EXEC_CUSTOM_SRV/$metadata">
+		<edmx:Include Alias="EXECUTION" Namespace="ZWCP_EXEC_SRV"/>
+	</edmx:Reference>
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZWCP_EXEC_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                ================================================================================-->
+			<Annotations Target="EXECUTION.ZWCP_C_ExecutionType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="FreightOrder"/>
+							
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="Carrier"/>
+							
+						</Record>
+						
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="TransportationOrderUUID_F"/>-->
+						<!--	<PropertyValue Property="Label" String="{i18n>TransportationOrderUUID_F}"/>-->
+							
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="SourceLocationName"/>-->
+						<!--	<PropertyValue Property="Label" String="Source Location"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="DestinationLocationName"/>-->
+						<!--	<PropertyValue Property="Label" String="Destination Location"/>-->
+						<!--</Record>-->
+					
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>-->
+						<!--	<PropertyValue Property="Value" Path="Shipper"/>-->
+						<!--	<PropertyValue Property="Label" String="{i18n>Shipper}"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>-->
+						<!--	<PropertyValue Property="Value" Path="Consignee"/>-->
+						<!--	<PropertyValue Property="Label" String="{i18n>Consignee}"/>-->
+						<!--</Record>-->
+					
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="FreightOrder"/>
+							
+						</Record>
+					</Collection>	
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="FreightOrder"/>
+							
+						</Record>
+					</Collection>	
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>FreightOrder</PropertyPath>
+						
+					</Collection>
+				</Annotation>
+				
+			</Annotations>
+			<Annotations Target="EXECUTION.ZWCP_C_ExecutionType/TransportationOrderUUID_F">
+			  <Annotation Term="com.sap.vocabularies.UI.v1.Hidden" />
+			  <Annotation Term="com.sap.vocabularies.Common.v1.FieldControl" EnumMember="Common.FieldControlType/Hidden" />
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

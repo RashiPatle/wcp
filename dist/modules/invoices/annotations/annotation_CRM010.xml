@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:tt="http://www.sap.com/transformation-templates" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/Communication.xml">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZWCP_SETL_CRM010_SRV/$metadata">
+		<edmx:Include Alias="SETLEMENT" Namespace="ZWCP_SETL_CRM010_SRV"/>
+	</edmx:Reference>
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZWCP_SETL_CRM010_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                ================================================================================-->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType">
+				<!-- Properties that should be available in the request atleast fields in the worklist smart table -->
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType">
+						<PropertyValue Property="RequestAtLeast">
+							<Collection>
+								<PropertyPath>InvoiceUUID</PropertyPath>
+								<PropertyPath>FSDLifeCycleStatus</PropertyPath>
+								<PropertyPath>InvoiceStatusCode</PropertyPath>
+								<PropertyPath>InvoiceDisputeCaseStatus</PropertyPath>
+								<!--<PropertyPath>CarrierReference</PropertyPath>-->
+								<PropertyPath>GrossAmountCurrency</PropertyPath>
+								<PropertyPath>NetAmountCurrency</PropertyPath>
+								<PropertyPath>TaxAmountCurrency</PropertyPath>
+								<PropertyPath>AcceptInvoiceFC</PropertyPath>
+								<PropertyPath>CancelInvoiceFC</PropertyPath>
+								<PropertyPath>EditProposalFC</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<!--===============================================================================
+                Collection of fields to be displayed in the worklist smart table
+                ================================================================================-->
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<!-- InvoiceStatusCode -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="InvoiceStatusCode"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="CarrierReference"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+							<PropertyValue Property="Value" Path="InvoiceDate"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+							<PropertyValue Property="Value" Path="GrossAmount"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+							<PropertyValue Property="Value" Path="NetAmount"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+							<PropertyValue Property="Value" Path="TaxAmount"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="GrossAmount">
+					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
+						<PropertyValue Property="Value" Path="GrossAmount"/>
+						<PropertyValue Property="NumberFormat">
+							<Record>
+								<PropertyValue Property="ScaleFactor" Int="0"/>
+								<PropertyValue Property="NumberOfFractionalDigits" Int="3"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>InvoiceDate</PropertyPath>
+						<PropertyPath>CarrierReference</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<!--===============================================================================
+                Annotations to remove extra fields from the Worklist personalization
+                ================================================================================-->
+			<!-- Already Existing fields -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/InvoiceUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/TranspOrdGrossWeight">
+				<!--<Annotation Term="Common.Label" String="{i18n>GrossWeight}"/>-->
+				<Annotation Term="CQP.Scale" Int="2"/>
+			</Annotations>
+			<!-- Newly added fields -->
+			<!-- Carrier UUID -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/CarrierUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- CreditMemoUUID -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/CreditMemoUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedGrossAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedGrossAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedNetAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedNetAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedTaxAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedTaxAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- InvoiceDisputeCaseStatus -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/InvoiceDisputeCaseStatus">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- FSD Status -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/FSDLifeCycleStatus">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Net Amount in Document Currency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/CreditAmount">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- InvoiceStatusDescription -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/InvoiceStatusDescription">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- GrossAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/GrossAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- NetAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/NetAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TaxAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/TaxAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedGrossAmount -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedGrossAmount">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedGrossAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedGrossAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedNetAmount -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedNetAmount">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedNetAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedNetAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedTaxAmount -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedTaxAmount">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedTaxAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/ChangedTaxAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- CreditMemoReference -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/CreditMemoReference">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- PurchasingOrganization -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/PurchasingOrganization">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/AcceptInvoiceFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/CancelInvoiceFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLCarrierInvoicesType/EditProposalFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

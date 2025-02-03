@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/base/Object","sap/m/MessageBox"],function(e,o){"use strict";return e.extend("com.westernacher.collaborationPortal.core.util.GenerateDialog",{constructor:function(e,o){this._oResourceBundle=e.getModel("i18n");this._oModel=e.getModel()}})});

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:tt="http://www.sap.com/transformation-templates" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/Communication.xml">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZWCP_FB/$metadata">
+		<edmx:Include Alias="FB" Namespace="ZWCP_FB_SRV"/>
+	</edmx:Reference>
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZWCP_FB_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+               https://ha6.wup.services:5101/sap/opu/odata/sap/ZWCP_FB_U6/FreightBookings?$expand=to_Items&$format=json
+
+                ================================================================================-->
+			<Annotations Target="FB.FreightBooking">
+				<!-- Properties that should be available in the request atleast fields in the worklist smart table -->
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType">
+						<PropertyValue Property="RequestAtLeast">
+							<Collection>
+								<PropertyPath>FreightBookingID</PropertyPath>
+								<PropertyPath>TransportationOrderUUID</PropertyPath>
+								<PropertyPath>UpdateFC</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<!--===============================================================================
+                Collection of fields to be displayed in the worklist smart table
+                ================================================================================-->
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<!-- Freight Booking Document No. -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="FreightBookingID"/>
+						</Record>
+						<!-- Shipper Name -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="ShipperFullName"/>
+						</Record>
+						<!-- Consignee Name-->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="ConsigneeFullName"/>
+						</Record>
+						<!-- Ocean Booking No -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="PartnerReferenceNumber"/>
+						</Record>
+						<!-- Master BOL -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="CarrierMasterBoLNumber"/>
+						</Record>
+						<!-- Voyage -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TranspOrdItemVoyage"/>
+						</Record>
+						<!-- Vessel -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TranspOrdItemVessel"/>
+						</Record>
+						<!-- Port of Loading -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="PortOfLoadingFullName"/>
+						</Record>
+						<!-- Sailing Date of Vessel -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="PortOfLoadingPlanningDate"/>
+						</Record>
+						<!--Expected  Arrival Date -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="PortofDischargePlanningDate"/>
+						</Record>
+						<!-- Carrier -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="CarrierFullName"/>
+						</Record>
+						<!-- Dangerous Goods -->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="DangerousGoods"/>-->
+						<!--</Record>-->
+						<!-- Port of Discharge -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="PortofDischargeFullName"/>
+						</Record>
+						<!-- Delivery Location -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="DeliveryStopFullName"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>FreightBookingID</PropertyPath>
+						<PropertyPath>PartnerReferenceNumber</PropertyPath>
+						<PropertyPath>CarrierMasterBoLNumber</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<!--===============================================================================
+                Annotations to add search help for filters
+	        ================================================================================-->
+			<!--TranspOrdItemGrossVolumeUnit-->
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="FB.Item/TranspOrdItemGrossVolumeUnit">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Gross Volume Unit"/>
+						<PropertyValue Property="CollectionPath" String="ZWCP_I_VolumeUoMVH"/>
+						<PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="TranspOrdItemGrossVolumeUnit"/>
+									<PropertyValue Property="ValueListProperty" String="UnitOfMeasure"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="UnitOfMeasure_Text"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<!--TranspOrdItemGrossWeightUnit-->
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="FB.Item/TranspOrdItemGrossWeightUnit">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Gross Weight Unit"/>
+						<PropertyValue Property="CollectionPath" String="ZWCP_I_WeightUoMVH"/>
+						<PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="TranspOrdItemGrossWeightUnit"/>
+									<PropertyValue Property="ValueListProperty" String="UnitOfMeasure"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="UnitOfMeasure_Text"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<!--===============================================================================
+                Annotations to remove extra fields from the Worklist personalization
+                ================================================================================-->
+			<Annotations Target="FB.FreightBooking/TransportationOrderTypeDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="FB.FreightBooking/TransportationModeDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="FB.FreightBooking/TotalDistanceUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--TranspOrd GrossWeight Unit -->
+			<Annotations Target="FB.FreightBooking/TranspOrdGrossWeightUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--TranspOrd GrossVolume Unit -->
+			<Annotations Target="FB.FreightBooking/TranspOrdGrossVolumeUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--TransportationOrder UUID -->
+			<Annotations Target="FB.FreightBooking/TransportationOrderUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--UpdateFC -->
+			<Annotations Target="FB.FreightBooking/UpdateFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

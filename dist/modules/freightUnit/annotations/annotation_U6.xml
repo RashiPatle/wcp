@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:tt="http://www.sap.com/transformation-templates" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/Communication.xml">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZWCP_FU/$metadata">
+		<edmx:Include Alias="FU" Namespace="ZWCP_FU_SRV"/>
+	</edmx:Reference>
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZWCP_FU_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                https://ha6.wup.services:5101/sap/opu/odata/sap/ZWCP_FU_U6/FreightUnits?$select=TransportationOrderUUID,SourceLocationName,TranspOrdGrossWeight
+
+                ================================================================================-->
+			<Annotations Target="FU.FreightUnit">
+				<!-- Properties that should be available in the request atleast fields in the worklist smart table -->
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType">
+						<PropertyValue Property="RequestAtLeast">
+							<Collection>
+								<PropertyPath>FreightUnitID</PropertyPath>
+								<PropertyPath>PurchaseOrders</PropertyPath>
+								<PropertyPath>SourceLocationName</PropertyPath>
+								<PropertyPath>LoadWeight</PropertyPath>
+								<PropertyPath>LoadQuantity</PropertyPath>
+								<PropertyPath>TransportationOrderUUID</PropertyPath>
+								<PropertyPath>UpdateFC</PropertyPath>
+								<PropertyPath>LoadReadyDate</PropertyPath>
+								<PropertyPath>SCAC</PropertyPath>
+								<PropertyPath>TranspOrdGrossWeightUnit</PropertyPath>
+								<PropertyPath>TranspOrdGrossVolumeUnit</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<!--===============================================================================
+                Collection of fields to be displayed in the worklist smart table
+                ================================================================================-->
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<!-- Freight Unit -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="FreightUnitID"/>
+						</Record>
+						<!-- Purchase Orders -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="PurchaseOrders"/>
+						</Record>
+						<!-- SCAC -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="SCAC"/>
+						</Record>
+						<!--Dangerous Goods -->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="DangerousGoods"/>-->
+						<!--</Record>-->
+						<!-- Load Weight -->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="LoadWeight"/>-->
+						<!--</Record>-->
+						<!-- Load Quantity -->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="LoadQuantity"/>-->
+						<!--</Record>-->
+						<!-- Load ready date -->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="LoadReadyDate"/>-->
+						<!--</Record>-->
+						<!-- Load Equipment Type Desc -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="LoadEquipmentTypeDesc"/>
+						</Record>
+						<!-- Source Location -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="SourceLocationName"/>
+						</Record>
+						<!-- Source Location City -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="SourceCityName"/>
+						</Record>
+						<!-- Source Location post-->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="SourcePostalCode"/>
+						</Record>
+						<!-- Destination Location -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="DestinationLocationName"/>
+						</Record>
+						<!-- Destination Location City -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="DestCityName"/>
+						</Record>
+						<!-- Destination Location post-->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="DestPostalCode"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>FreightUnitID</PropertyPath>
+						<PropertyPath>PurchaseOrder</PropertyPath>
+						<PropertyPath>LoadReadyDate</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<!--===============================================================================
+                Annotations to add search help for filters
+	        ================================================================================-->
+			<!--Means of Transport-->
+			<Annotations Target="FU.I_MeansOfTransportType/TransportationMode">
+				<Annotation Term="Common.FilterDefaultValue" String="01"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="FU.FreightUnit/LoadEquipmentType">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Means of Transport"/>
+						<PropertyValue Property="CollectionPath" String="I_MeansOfTransport"/>
+						<PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="LoadEquipmentType"/>
+									<PropertyValue Property="ValueListProperty" String="MeansOfTransport"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="MeansOfTransport_Text"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="TransportationMode"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<!--SCAC-->
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="FU.FreightUnit/SCAC">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Standard Carrier Alpha Code"/>
+						<PropertyValue Property="CollectionPath" String="ZWCP_I_SCAC"/>
+						<PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="SCAC"/>
+									<PropertyValue Property="ValueListProperty" String="SCAC"/>
+								</Record>
+								<!--TO DO: Need to change SCAC_Text to Description field of SCAC-->
+								<!--<Record Type="Common.ValueListParameterDisplayOnly">-->
+								<!--	<PropertyValue Property="ValueListProperty" String="SCAC_Text"/>-->
+								<!--</Record>-->
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<!--===============================================================================
+                Annotations to remove extra fields from the Worklist personalization
+                ================================================================================-->
+			<Annotations Target="FU.FreightUnit/TransportationOrderTypeDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="FU.FreightUnit/TransportationModeDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="FU.FreightUnit/TotalDistanceUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--TranspOrd GrossWeight Unit -->
+			<Annotations Target="FU.FreightUnit/TranspOrdGrossWeightUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--TranspOrd GrossVolume Unit -->
+			<Annotations Target="FU.FreightUnit/TranspOrdGrossVolumeUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--TransportationOrder UUID -->
+			<Annotations Target="FU.FreightUnit/TransportationOrderUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!--UpdateFC -->
+			<Annotations Target="FU.FreightUnit/UpdateFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

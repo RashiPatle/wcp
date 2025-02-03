@@ -1,0 +1,53 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZWCP_I_EVNTCODE_CDS" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="I_LanguageType" sap:label="Language" sap:content-version="1">
+				<Key><PropertyRef Name="Language"/></Key><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:text="Language_Text" sap:label="Language Key"/><Property Name="Language_Text" Type="Edm.String" MaxLength="16" sap:label="Name" sap:quickinfo="Name of Language" sap:creatable="false"
+					sap:updatable="false"/><Property Name="LanguageISOCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Lang. (ISO 639)"
+					sap:quickinfo="2-Character SAP Language Code"/></EntityType>
+			<EntityType Name="ZWCP_I_EventTextType" sap:label="Event Code Text" sap:content-version="1">
+				<Key><PropertyRef Name="EventCode"/></Key><Property Name="EventCode" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Event"
+					sap:quickinfo="Event Occuring for a Transportation Activity"/><Property Name="Language" Type="Edm.String" MaxLength="2" sap:text="to_Language/Language_Text" sap:label="Language Key"
+					sap:value-list="standard"/><Property Name="Description" Type="Edm.String" MaxLength="40" sap:label="Description"/><NavigationProperty Name="to_Language" Relationship="ZWCP_I_EVNTCODE_CDS.assoc_99C30BFB3E2133375CC87906F28377A9"
+					FromRole="FromRole_assoc_99C30BFB3E2133375CC87906F28377A9" ToRole="ToRole_assoc_99C30BFB3E2133375CC87906F28377A9"/></EntityType>
+			<EntityType Name="ZWCP_I_EvntCodeType" sap:label="Event Codes" sap:content-version="1">
+				<Key><PropertyRef Name="EventCode"/></Key><Property Name="EventCode" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:text="EventCode_Text"
+					sap:label="Event" sap:quickinfo="Event Occuring for a Transportation Activity"/><Property Name="EventCode_Text" Type="Edm.String" MaxLength="40" sap:label="Description" sap:creatable="false" sap:updatable="false"/><NavigationProperty Name="to_EventText" Relationship="ZWCP_I_EVNTCODE_CDS.assoc_2A54A8937CF53EA1A4CBD9573DC202EA"
+					FromRole="FromRole_assoc_2A54A8937CF53EA1A4CBD9573DC202EA" ToRole="ToRole_assoc_2A54A8937CF53EA1A4CBD9573DC202EA"/></EntityType>
+			<Association Name="assoc_99C30BFB3E2133375CC87906F28377A9" sap:content-version="1"><End Type="ZWCP_I_EVNTCODE_CDS.ZWCP_I_EventTextType" Multiplicity="1" Role="FromRole_assoc_99C30BFB3E2133375CC87906F28377A9"/><End Type="ZWCP_I_EVNTCODE_CDS.I_LanguageType" Multiplicity="0..1" Role="ToRole_assoc_99C30BFB3E2133375CC87906F28377A9"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_99C30BFB3E2133375CC87906F28377A9"><PropertyRef Name="Language"/></Principal>
+					<Dependent Role="FromRole_assoc_99C30BFB3E2133375CC87906F28377A9"><PropertyRef Name="Language"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_2A54A8937CF53EA1A4CBD9573DC202EA" sap:content-version="1"><End Type="ZWCP_I_EVNTCODE_CDS.ZWCP_I_EvntCodeType" Multiplicity="1" Role="FromRole_assoc_2A54A8937CF53EA1A4CBD9573DC202EA"/><End Type="ZWCP_I_EVNTCODE_CDS.ZWCP_I_EventTextType" Multiplicity="0..1" Role="ToRole_assoc_2A54A8937CF53EA1A4CBD9573DC202EA"/></Association>
+			<EntityContainer Name="ZWCP_I_EVNTCODE_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="I_Language" EntityType="ZWCP_I_EVNTCODE_CDS.I_LanguageType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="ZWCP_I_EventText" EntityType="ZWCP_I_EVNTCODE_CDS.ZWCP_I_EventTextType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="ZWCP_I_EvntCode" EntityType="ZWCP_I_EVNTCODE_CDS.ZWCP_I_EvntCodeType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_2A54A8937CF53EA1A4CBD9573DC202EA" Association="ZWCP_I_EVNTCODE_CDS.assoc_2A54A8937CF53EA1A4CBD9573DC202EA"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZWCP_I_EvntCode" Role="FromRole_assoc_2A54A8937CF53EA1A4CBD9573DC202EA"/><End EntitySet="ZWCP_I_EventText" Role="ToRole_assoc_2A54A8937CF53EA1A4CBD9573DC202EA"/></AssociationSet>
+				<AssociationSet Name="assoc_99C30BFB3E2133375CC87906F28377A9" Association="ZWCP_I_EVNTCODE_CDS.assoc_99C30BFB3E2133375CC87906F28377A9"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZWCP_I_EventText" Role="FromRole_assoc_99C30BFB3E2133375CC87906F28377A9"/><End EntitySet="I_Language" Role="ToRole_assoc_99C30BFB3E2133375CC87906F28377A9"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZWCP_I_EVNTCODE_CDS.ZWCP_I_EventTextType/Language">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Language"/><PropertyValue Property="CollectionPath" String="I_Language"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="Language"/><PropertyValue Property="ValueListProperty" String="Language"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="Language_Text"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZWCP_I_EVNTCODE_CDS/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZWCP_I_EVNTCODE_CDS/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

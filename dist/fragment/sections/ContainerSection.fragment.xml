@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form">
+	<Table inset="false" id="idContainerTable" items="{path: 'to_Items'}" class="tablesborder" backgroundDesign="Solid" fixedLayout="false">
+		<headerToolbar>
+			<Toolbar design="Solid">
+				<Title text="{i18nhome>Items}"/>
+				<ToolbarSpacer/>
+				<!--<Button type="Transparent" text="Accept" icon="sap-icon://accept" tooltip="copy"/>-->
+				<!--<Button type="Transparent" text="Reject" icon="sap-icon://decline" tooltip="delete"/>-->
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="12rem" hAlign="Begin" demandPopin="false">
+				<Text text="{to_Items/ContainerNumber/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Small"  hAlign="Begin" demandPopin="true">
+				<Text text="{to_Items/EquipmentType/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Begin">
+				<Text text="{to_Items/TranspOrdItemQuantity/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Begin">
+				<Text text="{to_Items/TranspOrdItemGrossWeight/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Medium" demandPopin="true" hAlign="Begin">
+				<Text text="{to_Items/TranspOrdItemGrossVolume/#@sap:label}"/>
+			</Column>
+			<Column>
+				<!--{i18nhome>Action}-->
+				<Text text="{i18nhome>Action}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{ContainerNumber}" wrapping="true"/>
+					<Text text="{EquipmentTypeText}" wrapping="true"/>
+					<Text
+						text="{parts : [ 'TranspOrdItemQuantity', 'TranspOrdItemQuantityUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {TranspOrdItemQuantityUnit}"
+						wrapping="true"/>
+					<Text
+						text="{parts : [ 'TranspOrdItemGrossWeight', 'TranspOrdItemGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {TranspOrdItemGrossWeightUnit}"
+						wrapping="true"/>
+					<Text
+						text="{parts : [ 'TranspOrdItemGrossVolume', 'TranspOrdItemGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {TranspOrdItemGrossVolumeUnit}"
+						wrapping="true"/>
+					<OverflowToolbar class="noborders sapUiNoMarginBottom">
+						<!--{_AM>/E_AEditItem}-->
+						<!--<ToolbarSpacer/>-->
+						<Button icon="sap-icon://edit" press="onUpdateContainerPress" type="Transparent" tooltip="{i18n>cargoItemEditTooltip}" enabled="{UpdateItemFC}"
+							visible="{_AM>/V_AEditItem}"/>
+					</OverflowToolbar>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

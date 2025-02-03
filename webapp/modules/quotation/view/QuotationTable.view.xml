@@ -1,0 +1,177 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f"
+	controllerName="com.westernacher.collaborationPortal.quotation.controller.QuotationTable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:DynamicPage class="sapUiResponsiveContentPadding sapUiLargeMarginBottom" preserveHeaderStateOnScroll="false" headerExpanded="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18n>FreightOrderQuotationList}">
+						<Link text="{i18nhome>Home}" press="onHomeLinkPress"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader id="idDPH" pinnable="true">
+				<f:content>
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" persistencyKey="UniqueAndStablePersistencyKey" considerSelectionVariants="true"
+						entitySet="ZWCP_C_RFQ" useDateRangeType="false">
+						<smartFilterBar:layoutData>
+							<FlexItemData shrinkFactor="0"/>
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable id="quotationTable" smartFilterId="smartFilterBar" tableType="ResponsiveTable" useExportToExcel="true"
+				useVariantManagement="false" useTablePersonalisation="true" header="{i18n>tableHeaderText}" showRowCount="true" enableAutoBinding="true"
+				entitySet="ZWCP_C_RFQ" beforeRebindTable="onBeforeRebindRFQTable" demandPopin="true" tableBindingPath="/ZWCP_C_RFQ">
+				<smartTable:customToolbar>
+					<OverflowToolbar>
+						<ToolbarSeparator></ToolbarSeparator>
+						<FlexBox visible="{= !${device>/system/phone} }">
+							<SegmentedButton id="idSegmentedFilter" width="40%" selectionChange="onSelectingQuickFilter" selectedKey="all">
+								<items>
+									<SegmentedButtonItem id="idAll" width="5em" text="{i18n>allBtn}" key="All" customData:property="All"/>
+									<SegmentedButtonItem id="idOpen" icon="sap-icon://document" text="{i18n>openBtn}" key="open" customData:status="02"
+										customData:property="TndrgReqLifeCycleStatus"/>
+									<SegmentedButtonItem id="idClosed" icon="sap-icon://order-status" text="{i18n>closedBtn}" key="closed" customData:status="03"
+										customData:property="TndrgReqLifeCycleStatus"/>
+								</items>
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="Low"/>
+								</layoutData>
+							</SegmentedButton>
+						</FlexBox>
+						<Select id="idToolbarFilters" change="onSelectingQuickFilter" selectedKey="All" visible="{device>/system/phone}">
+							<core:ListItem text="{i18n>allBtn}" key="All" customData:property="All"></core:ListItem>
+							<core:ListItem icon="sap-icon://document" text="{i18n>openBtn}" key="open" customData:status="02"
+								customData:property="TndrgReqLifeCycleStatus"></core:ListItem>
+							<core:ListItem icon="sap-icon://order-status" text="{i18n>closedBtn}" key="closed" customData:status="03"
+								customData:property="TndrgReqLifeCycleStatus"></core:ListItem>
+						</Select>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+				<Table mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" selectionChange="onTabeSelectionChange" itemPress="onTableItemPress">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Button press="onRefreshList" text="{i18nhome>refreshBtn}" icon="sap-icon://synchronize" tooltip="{i18nhome>refreshBtn}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<ToolbarSpacer/>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button text="{i18n>Accept}" type="Transparent" visible="{_AM>/V_ASetAccept}" customData:actionName="accept"
+								customData:entitySet="ZWCP_C_RFQ" enabled="{_AM>/E_ASetAccept}" press="onAcceptFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>Reject}" type="Transparent" visible="{_AM>/V_ASetRejected}" customData:actionName="reject"
+								customData:entitySet="ZWCP_C_RFQ" enabled="{_AM>/E_ASetRejected}" press="onRejectFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>AcceptWithChange}" type="Transparent" visible="{_AM>/V_ASetAcceptChange}" customData:actionName="accept_with_change"
+								customData:entitySet="ZWCP_C_RFQ" enabled="{_AM>/E_ASetAcceptChange}" press="onAcceptWithChange">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Center" width="10rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "TndrgReqLifeCycleStatus", "sortProperty" : "TndrgReqLifeCycleStatus", "leadingProperty":"TndrgReqLifeCycleStatus"}'/>
+							</customData>
+							<Label text="{/#ZWCP_C_RFQType/TndrgReqLifeCycleStatus/@sap:label}"/>
+						</Column>
+						<Column hAlign="Center" width="5rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"DangerousGoods", "columnIndex":"5", "sortProperty":"DangerousGoods", "filterProperty":"DangerousGoods", "leadingProperty":"DangerousGoods"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_RFQType/DangerousGoods/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" width="15rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"FreightQuotationDueDateTime", "columnIndex":"6", "sortProperty":"FreightQuotationDueDateTime", "filterProperty":"FreightQuotationDueDateTime", "leadingProperty":"FreightQuotationDueDateTime"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_RFQType/FreightQuotationDueDateTime/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TotalDistance", "columnIndex":"9", "sortProperty":"TotalDistance", "filterProperty":"TotalDistance", "leadingProperty":"TotalDistance"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_RFQType/TotalDistance/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TranspOrdGrossWeight", "columnIndex":"10", "sortProperty":"TranspOrdGrossWeight", "filterProperty":"TranspOrdGrossWeight", "leadingProperty":"TranspOrdGrossWeight"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_RFQType/TranspOrdGrossWeight/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TranspOrdGrossVolume", "columnIndex":"11", "sortProperty":"TranspOrdGrossVolume", "filterProperty":"TranspOrdGrossVolume", "leadingProperty":"TranspOrdGrossVolume"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_RFQType/TranspOrdGrossVolume/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TndrgReqAbsolutePriceLimit", "columnIndex":"12", "sortProperty":"TndrgReqAbsolutePriceLimit", "filterProperty":"TndrgReqAbsolutePriceLimit", "leadingProperty":"TndrgReqAbsolutePriceLimit"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_RFQType/TndrgReqAbsolutePriceLimit/@sap:label}"/>
+							</header>
+						</Column>
+					</columns>
+					<items bindingPath="/ZWCP_C_RFQ">
+						<ColumnListItem type="Navigation">
+							<cells>
+								<core:Icon src="{path:'TndrgReqLifeCycleStatus', formatter:'.formatter.formatQuotationResponse'}"
+									tooltip="{= ${TndrgReqLifeCycleStatus} === '02' ? ${i18n>confirmationOpenTooltip} : ${i18n>confirmationCloseTooltip}}"
+									color="{path:'ResponseExistsFlag', formatter:'.formatter.formatQuotationResponseIconColor'}"/>
+								<core:Icon src="{path:'DangerousGoods', formatter:'.coreFormatter.formatDGCustomIcon'}" color="Negative" tooltip="{i18n>DangerousGoods}"/>
+								<Text
+									text="{path:'FreightQuotationDueDateTime', formatter:'.coreFormatter.toUserSettingTimezoneDate'}"/>
+								<ObjectNumber number="{parts : [ 'TotalDistance', 'TotalDistanceUnit' ], formatter:'.coreFormatter.customUnitForDistanceOnlyNumber'}"
+									unit="{path:'TotalDistanceUnit', formatter:'.coreFormatter.customUnitForDistanceOnlyUnit'}"/>
+								<ObjectNumber
+									number="{parts : [ 'TranspOrdGrossWeight', 'TranspOrdGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+									unit="{TranspOrdGrossWeightUnit}"/>
+								<ObjectNumber
+									number="{parts : [ 'TranspOrdGrossVolume', 'TranspOrdGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+									unit="{TranspOrdGrossVolumeUnit}"/>
+								<ObjectNumber
+									number="{parts : [ 'TndrgReqAbsolutePriceLimit', 'TenderingPreferredCurrency' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+									unit="{TenderingPreferredCurrency}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

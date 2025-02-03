@@ -1,0 +1,113 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="com.westernacher.collaborationPortal.freightUnit.controller.freightUnitObjectPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<f:DynamicPage preserveHeaderStateOnScroll="false" headerExpanded="true" class="sapUiNoContentPadding" showNavButton="true"
+		navButtonPress="onNavBack">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<!--{i18n>FONumberLabel}-->
+					<Title text="{FreightUnitID/#@sap:label}: {FreightUnitID}" wrapping="true"/>
+				</f:heading>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18nhome>Details}">
+						<Link text="{i18n>homeLink}" press="onHomeLinkPress"/>
+						<Link text="{i18n>freightUnitList}" press="onPressBack"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:actions>
+					<!--enabled="{_AM>/E_AUpdateFU}"-->
+					<Button icon="sap-icon://edit" id="edit" text="{i18n>Update}" visible="{_AM>/V_AUpdateFU}" enabled="{_AM>/E_AUpdateFU}"
+						press="onUpdateFUPress" type="Transparent"/>
+					<Button press="onRefreshObjectView" icon="sap-icon://synchronize" tooltip="{i18nhome>refreshBtn}"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<layout:Grid hSpacing="1" defaultSpan="L4 M12 S12">
+					<layout:content>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>generalInfoOP}" labelSpanXL="4" labelSpanL="4" width="100%"
+							labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0" columnsXL="1"
+							columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content>
+								<!--{i18n>TransportationModeDesc}-->
+								<Label text="{TransportationModeDesc/#@sap:label}"/>
+								<Text text="{TransportationModeDesc}"/>
+								<Label text="{MeansOfTransportDesc/#@sap:label}"/>
+								<Text text="{MeansOfTransportDesc}"/>
+								<Label text="{TransportationOrderTypeDesc/#@sap:label}"/>
+								<Text text="{TransportationOrderTypeDesc}"/>
+								<Label text="{TotalDistance/#@sap:label}"/>
+								<Text
+									text="{parts : [ 'TotalDistance', 'TotalDistanceUnit' ], formatter:'.coreFormatter.customUnitForDistanceOnlyNumber'} {path:'TotalDistanceUnit', formatter:'.coreFormatter.customUnitForDistanceOnlyUnit'}"/>
+								<Label text="{TranspOrdGrossWeight/#@sap:label}"/>
+								<Text
+									text="{parts : [ 'TranspOrdGrossWeight', 'TranspOrdGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {= ${TranspOrdGrossWeight}? ${TranspOrdGrossWeightUnit} : ''}"/>
+								<Label text="{TranspOrdGrossVolume/#@sap:label}"/>
+								<Text
+									text="{parts : [ 'TranspOrdGrossVolume', 'TranspOrdGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {= ${TranspOrdGrossVolume}? ${TranspOrdGrossVolumeUnit} : ''}"/>
+								<Label text="{DangerousGoods/#@sap:label}"/>
+								<core:Icon src="{path:'DangerousGoods', formatter:'.coreFormatter.formatDGCustomIcon'}" color="Negative" tooltip="{i18n>DangerousGoods}"
+									width="30px"></core:Icon>
+								<Label text="{PurchaseOrders/#@sap:label}"/>
+								<Text text="{PurchaseOrders}"/>
+								<Label text="{SCAC/#@sap:label}"/>
+								<Text text="{SCAC}"/>
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>pickupInfoOP}" labelSpanXL="4" labelSpanL="4" width="100%"
+							labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+							columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<!--<Label text="{Shipper/#@sap:label}"/>-->
+								<!--<Text text="{Shipper}"/>-->
+								<!--{i18n>PickupLocation}-->
+								<Label text="{SourceLocationName/#@sap:label}"/>
+								<Text text="{SourceLocationName}"/>
+								<Label text="{i18n>Address}"/>
+								<Text text="{SourceStreetName}, {SourceCityName}, {SourceRegionName}, {SourceCountryName}, {SourcePostalCode}"/>
+								<!--{i18n>PlannedPickupDate}-->
+								<Label text="{SrcTransportationPlanningDate/#@sap:label}"/>
+								<Text text="{path:'SrcTransportationPlanningDate', type:'sap.ui.model.odata.type.DateTime'}"/>
+								<!--{i18n>ConfirmedPickupTime}-->
+								<Label text="{SrcCarrierConfimedDate/#@sap:label}"/>
+								<Text text="{path:'SrcCarrierConfimedDate', type:'sap.ui.model.odata.type.DateTime'}"/>
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>deliveryInfoOP}" labelSpanXL="4" labelSpanL="4" width="100%"
+							labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+							columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<!--{i18n>Consignee}-->
+								<!--<Label text="{Consignee/#@sap:label}"/>-->
+								<!--<Text text="{Consignee}"/>-->
+								<!--{i18n>DeliveryLocation}-->
+								<Label text="{DestinationLocationName/#@sap:label}"/>
+								<Text text="{DestinationLocationName}"/>
+								<Label text="{i18n>Address}"/>
+								<Text text="{DestStreetName}, {DestCityName}, {DestRegionName}, {DestCountryName}, {DestPostalCode}"/>
+								<!--{i18n>PlannedDeliveryTime}-->
+								<Label text="{DesTransportationPlanningDate/#@sap:label}"/>
+								<Text text="{path:'DesTransportationPlanningDate', type:'sap.ui.model.odata.type.DateTime'}"/>
+								<!--{i18n>ConfirmedDeliveryTime}-->
+								<Label text="{DesCarrierConfimedDate/#@sap:label}"/>
+								<Text id="idDeliveryTP" text="{path:'DesCarrierConfimedDate', type:'sap.ui.model.odata.type.DateTime'}"/>
+							</form:content>
+						</form:SimpleForm>
+					</layout:content>
+				</layout:Grid>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<layout:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L12 M12 S12">
+				<layout:content>
+					<VBox>
+						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsSection" type="XML"/>
+					</VBox>
+				</layout:content>
+			</layout:Grid>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

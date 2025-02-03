@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:mc="sap.suite.ui.microchart"
+	xmlns:grid="sap.ui.layout.cssgrid">
+	<f:GridList id="gridList2">
+		<f:customLayout>
+			<grid:GridBoxLayout boxesPerRowConfig="XL3 L3 M1 S1"/>
+		</f:customLayout>
+		<CustomListItem>
+			<VBox height="100%">
+				<VBox justifyContent="SpaceBetween">
+					<layoutData>
+						<FlexItemData growFactor="1" shrinkFactor="0"/>
+					</layoutData>
+					<Title text="{i18n>UserInfo}" wrapping="true" class="sapUiSmallMarginEnd sapUiSmallMarginTop">
+						<layoutData>
+							<FlexItemData alignSelf="End"/>
+						</layoutData>
+					</Title>
+					<HBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+						<f:Avatar displaySize="L"></f:Avatar>
+						<VBox justifyContent="End" class="sapUiSmallMarginBegin">
+							<Title text="{_MD>/UserInfo/BusinessPartnerFullName}" wrapping="true"/>
+							<Label text="{i18n>Role}: {_MD>/UserInfo/CurrentBusinessPartnerRoleShortName}" wrapping="true" class="sapUiTinyMarginBottom"/>
+						</VBox>
+					</HBox>
+					<OverflowToolbar design="Solid">
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://edit" type="Transparent" text="{i18n>ChangeRole}" press="onEditRolePress"/>
+					</OverflowToolbar>
+				</VBox>
+			</VBox>
+		</CustomListItem>
+		<CustomListItem id="idMC1"></CustomListItem>
+		<CustomListItem>
+			<VBox height="100%">
+				<VBox class="sapUiSmallMargin">
+					<layoutData>
+						<FlexItemData growFactor="1" shrinkFactor="0"/><!-- Don't shrink below minimum size. Fill space if available. --></layoutData>
+					<HBox>
+						<ObjectStatus class="sapUiSmallMarginBottom" text="{i18n>quickNavigationMsg}" active="true" icon="sap-icon://activities"/>
+					</HBox>
+					<Input value=""/>
+				</VBox>
+				<OverflowToolbar design="Solid">
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://accept" type="Transparent" text="{i18n>applyBtn}" press="onApplyFOPress"/>
+				</OverflowToolbar>
+			</VBox>
+		</CustomListItem>
+	</f:GridList>
+</core:FragmentDefinition>

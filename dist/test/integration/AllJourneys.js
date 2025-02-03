@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/test/Opa5","./arrangements/Startup","./HomeJourney","./NavigationJourney","./NotFoundJourney","./ObjectJourney"],function(e,t){"use strict";e.extendConfig({arrangements:new t,viewNamespace:"com.westernacher.collaborationPortal.core.view.",autoWait:true})});

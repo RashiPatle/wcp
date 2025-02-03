@@ -1,0 +1,46 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<l:Grid defaultSpan="XL12 L12 M12 S12">
+	<!--	<Table itemPress="onPressFreightAgreementRFQ" class="sapUiNoContentPadding">
+			<columns>
+				<Column hAlign="Begin" minScreenWidth="Small"></Column>
+				<Column width="30%" vAlign="Middle"></Column>
+				<Column minScreenWidth="Phone" demandPopin="true"></Column>
+				<Column minScreenWidth="Phone" demandPopin="true"></Column>
+				<Column minScreenWidth="Phone" demandPopin="true"></Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation">
+					<cells>
+						<core:Icon size="2rem" src="sap-icon://sales-quote" color="Default" class="sapUiSmallMarginBegin"></core:Icon>
+						<Label class="sapUiSmallMarginBegin" wrapping="true" text="Freight Agreement RFQs"></Label>
+						<Label text=""></Label>
+						<Label text=""></Label>
+						<Label text=""></Label>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>-->
+		<Table id="modulesList"  width="auto" items="{ path : '_MD>/CurrentModules'}" itemPress="onModuleItemPress">
+			<columns>
+				<Column hAlign="Begin" minScreenWidth="Small"></Column>
+				<Column width="30%" vAlign="Middle"></Column>
+				<Column minScreenWidth="Phone" demandPopin="true"></Column>
+				<Column minScreenWidth="Phone" demandPopin="true"></Column>
+				<Column minScreenWidth="Phone" demandPopin="true"></Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation">
+					<cells>
+						<core:Icon size="2rem" src="{_MD>TileIcon}" tooltip="{_MD>ModuleText}" color="Default" class="sapUiSmallMarginBegin"/>
+						<Label class="sapUiSmallMarginBegin" text="{_MD>ModuleText}" wrapping="true"/>
+						<Text text=""/>
+						<!--<NumericContent withMargin="false" value="" nullifyValue="false"></NumericContent>
+							<NumericContent withMargin="false" value="" nullifyValue="false"></NumericContent>-->
+						<NumericContent withMargin="false" value="{_MD>ModuleCount}" nullifyValue="false" tooltip="{_MD>CountLabel}: {_MD>ModuleCount}"></NumericContent>
+						<Text text="{_MD>CountLabel}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</l:Grid>
+</core:FragmentDefinition>

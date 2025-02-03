@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<List id="idListFOClosePickup" headerText="{i18n>FreightOrdersWithPickupDeadline}" itemPress="onQuickOverviewFOClosePickupPress"
+		noDataText="{i18n>NoFOWithClosePickup}">
+		<!--{i18n>FreightOrder}-->
+		<ObjectListItem id="idListItemFOClosePickup" title="{/#ZWCP_C_ConfPickupDueType/FreightOrder/@sap:label} {_CONFPICKUPDUE>FreightOrder}"
+			type="Active">
+			<firstStatus>
+				<ObjectStatus title="{_CONFPICKUPDUE>DangerousGoodsAreContained/#@sap:label}"
+					visible="{path:'_CONFPICKUPDUE>DangerousGoodsAreContained', formatter:'.formatter.formatDGVisibility'}"
+					state="{path:'_CONFPICKUPDUE>DangerousGoodsAreContained', formatter:'.formatter.formatDGStatusIcon'}"/>
+			</firstStatus>
+			<secondStatus>
+				<ObjectStatus
+					text="({path:'_CONFPICKUPDUE>SrcTransportationPlanningDate', type:'sap.ui.model.odata.type.Date', formatOptions: {style: 'medium'}} - {path:'_CONFPICKUPDUE>DesTransportationPlanningDate', type:'sap.ui.model.odata.type.Date', formatOptions:{style:'medium'}})"/>
+			</secondStatus>
+			<attributes>
+				<!--{i18n>PickupDate}-->
+				<ObjectAttribute class="deadlineHighlight"
+					text="{path:'_CONFPICKUPDUE>SrcTransportationPlanningDate', type:'sap.ui.model.odata.type.DateTime', formatOptions: {style: 'medium'}}"/>
+				<!--{i18n>SourceLocation}-->
+				<ObjectAttribute title="{_CONFPICKUPDUE>SourceLocationName/#@sap:label}" text="{_CONFPICKUPDUE>SourceLocationName}"/>
+				<!--{i18n>DestinationLocation}-->
+				<ObjectAttribute title="{_CONFPICKUPDUE>DestinationLocationName/#@sap:label}" text="{_CONFPICKUPDUE>DestinationLocationName}"/>
+			</attributes>
+		</ObjectListItem>
+	</List>
+</core:FragmentDefinition>

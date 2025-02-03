@@ -1,0 +1,146 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "com.westernacher.collaborationPortal.invoices",
+		"type": "component",
+		"i18n": "i18n/i18n.properties",
+		"title": "",
+		"description": "",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"embeddedBy": "../"
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize_hcw",
+			"sap_belize_hcb",
+			"sap_belize",
+			"sap_belize_plus"
+		]
+	},
+	"sap.ui5": {
+		"resourceRoots": {
+			"com.westernacher.collaborationPortal.invoices": "./"
+		},
+		"autoPrefixId": true,
+		"dependencies": {
+			"minUI5Version": "1.48.3",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.uxap": {},
+				"sap.ui.unified": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.westernacher.collaborationPortal.core.modules.invoices.i18n.i18n"
+				}
+			},
+			"i18nhome": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+				}
+			},
+			"_AM": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true,
+				"uri": "model/ControlManagementModel.json"
+			},
+			"_MD": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true
+			},
+			"_SD": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true
+			},
+			"_DV": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true,
+				"uri": "model/ChargeColumnsVisibility.json",
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
+			"_CI": {
+				"type": "sap.ui.model.json.JSONModel",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"rootView": {
+			"viewName": "com.westernacher.collaborationPortal.invoices.view.InvoicesApp",
+			"id": "rootViewOfInvoiceComponent",
+			"type": "XML",
+			"async": true
+		},
+		"routing": {
+			"routes": [{
+				"pattern": "",
+				"name": "master",
+				"target": "master"
+
+			}, {
+				"pattern": "Invoice/{Key}, {InvoiceUUID}",
+				"name": "object",
+				"target": "object"
+
+			}, {
+				"pattern": "EditInvoice/{invoiceId}",
+				"name": "editInvoice",
+				"target": "editInvoice"
+
+			}],
+			"targets": {
+				"master": {
+					"viewId": "masterView",
+					"viewName": "InvoicesTable",
+					"clearAggregation": true
+
+				},
+				"object": {
+					"viewId": "objectView",
+					"viewName": "InvoicesObjectPage",
+					"clearAggregation": true
+				},
+				"editInvoice": {
+					"viewId": "editInvoice",
+					"viewName": "EditInvoice",
+					"clearAggregation": true
+				}
+			},
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"async": true,
+				"viewType": "XML",
+				"viewPath": "com.westernacher.collaborationPortal.invoices.view",
+				"controlId": "idAppControlInvoices",
+				"controlAggregation": "pages"
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		}
+	}
+}

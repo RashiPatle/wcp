@@ -1,0 +1,202 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f"
+	controllerName="com.westernacher.collaborationPortal.confirmation.controller.ConfirmationWorklistTable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:DynamicPage id="synamicPage" class="sapUiResponsiveContentPadding sapUiLargeMarginBottom">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18n>FOConfirmList}">
+						<Link text="{i18n>homeLink}" press="onHomeLinkPress"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" persistencyKey="UniqueAndStablePersistencyKey" considerSelectionVariants="true"
+						entitySet="ZWCP_C_Confirmation" useDateRangeType="false">
+						<smartFilterBar:layoutData>
+							<FlexItemData shrinkFactor="0"/>
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable id="fosConfirmationTable" entitySet="ZWCP_C_Confirmation" smartFilterId="smartFilterBar" tableType="ResponsiveTable"
+				useExportToExcel="true" useVariantManagement="false" useTablePersonalisation="true" header="{i18n>tableHeaderText}" showRowCount="true"
+				enableAutoBinding="true" demandPopin="true" tableBindingPath="/ZWCP_C_Confirmation" beforeRebindTable="onBeforeRebindTable">
+				<smartTable:customToolbar>
+					<OverflowToolbar>
+						<ToolbarSeparator></ToolbarSeparator>
+						<FlexBox visible="{= !${device>/system/phone} }">
+							<SegmentedButton id="idSegmentedFilter" width="40%" selectionChange="onSelectingQuickFilter" selectedKey="InConfirmation">
+								<items>
+									<SegmentedButtonItem id="idAll" width="5em" text="{i18n>allBtn}" key="All"/>
+									<SegmentedButtonItem id="idInConfirmation" icon="sap-icon://pending" text="{i18n>inConfirmationBtn}" key="InConfirmation"
+										customData:status="01,10" customData:property="ConfirmationStatus"/>
+									<SegmentedButtonItem id="idConfirmed" icon="sap-icon://accept" text="{i18n>confirmedBtn}" key="Confirmed" customData:status="04"
+										customData:property="ConfirmationStatus"/>
+									<!--	<SegmentedButtonItem id="idInExecution" icon="sap-icon://shipping-status" text="In Execution" key="InExecution"
+									customData:status="03" customData:property="TransportationOrderExecSts"/>
+								<SegmentedButtonItem id="idExecuted" icon="sap-icon://complete" text="Executed"  key="Executed"
+									customData:status="04" customData:property="TransportationOrderExecSts"/>-->
+								</items>
+								<layoutData>
+									<OverflowToolbarLayoutData priority="Low" shrinkable="true"/>
+								</layoutData>
+							</SegmentedButton>
+						</FlexBox>
+						<Select id="idToolbarFilters" change="onSelectingQuickFilter" selectedKey="InConfirmation" visible="{device>/system/phone}">
+							<core:ListItem text="{i18n>allBtn}" key="All"></core:ListItem>
+							<core:ListItem icon="sap-icon://pending" text="{i18n>inConfirmationBtn}" key="InConfirmation" customData:status="01,10"
+								customData:property="ConfirmationStatus"></core:ListItem>
+							<core:ListItem icon="sap-icon://accept" text="{i18n>confirmedBtn}" key="Confirmed" customData:status="04"
+								customData:property="ConfirmationStatus"></core:ListItem>
+							<layoutData>
+								<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+							</layoutData>
+						</Select>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+				<Table mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" selectionChange="onTabeSelectionChange" itemPress="onTableItemPress">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Button press="onRefreshList" icon="sap-icon://synchronize" text="{i18nhome>refreshBtn}" tooltip="{i18nhome>refreshBtn}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<ToolbarSpacer/>
+							<Button text="{i18n>acceptBtn}" type="Transparent" visible="{_AM>/V_ASetAccept}" customData:actionName="accept"
+								customData:entitySet="ZWCP_C_Confirmation" enabled="{_AM>/E_ASetAccept}" press="onAcceptFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>rejectBtn}" type="Transparent" visible="{_AM>/V_ASetRejected}" customData:actionName="reject"
+								customData:entitySet="ZWCP_C_Confirmation" enabled="{_AM>/E_ASetRejected}" press="onRejectFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>uploadAttachmentsBtn}" type="Transparent" customData:entitySet="ZWCP_C_ConfirmationAttach"
+								enabled="{_AM>/E_AUploadAttachments}" press="onUploadAttachPress" visible="{_AM>/V_AUploadAttachments}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>setToCompleteBtn}" type="Transparent" visible="{_AM>/V_ASetComplete}" customData:actionName="setComplete"
+								customData:entitySet="ZWCP_C_Confirmation" enabled="{_AM>/E_ASetComplete}" press="onCompleteFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>setToCancelBtn}" type="Transparent" visible="{_AM>/V_ASetCancelled}" customData:actionName="setCancelled"
+								customData:entitySet="ZWCP_C_Confirmation" enabled="{_AM>/E_ASetCancelled}" press="onCancelFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>UpdateFO}" type="Transparent" visible="{_AM>/V_AUpdateFO}" customData:actionName="setCancelled"
+								customData:entitySet="ZWCP_C_Confirmation" enabled="{_AM>/E_AUpdateFO}" press="onUpdateFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Center" width="6rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"ConfirmationStatus", "sortProperty":"ConfirmationStatus", "filterProperty":"ConfirmationStatus", "leadingProperty":"ConfirmationStatus"}'></core:CustomData>
+							</customData>
+							<header>
+								<!--{i18n>Status}-->
+								<Text text="{/#ZWCP_C_ConfirmationType/ConfirmationStatus/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" width="15rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"SrcTransportationPlanningDateF", "columnIndex":"2", "sortProperty":"SrcTransportationPlanningDateF", "filterProperty":"SrcTransportationPlanningDateF", "leadingProperty":"SrcTransportationPlanningDateF"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ConfirmationType/SrcTransportationPlanningDateF/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" width="15rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"DesTransportationPlanningDateF", "columnIndex":"3", "sortProperty":"DesTransportationPlanningDateF", "filterProperty":"DesTransportationPlanningDateF", "leadingProperty":"DesTransportationPlanningDateF"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ConfirmationType/DesTransportationPlanningDateF/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" width="4rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"DangerousGoods", "columnIndex":"6", "sortProperty":"DangerousGoods", "filterProperty":"DangerousGoods", "leadingProperty":"DangerousGoods"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ConfirmationType/DangerousGoods/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TotalDistance", "columnIndex":"7", "sortProperty":"TotalDistance", "filterProperty":"TotalDistance", "leadingProperty":"TotalDistance"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ConfirmationType/TotalDistance/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TranspOrdGrossWeight", "columnIndex":"8", "sortProperty":"TranspOrdGrossWeight", "filterProperty":"TranspOrdGrossWeight", "leadingProperty":"TranspOrdGrossWeight"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ConfirmationType/TranspOrdGrossWeight/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TranspOrdGrossVolume", "columnIndex":"9", "sortProperty":"TranspOrdGrossVolume", "filterProperty":"TranspOrdGrossVolume", "leadingProperty":"TranspOrdGrossVolume"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ConfirmationType/TranspOrdGrossVolume/@sap:label}"/>
+							</header>
+						</Column>
+					</columns>
+					<items bindingPath="/ZWCP_C_Confirmation">
+						<ColumnListItem type="Navigation">
+							<cells>
+								<core:Icon src="{path:'ConfirmationStatus', formatter:'.formatter.formatFreightOrderStatusIcon'}" tooltip="{i18n>confirmationStatus}"
+									color="{path:'ConfirmationStatus', formatter:'.formatter.formatFreightOrderStatusIconColor'}"/>
+								<Text
+									text="{path:'SrcTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime' , formatOptions: {UTC: true}} {SrcLocationTimeZone}"/>
+								<Text
+									text="{path:'DesTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime' , formatOptions: {UTC: true}} {DesLocationTimeZone}"/>
+								<core:Icon src="{path:'DangerousGoods', formatter:'.coreFormatter.formatDGCustomIcon'}" color="Negative" tooltip="{i18n>dangerousGoods}"/>
+								<ObjectNumber number="{parts : [ 'TotalDistance', 'TotalDistanceUnit' ], formatter:'.coreFormatter.customUnitForDistanceOnlyNumber'}"
+									unit="{path:'TotalDistanceUnit', formatter:'.coreFormatter.customUnitForDistanceOnlyUnit'}"/>
+								<ObjectNumber
+									number="{parts : [ 'TranspOrdGrossWeight', 'TranspOrdGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+									unit="{TranspOrdGrossWeightUnit}"/>
+								<ObjectNumber
+									number="{parts : [ 'TranspOrdGrossVolume', 'TranspOrdGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+									unit="{TranspOrdGrossVolumeUnit}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

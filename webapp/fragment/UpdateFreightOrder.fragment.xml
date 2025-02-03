@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18nhome>UpdateFreightOrderTitle}" afterClose="afterCloseUpdateFreightOrderDialog">
+		<content>
+			<f:SimpleForm id="idUpdateFreightOrderId" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+				singleContainerFullSize="false">
+				<f:content>
+					<!--{SrcCarrierConfimedDate/#@sap:label}-->
+					<Label text="{i18nhome>ConfirmedPickupDate}"/>
+					<DateTimePicker id="idUFOConfimredPickupDate"
+						value="{path:'SrcCarrierConfimedDateF', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC: true}}">
+						<!--<layoutData>-->
+						<!--	<l:GridData span="XL2 L2 M2 S4"/>-->
+						<!--</layoutData>-->
+					</DateTimePicker>
+					<Text id="idTFOConfimredPickupDateTZ" text="{path:'SrcLocationTimeZone'}">
+						<!--<layoutData>-->
+						<!--	<l:GridData span="XL1 L2 M2 S4"/>-->
+						<!--</layoutData>-->
+					</Text>
+					<!--{DesCarrierConfimedDate/#@sap:label}-->
+					<Label text="{i18nhome>ConfirmedDeliveryDate}"/>
+					<DateTimePicker id="idUFOConfimredDeliveryDate"
+						value="{path:'DesCarrierConfimedDateF', type: 'sap.ui.model.type.DateTime', formatOptions: {UTC: true}}"/>
+					<Text id="idTFOConfimredDeliveryDateTZ" text="{path:'DesLocationTimeZone'}"></Text>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="{i18nhome>Cancel}" press="onUpdateFreightOrderCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18nhome>OK}" press="onUpdateFreightOrderConfirmed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

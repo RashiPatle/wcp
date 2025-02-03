@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form">
+	<Table inset="false" itemPress="onNavigationItemPress" items="{ path: 'to_FreightOrders'}" backgroundDesign="Transparent"
+		class="tablesborder">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="{i18n>freightOrdersTitle}"/>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Small" width="12em" hAlign="Left" demandPopin="false" vAlign="Middle">
+				<!--Freight Order ID-->
+				<Text text="{to_FreightOrders/TransportationOrder/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" hAlign="Left">
+				<!--Pickup Location-->
+				<Text text="{to_FreightOrders/SourceLocationName/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" hAlign="Left">
+				<!--Delivery Location-->
+				<Text text="{to_FreightOrders/DestinationLocationName/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" hAlign="End">
+				<!--Pickup Date-->
+				<Text text="{to_FreightOrders/SrcTransportationPlanningDate/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" hAlign="End">
+				<!--Delivery Date-->
+				<Text text="{to_FreightOrders/DesTransportationPlanningDate/#@sap:label}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{TransportationOrder}"/>
+					<Text text="{SourceLocationName}"/>
+					<Text text="{DestinationLocationName}"/>
+					<Text text="{path:'SrcTransportationPlanningDate', type:'sap.ui.model.odata.type.DateTime'}"/>
+					<Text text="{path:'DesTransportationPlanningDate', type:'sap.ui.model.odata.type.DateTime'}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

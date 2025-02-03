@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mc="sap.suite.ui.microchart" xmlns:grid="sap.ui.layout.cssgrid">
+	<VBox width="auto" height="auto" alignItems="Center">
+		<Label text="{i18n>noOfImportCustomDeclarationMsg}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginBegin"/>
+	</VBox>
+</core:FragmentDefinition>

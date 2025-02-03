@@ -1,0 +1,173 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f"
+	controllerName="com.westernacher.collaborationPortal.freightBooking.controller.freightBookingWorklistTable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:DynamicPage id="synamicPage" class="sapUiResponsiveContentPadding sapUiLargeMarginBottom">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18n>freightBookingList}">
+						<Link text="{i18n>homeLink}" press="onHomeLinkPress"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" persistencyKey="UniqueAndStablePersistencyKey" considerSelectionVariants="true"
+						entitySet="FreightBookings" useDateRangeType="false">
+						<smartFilterBar:layoutData>
+							<FlexItemData shrinkFactor="0"/>
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable id="freightBookingTable" entitySet="FreightBookings" smartFilterId="smartFilterBar" tableType="ResponsiveTable"
+				useExportToExcel="true" useVariantManagement="false" useTablePersonalisation="true" header="{i18n>tableHeaderText}" showRowCount="false"
+				enableAutoBinding="true" demandPopin="true" tableBindingPath="/FreightBookings" beforeRebindTable="onBeforeRebindTable">
+				<smartTable:customToolbar>
+					<OverflowToolbar>
+						<ToolbarSeparator></ToolbarSeparator>
+						<FlexBox visible="{= !${device>/system/phone} }">
+							<SegmentedButton id="idSegmentedFilter" width="40%" selectionChange="onSelectingQuickFilter" selectedKey="InConfirmation">
+								<items>
+									<SegmentedButtonItem id="idAll" width="5em" text="{i18n>allBtn}" key="All"/>
+									<SegmentedButtonItem id="idInConfirmation" icon="sap-icon://pending" text="Filter 1" key="InConfirmation"
+										customData:status="01,10,02" customData:property="TranspOrdLifeCycleStatus"/>
+									<!--<SegmentedButtonItem id="idConfirmed" icon="sap-icon://accept" text="{i18n>confirmedBtn}" key="Confirmed" customData:status="04"-->
+									<!--	customData:property="TranspOrdLifeCycleStatus"/>-->
+								</items>
+								<layoutData>
+									<OverflowToolbarLayoutData priority="Low" shrinkable="true"/>
+								</layoutData>
+							</SegmentedButton>
+						</FlexBox>
+						<Select id="idToolbarFilters" change="onSelectingQuickFilter" selectedKey="InConfirmation" visible="{device>/system/phone}">
+							<core:ListItem text="{i18n>allBtn}" key="All"></core:ListItem>
+							<core:ListItem icon="sap-icon://pending" text="{i18n>inConfirmationBtn}" key="InConfirmation" customData:status="01,10"
+								customData:property="TranspOrdLifeCycleStatus"></core:ListItem>
+							<core:ListItem icon="sap-icon://accept" text="{i18n>confirmedBtn}" key="Confirmed" customData:status="04"
+								customData:property="TranspOrdLifeCycleStatus"></core:ListItem>
+							<layoutData>
+								<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+							</layoutData>
+						</Select>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+				<Table mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" selectionChange="onTabeSelectionChange" itemPress="onTableItemPress"
+					growing="true" growingThreshold="10" updateFinished="onTableUpdateFinished">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Button press="onRefreshList" icon="sap-icon://synchronize" text="{i18nhome>refreshBtn}" tooltip="{i18nhome>refreshBtn}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<ToolbarSpacer/>
+							<!--<Button text="{i18n>acceptBtn}" type="Transparent" visible="{_AM>/V_ASetAccept}" customData:actionName="accept"-->
+							<!--	customData:entitySet="FreightBookings" enabled="{_AM>/E_ASetAccept}" press="onAcceptFOPress">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+							<!--<Button text="{i18n>rejectBtn}" type="Transparent" visible="{_AM>/V_ASetRejected}" customData:actionName="reject"-->
+							<!--	customData:entitySet="FreightBookings" enabled="{_AM>/E_ASetRejected}" press="onRejectFOPress">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+							<!--<Button text="{i18n>uploadAttachmentsBtn}" type="Transparent" customData:entitySet="ZWCP_C_ConfirmationAttach"-->
+							<!--	enabled="{_AM>/E_AUploadAttachments}" press="onUploadAttachPress" visible="{_AM>/V_AUploadAttachments}">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="High"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+							<!--<Button text="{i18n>setToCompleteBtn}" type="Transparent" visible="{_AM>/V_ASetComplete}" customData:actionName="setComplete"-->
+							<!--	customData:entitySet="FreightBookings" enabled="{_AM>/E_ASetComplete}" press="onCompleteFOPress">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="High"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+							<!--<Button text="{i18n>setToCancelBtn}" type="Transparent" visible="{_AM>/V_ASetCancelled}" customData:actionName="setCancelled"-->
+							<!--	customData:entitySet="FreightBookings" enabled="{_AM>/E_ASetCancelled}" press="onCancelFOPress">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="High"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+							<!--visible="{_AM>/V_AUpdateFU}" enabled="{_AM>/E_AUpdateFU}" enabled="true" visible="true"-->
+							<Button icon="sap-icon://edit" text="{i18n>Update}" type="Transparent" customData:actionName="setCancelled" customData:entitySet="FreightBookings"
+								press="onUpdateFBPress" enabled="{_AM>/E_AUpdateFU}" visible="{_AM>/V_AUpdateFU}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<!--<Column hAlign="Center" width="6rem">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey":"TranspOrdLifeCycleStatus", "sortProperty":"TranspOrdLifeCycleStatus", "filterProperty":"TranspOrdLifeCycleStatus", "leadingProperty":"TranspOrdLifeCycleStatus"}'></core:CustomData>-->
+						<!--	</customData>-->
+						<!--	<header>-->
+								<!--{i18n>Status}-->
+						<!--		<Text text="{/#FreightBooking/TranspOrdLifeCycleStatus/@sap:label}"/>-->
+						<!--	</header>-->
+						<!--</Column>-->
+						<Column hAlign="Center" width="4rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"DangerousGoods", "columnIndex":"11", "sortProperty":"DangerousGoods", "filterProperty":"DangerousGoods", "leadingProperty":"DangerousGoods"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#FreightBooking/DangerousGoods/@sap:label}"/>
+							</header>
+						</Column>
+						<!--<Column hAlign="Right">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey":"TotalDistance", "columnIndex":"7", "sortProperty":"TotalDistance", "filterProperty":"TotalDistance", "leadingProperty":"TotalDistance"}'></core:CustomData>-->
+						<!--	</customData>-->
+						<!--	<header>-->
+						<!--		<Text text="{/#FreightBooking/TotalDistance/@sap:label}"/>-->
+						<!--	</header>-->
+						<!--</Column>-->
+						<!--<Column hAlign="Right">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey":"LoadWeight", "columnIndex":"80", "sortProperty":"LoadWeight", "filterProperty":"LoadWeight", "leadingProperty":"LoadWeight"}'></core:CustomData>-->
+						<!--	</customData>-->
+						<!--	<header>-->
+						<!--		<Text text="{/#FreightBooking/LoadWeight/@sap:label}"/>-->
+						<!--	</header>-->
+						<!--</Column>-->
+						<!--<Column hAlign="Right">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey":"LoadQuantity", "columnIndex":"90", "sortProperty":"LoadQuantity", "filterProperty":"LoadQuantity", "leadingProperty":"LoadQuantity"}'></core:CustomData>-->
+						<!--	</customData>-->
+						<!--	<header>-->
+						<!--		<Text text="{/#FreightBooking/LoadQuantity/@sap:label}"/>-->
+						<!--	</header>-->
+						<!--</Column>-->
+					</columns>
+					<items bindingPath="/FreightBookings">
+						<ColumnListItem type="Navigation">
+							<cells>
+								<!--<core:Icon src="{path:'TranspOrdLifeCycleStatus', formatter:'.formatter.formatFreightOrderStatusIcon'}" tooltip="{i18n>confirmationStatus}"-->
+								<!--	color="{path:'TranspOrdLifeCycleStatus', formatter:'.formatter.formatFreightOrderStatusIconColor'}"/>-->
+								<core:Icon src="{path:'DangerousGoods', formatter:'.coreFormatter.formatDGCustomIcon'}" color="Negative" tooltip="{i18n>dangerousGoods}"/>
+								<!--<ObjectNumber number="{parts : [ 'TotalDistance', 'TotalDistanceUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}" unit="{TotalDistanceUnit}"/>-->
+								<!--<ObjectNumber number="{parts : [ 'LoadWeight', 'TranspOrdGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}" unit="{TranspOrdGrossWeightUnit}"/>-->
+								<!--<ObjectNumber number="{parts : [ 'LoadQuantity', 'TranspOrdGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}" unit="{TranspOrdGrossVolumeUnit}"/>-->
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

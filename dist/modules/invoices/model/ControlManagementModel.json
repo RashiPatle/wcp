@@ -1,0 +1,9 @@
+{
+	"V_AAcceptInvoice": false,
+	"E_AAcceptInvoice": false,
+	"V_AEditProposal": false,
+	"E_AEditProposal": false,
+	"V_ACancelInvoice": false,
+	"E_ACancelInvoice": false
+
+}

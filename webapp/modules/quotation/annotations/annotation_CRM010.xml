@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:tt="http://www.sap.com/transformation-templates" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/Communication.xml">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZWCP_TEND_CRM010_SRV/$metadata">
+		<edmx:Include Alias="QUOTATION" Namespace="ZWCP_TEND_SRV"/>
+	</edmx:Reference>
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZWCP_TEND_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                ================================================================================-->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType">
+				<!-- Properties that should be available in the request atleast fields in the worklist smart table -->
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType">
+						<PropertyValue Property="RequestAtLeast">
+							<Collection>
+								<PropertyPath>TransportationOrderUUID</PropertyPath>
+								<PropertyPath>TransportationOrder</PropertyPath>
+								<PropertyPath>SourceLocationName</PropertyPath>
+								<PropertyPath>DestinationLocationName</PropertyPath>
+								<PropertyPath>TndrgStepAbsolutePriceLimit</PropertyPath>
+								<PropertyPath>SrcTransportationPlanningDate</PropertyPath>
+								<PropertyPath>DesTransportationPlanningDate</PropertyPath>
+								<PropertyPath>ResponseExistsFlag</PropertyPath>
+								<PropertyPath>TenderingRequestNumber</PropertyPath>
+								<PropertyPath>TotalDistanceUnit</PropertyPath>
+								<PropertyPath>TranspOrdGrossWeightUnit</PropertyPath>
+								<PropertyPath>TranspOrdGrossVolumeUnit</PropertyPath>
+								<PropertyPath>DangerousGoods</PropertyPath>
+								<PropertyPath>AcceptFC</PropertyPath>
+								<PropertyPath>RejectFC</PropertyPath>
+								<PropertyPath>AcceptWithChangeFC</PropertyPath>
+								<PropertyPath>TenderingAwardStatusDesc</PropertyPath>
+								<PropertyPath>TndrgReqLifeCycleStatusDesc</PropertyPath>
+								<PropertyPath>TndrgReqAbsolutePriceLimit</PropertyPath>
+								<PropertyPath>TenderingPreferredCurrency</PropertyPath>
+								<!--<PropertyPath>TenderingResponseCodeDesc</PropertyPath>-->
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<!--===============================================================================
+                Collection of fields to be displayed in the worklist smart table
+                ================================================================================-->
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<!-- Transportation Order -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TransportationOrder"/>
+						</Record>
+						<!-- Freight RFQ -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TenderingRequestNumber"/>
+						</Record>
+						<!-- Tendering Award Status Desc -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TenderingAwardStatusDesc"/>
+						</Record>
+						<!-- Tendering Request Status Desc -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TndrgReqLifeCycleStatusDesc"/>
+						</Record>
+						<!-- Respond By -->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>-->
+						<!--	<PropertyValue Property="Value" Path="FreightQuotationDueDateTime"/>-->
+						<!--</Record>-->
+						<!-- Source Location -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="SourceLocationName"/>
+						</Record>
+						<!--Destination Location-->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="DestinationLocationName"/>
+						</Record>
+						<!-- Means of Transport -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Value" Path="MeansOfTransportDesc"/>
+						</Record>
+						<!-- Total Distance -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TotalDistance"/>
+						</Record>
+						<!-- Gross Weight -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TranspOrdGrossWeight"/>
+						</Record>
+						<!-- Gross Volume -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TranspOrdGrossVolume"/>
+						</Record>
+						<!-- Price Limit -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TndrgReqAbsolutePriceLimit"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Consignee"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Consignee"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>TransportationOrder</PropertyPath>
+						<PropertyPath>TenderingRequestNumber</PropertyPath>
+						<PropertyPath>FreightQuotationDueDateTime</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<!--===============================================================================
+                Annotations to remove extra fields from the Worklist personalization
+                ================================================================================-->
+			<!-- Existing fields -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TransportationOrderUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TranspOrdGrossWeight">
+				<!--<Annotation Term="Common.Label" String="{i18n>GrossWeight}"/>-->
+				<Annotation Term="CQP.Scale" Int="2"/>
+			</Annotations>
+			<!-- Newly Added Fields -->
+			<!-- Confirmed Delivery Date -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/DesCarrierConfimedDate">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ConfirmedPickup Date -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/SrcCarrierConfimedDate">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Consignee (The name is consignee full name) -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/Consignee">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TenderingPreferredCurrency -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TenderingPreferredCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- End date & time -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TenderingRequestEndDateTime">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TranspOrdLifeCycleStatus -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TranspOrdLifeCycleStatus">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Max. Resp. Duration -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/MaximumResponseDuration">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- MeansOfTransport -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/MeansOfTransport">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- MeansOfTransport Desc. -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/MeansOfTransportDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TenderingRejectionReason -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TenderingRejectionReason">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Request Absolute Price Limit -->
+			<!--<Annotations Target="QUOTATION.ZWCP_C_RFQType/TndrgReqAbsolutePriceLimit">-->
+			<!--	<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>-->
+			<!--</Annotations>-->
+			<!-- ResponseExistsFlag -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/ResponseExistsFlag">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Ship-to Party -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/Consignee">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Shipper -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/Shipper">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Short Descript. -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TranspOrdLifeCycleStatusDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Short Descript. - 2 -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TransportationModeCategoryDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Start Date and Time -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TenderingRequestStartDateTime">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TransportationMode -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TransportationMode">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TransportationModeDesc -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TransportationModeDesc">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TrM Category -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TransportationModeCategory">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Abs. Price Lim. -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TndrgStepAbsolutePriceLimit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- DangerousGoodsAreContained -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/DangerousGoodsAreContained">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Distance UOM -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TotalDistanceUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TranspOrdGrossWeightUnit -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TranspOrdGrossWeightUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TranspOrdGrossVolumeUnit -->
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/TranspOrdGrossVolumeUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/AcceptFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/RejectFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="QUOTATION.ZWCP_C_RFQType/AcceptWithChangeFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Src country -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/SourceCountry">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Dest country -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/DestCountry">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Award Status -->
+			<Record Type="UI.DataField">
+				<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+				<PropertyValue Property="Value" Path="TenderingAwardStatus"/>
+			</Record>
+			<!-- Quotation Response -->
+			<Record Type="UI.DataField">
+				<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+				<PropertyValue Property="Value" Path="TenderingResponseCode"/>
+			</Record>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

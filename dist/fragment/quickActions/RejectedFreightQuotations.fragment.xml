@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<List headerText="{i18n>OmittedFreightQuotations}"
+		items="{path:'/ZWCP_C_RFQ', sorter : { path : 'SrcTransportationPlanningDate', descending : true }, filters: [{path:'TndrgReqLifeCycleStatus', operator:'EQ', value1:'02'}]}">
+		<ObjectListItem title="{i18n>RequestNumber}: {TenderingRequestNumber}" type="Active" intro="{i18n>TransportationOrder}: {TransportationOrder}"
+		number="{TndrgReqAbsolutePriceLimit}" numberUnit="{TenderingPreferredCurrency}">
+			<firstStatus>
+				<ObjectStatus text="{i18n>DueDate}: {path:'FreightQuotationDueDateTime', type:'sap.ui.model.odata.type.DateTime'}"/>
+			</firstStatus>
+			<attributes>
+				<!--<ObjectAttribute text="{TenderingRejectionReason}"/>-->
+				<!--<ObjectAttribute text="{TenderingRejectionReason}"/>-->
+				<!--<ObjectAttribute text="{eventLocation}"/>-->
+			</attributes>
+			</ObjectListItem>
+		</List>
+	</core:FragmentDefinition>

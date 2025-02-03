@@ -1,0 +1,95 @@
+/* Enter your custom styles here */
+
+.tablesborder {
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-width: 1px;
+}
+
+.timelineborder {
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-width: 1px;
+}
+
+.noborders {
+    border-color: transparent;
+}
+
+.DASBackground {
+    background: #3f5161 !important
+}
+
+/*header .sapFDynamicPageHeaderWithContent {
+    background: #3f5161 !important
+}
+
+.sapSuiteUiCommonsChartContainerToolBarArea .sapMTBStandard {
+    display: none !important;
+}*/
+
+.deadlineHighlight .sapMText.sapUiSelectable.sapMTextNoWrap.sapMTextMaxWidth {
+    color: #FFCC00 !important;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: large;
+}
+
+.NoBottomBorder .sapMPanel>.sapMPanelHdr,
+.sapMPanelWrappingDiv,
+.sapMPanelWrappingDivTb {
+    border: none !important;
+}
+
+.NoBottomBorder .sapMPanelContent {
+    border: none !important;
+}
+
+
+/* Home screen module list top border */
+
+.customBorder .sapMLIB.sapMLIBShowSeparator.sapMLIBTypeNavigation.sapMListTblRow>td {
+    border-top: 1px solid #cccccc;
+}
+
+
+.deadlineHighlight .sapMText.sapUiSelectable.sapMTextNoWrap.sapMTextMaxWidth {
+    color: #FFCC00 !important;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+
+/* Home screen module list left border */
+
+.customBorder .sapMListTblHighlightCell+.sapMListTblCell {
+    border-left: 1px solid #cccccc;
+}
+
+
+/* Freight Orders with Pickup Deadline &  Expiring RFQ header text border*/
+
+.customBorder .sapMListHdrText {
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+
+/* Freight Orders with Pickup Deadline &  Expiring RFQ line item left and right border */
+
+.customBorder .sapMLIB {
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+}
+
+/*Charges table value after change*/
+.changedChargeValue {
+    color: #5E696E !important;
+}

@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<List id="idListExpiringRFQ" headerText="{i18n>RFQWithExpiringDueDate}" itemPress="onQuickOverviewExpiringRFQPress"
+		noDataText="{i18n>NoExpiringRFQ}">
+		<!--{i18n>RFQ}-->
+		<ObjectListItem id="idListItemExpiringRFQ" title="{_RFQQUOTEDUE>TenderingRequestNumber/#@sap:label} {_RFQQUOTEDUE>TenderingRequestNumber}"
+			type="Active" press="onListItemPress"
+			number="{ parts:[{path:'_RFQQUOTEDUE>TndrgReqAbsolutePriceLimit'},{path:'_RFQQUOTEDUE>TenderingPreferredCurrency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+			numberUnit="{_RFQQUOTEDUE>TenderingPreferredCurrency}">
+			<firstStatus>
+				<ObjectStatus
+					text="({path:'_RFQQUOTEDUE>SrcTransportationPlanningDate', type:'sap.ui.model.odata.type.Date', formatOptions: {style: 'medium'}} - {path:'_RFQQUOTEDUE>DesTransportationPlanningDate', type:'sap.ui.model.odata.type.Date', formatOptions: {style: 'medium'}})"/>
+			</firstStatus>
+			<attributes>
+				<!--{i18n>RFQDueDate}-->
+				<ObjectAttribute class="deadlineHighlight" title="{_RFQQUOTEDUE>FreightQuotationDueDateTime/#@sap:label}"
+					text="{path:'_RFQQUOTEDUE>FreightQuotationDueDateTime', type:'sap.ui.model.odata.type.DateTime', formatOptions: {style: 'medium'}}"/>
+				<!--{i18n>SourceLocation}-->
+				<ObjectAttribute title="{_RFQQUOTEDUE>SourceLocationName/#@sap:label}" text="{_RFQQUOTEDUE>SourceLocationName}"/>
+				<!--{i18n>DestinationLocation}-->
+				<ObjectAttribute title="{_RFQQUOTEDUE>DestinationLocationName/#@sap:label}" text="{_RFQQUOTEDUE>DestinationLocationName}"/>
+			</attributes>
+		</ObjectListItem>
+	</List>
+</core:FragmentDefinition>

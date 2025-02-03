@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>UpdateCarrierReference}" afterClose="afterCloseUpdateInvoiceDialog">
+		<content>
+			<f:SimpleForm id="idUpdateInvoiceHeader" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+				singleContainerFullSize="false">
+				<f:content>
+					<!--{i18n>InvoiceNumber}-->
+					<Label text="{CarrierReference/#@sap:label}" required="true"/>
+					<Input id="idUpdateInvoiceNumber" width="100%" value="{CarrierReference}"/>
+					<!--{i18n>InvoiceDate}-->
+					<Label text="{InvoiceDate/#@sap:label}" required="true"/>
+					<DatePicker id="idUpdateInvoiceDate" width="100%"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="{i18nhome>Cancel}" press="onUpdateInvoiceCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18nhome>OK}" press="onUpdateInvoiceConfirm"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

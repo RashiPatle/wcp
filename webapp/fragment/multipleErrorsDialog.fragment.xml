@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Dialog title="{i18n>ErrorTableHeader}" afterClose="_afterClose" type="Message" state="Error">
+		<!--<List items="{errorModel>/errordetails}">-->
+		<!--	<StandardListItem description="{errorModel>message}" title="{path:'errorModel>severity', formatter:'.formatter.messageSeverityTitles'}" icon="{path:'errorModel>severity', formatter:'.formatter.messageSeverityIcons'}"/>-->
+		<!--</List>-->
+		<Table items="{path:'errorModel>/errordetails'}">
+			<columns>
+				<Column width="1rem"></Column>
+				<Column></Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<core:Icon src="{path:'errorModel>severity', formatter:'.formatter.messageSeverityIcons'}"
+							color="{path:'errorModel>severity', formatter:'.formatter.messageSeverityIconsColors'}"
+							tooltip="{path:'errorModel>severity', formatter:'.formatter.messageSeverityTitles'}" class="sapUiSmallMarginEnd"/>
+						<Text text="{errorModel>message}" wrapping="true" class="hBoxItemsInRow"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<endButton>
+			<Button text="{i18n>OK}" press="onClosePage"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

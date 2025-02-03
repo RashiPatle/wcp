@@ -1,0 +1,11 @@
+{
+	"V_ACreateInvoice": false,
+	"E_ACreateInvoice": false,
+	"E_ASubmitInvoice": false,
+	"V_ASubmitInvoice": false,
+	"E_ACancelInvoice": false,
+	"V_ACancelInvoice": false,
+	"V_ACalculateCharges": false,
+	"E_ACalculateCharges": false
+	
+}

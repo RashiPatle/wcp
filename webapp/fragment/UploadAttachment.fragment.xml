@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"
+	xmlns="sap.m" xmlns:smartField="sap.ui.comp.smartfield">
+	<Dialog id="idUploadDialog" title="{i18nhome>uploadAttachmentTitle}">
+		<content>
+			<VBox>
+				<f:Form id="FormToolbarAttachment" editable="true" ariaLabelledBy="Title1">
+					<f:layout>
+						<f:ResponsiveGridLayout/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer ariaLabelledBy="addEvent">
+							<f:formElements>
+								<!--{i18nhome>attachmentTypeLabel}-->
+								<!--to_Attachments-->
+								<f:FormElement label="{to_Attachments/AttachmentType/#@sap:label}" visible="{_DV>/attachmentTypeVisibility}">
+									<f:fields>
+										<ComboBox id="idAttachmentTypeCombo" items="{_MD>/AttachmentType}" selectionChange="onSelectionChangeAttachType">
+											<core:Item key="{_MD>AttachmentType}" text="{_MD>AttachmentType_Text}"/>
+										</ComboBox>
+									</f:fields>
+								</f:FormElement>
+								<!--{i18nhome>descriptionLabel}-->
+								<f:FormElement label="{to_Attachments/AttachmentTypeDescripton/#@sap:label}">
+									<f:fields>
+										<Input id="idAttachmentDescription"/>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement label="{i18nhome>chooseFileLabel}">
+									<f:fields>
+										<VBox>
+											<UploadCollection id="UploadCollection" maximumFilenameLength="55" maximumFileSize="10" multiple="false" sameFilenameAllowed="false"
+												instantUpload="false" noDataText="{i18nhome>pleaseUploadMsg}" noDataDescription="{i18nhome>dropOrPendingUploadMsg}" change="onChange"
+												fileDeleted="onFileDeleted" filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+												uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts"/>
+											<!--	<u:FileUploader id="fileUploader" name="Invoice" width="400px" tooltip="Upload your file to the local server"
+												uploadComplete="_fileUploadCompleted" sendXHR="true" valueStateText=""/>-->
+										</VBox>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+			</VBox>
+		</content>
+		<beginButton>
+			<Button text="{i18nhome>uploadNowBtn}" press="onConfirmUploadAttachment"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18nhome>closeBtn}" press="onCloseUploadAttachment"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,144 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f"
+	controllerName="com.westernacher.collaborationPortal.invoices.controller.InvoicesTable" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:DynamicPage class="sapUiResponsiveContentPadding sapUiLargeMarginBottom" preserveHeaderStateOnScroll="false" headerExpanded="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18n>InvoiceList}">
+						<Link text="{i18n>homeLink}" press="onHomeLinkPress"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<f:content>
+					<smartFilterBar:SmartFilterBar id="invoicesFilterBar" persistencyKey="UniqueAndStablePersistencyKey" considerSelectionVariants="true"
+						entitySet="ZWCP_C_SETLCarrierInvoices" useDateRangeType="false">
+						<smartFilterBar:layoutData>
+							<FlexItemData shrinkFactor="0"/>
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable id="invoicesTable" smartFilterId="invoicesFilterBar" tableType="ResponsiveTable" useExportToExcel="true"
+				useVariantManagement="false" useTablePersonalisation="true" header="{i18n>tableHeaderText}" showRowCount="true" enableAutoBinding="true"
+				entitySet="ZWCP_C_SETLCarrierInvoices" beforeRebindTable="onBeforeRebindTable" demandPopin="true"
+				tableBindingPath="/ZWCP_C_SETLCarrierInvoices">
+				<smartTable:customToolbar>
+					<OverflowToolbar>
+						<ToolbarSeparator></ToolbarSeparator>
+						<FlexBox visible="{= !${device>/system/phone} }">
+							<SegmentedButton id="idSegmentedFilter" width="30%" selectionChange="onSelectingQuickFilter" selectedKey="ForApproval">
+								<items>
+									<SegmentedButtonItem id="idAll" width="5em" text="{i18n>All}" key="All" customData:property="InvoiceStatusCode"
+										customData:status="01,02,03,04,05"/>
+									<SegmentedButtonItem id="idForApproval" icon="sap-icon://pending" text="{i18n>ForApproval}" key="ForApproval" customData:status="02"
+										customData:property="InvoiceStatusCode"/>
+									<SegmentedButtonItem id="idSubmitted" icon="sap-icon://email" text="{i18n>Submitted}" key="Submitted" customData:status="01"
+										customData:property="InvoiceStatusCode"/>
+									<SegmentedButtonItem id="idAccepted" icon="sap-icon://payment-approval" text="{i18n>Accepted}" key="Accepted" customData:status="03"
+										customData:property="InvoiceStatusCode"/>
+									<SegmentedButtonItem id="idRejected" icon="sap-icon://decline" text="{i18n>Rejected}" key="Rejected" customData:status="04"
+										customData:property="InvoiceStatusCode"/>
+									<SegmentedButtonItem id="idCanceled" icon="sap-icon://cancel" text="{i18n>Canceled}" key="Canceled" customData:status="05"
+										customData:property="InvoiceStatusCode"/>
+								</items>
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</SegmentedButton>
+						</FlexBox>
+						<Select id="idToolbarFilters" change="onSelectingQuickFilter" selectedKey="ForApproval" visible="{device>/system/phone}">
+							<core:ListItem text="{i18n>All}" key="All" customData:property="InvoiceStatusCode" customData:status="01,02,03,04,05"></core:ListItem>
+							<core:ListItem icon="sap-icon://pending" text="{i18n>ForApproval}" key="ForApproval" customData:status="02"
+								customData:property="InvoiceStatusCode"></core:ListItem>
+							<core:ListItem icon="sap-icon://email" text="{i18n>Submitted}" key="Submitted" customData:status="01"
+								customData:property="InvoiceStatusCode"></core:ListItem>
+							<core:ListItem icon="sap-icon://payment-approval" text="{i18n>Accepted}" key="Accepted" customData:status="03"
+								customData:property="InvoiceStatusCode"></core:ListItem>
+							<core:ListItem icon="sap-icon://decline" text="{i18n>Rejected}" key="Rejected" customData:status="04"
+								customData:property="InvoiceStatusCode"></core:ListItem>
+							<core:ListItem icon="sap-icon://cancel" text="{i18n>Canceled}" key="Canceled" customData:status="05" customData:property="InvoiceStatusCode"></core:ListItem>
+						</Select>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+				<Table mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" selectionChange="onTableSelectionChange" itemPress="onTableItemPress">
+					<headerToolbar>
+						<Toolbar>
+							<Button press="onRefreshList" icon="sap-icon://synchronize" text="{i18nhome>refreshBtn}" tooltip="{i18nhome>refreshBtn}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<ToolbarSpacer/>
+							<Button text="{i18n>acceptBtn}" type="Transparent" visible="{_AM>/V_AAcceptInvoice}" customData:actionName="acceptInvoice"
+								customData:entitySet="ZWCP_C_SETLCarrierInvoices" enabled="{_AM>/E_AAcceptInvoice}" press="onAcceptInvoicePress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<!--<Button text="{i18n>editProposalBtn}" type="Transparent" visible="{_AM>/V_AEditProposal}" customData:actionName="creatable"-->
+							<!--	customData:entitySet="ZWCP_C_SETLCarrierInvoices" enabled="{_AM>/E_AEditProposal}" press="onEditInvoicePress">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Center" width="8rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey": "InvoiceStatusCode", "sortProperty" : "InvoiceStatusCode", "leadingProperty":"InvoiceStatusCode"}'/>
+							</customData>
+							<Label text="{/#ZWCP_C_SETLFreightOrdersType/InvoicingStatusCode/@sap:label}"/>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"GrossAmount", "columnIndex":"2", "sortProperty":"GrossAmount", "filterProperty":"GrossAmount", "leadingProperty":"GrossAmount"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_SETLCarrierInvoicesType/GrossAmount/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"NetAmount", "columnIndex":"3", "sortProperty":"NetAmount", "filterProperty":"NetAmount", "leadingProperty":"NetAmount"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_SETLCarrierInvoicesType/NetAmount/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TaxAmount", "columnIndex":"4", "TaxAmount":"TotalDistance", "filterProperty":"TaxAmount", "leadingProperty":"TaxAmount"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_SETLCarrierInvoicesType/TaxAmount/@sap:label}"/>
+							</header>
+						</Column>
+					</columns>
+					<items bindingPath="/ZWCP_C_SETLCarrierInvoices">
+						<ColumnListItem type="Navigation">
+							<cells>
+								<core:Icon src="{path:'InvoiceStatusCode', formatter:'.formatter.formatInvoiceStatusCode'}" tooltip="{i18n>inoviceStatusTooltip}"
+									color="{path:'InvoiceStatusCode', formatter:'.formatter.formatInvoiceStatusCodeIconColor'}"/>
+								<ObjectNumber number="{parts : [ 'GrossAmount', 'GrossAmountCurrency' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}" unit="{GrossAmountCurrency}"/>
+								<ObjectNumber number="{parts : [ 'NetAmount', 'NetAmountCurrency' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}" unit="{NetAmountCurrency}"/>
+								<ObjectNumber number="{parts : [ 'TaxAmount', 'TaxAmountCurrency' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}" unit="{TaxAmountCurrency}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

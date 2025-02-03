@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:tt="http://www.sap.com/transformation-templates" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/Communication.xml">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZWCP_SETL_CRM010_SRV/$metadata">
+		<edmx:Include Alias="SETLEMENT" Namespace="ZWCP_SETL_CRM010_SRV"/>
+	</edmx:Reference>
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZWCP_SETL_CRM010_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                ================================================================================-->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType">
+				<!-- Properties that should be available in the request atleast fields in the worklist smart table -->
+				<Annotation Term="UI.PresentationVariant">
+					<Record Type="UI.PresentationVariantType">
+						<PropertyValue Property="RequestAtLeast">
+							<Collection>
+								<PropertyPath>TransportationOrder</PropertyPath>
+								<PropertyPath>InvoicingStatusCode</PropertyPath>
+								<PropertyPath>TransportationOrderUUID</PropertyPath>
+								<PropertyPath>CarrierUUID</PropertyPath>
+								<PropertyPath>TotalDistanceUnit</PropertyPath>
+								<PropertyPath>TranspOrdGrossWeightUnit</PropertyPath>
+								<PropertyPath>TranspOrdGrossVolumeUnit</PropertyPath>
+								<PropertyPath>TotalAmountCurrency</PropertyPath>
+								<PropertyPath>AcceptInvoiceFC</PropertyPath>
+								<!-- (Newly added for $Select issue_ total amt will show 0 if this field is not there in $select) -->
+								<PropertyPath>total_amount_int</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<!--===============================================================================
+                            Collection of fields to be displayed in the worklist smart table
+                            ================================================================================-->
+						<!-- CarrierInvoicingStatus -->
+						<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/CarrierInvoicingStatus">
+							<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+						</Annotations>
+						<!-- Transportation Order -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TransportationOrder"/>
+						</Record>
+						<!-- Source Location -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="SourceLocationName"/>
+						</Record>
+						<!-- Destination Location -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="DestinationLocationName"/>
+						</Record>
+						<!-- Total Amount -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Value" Path="TotalAmount"/>
+						</Record>
+						<!-- Gross Weight -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Value" Path="TranspOrdGrossWeight"/>
+						</Record>
+						<!-- Gross Volume -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Value" Path="TranspOrdGrossVolume"/>
+						</Record>
+						<!-- Total Distance -->
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+							<PropertyValue Property="Value" Path="TotalDistance"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>TransportationOrder</PropertyPath>
+					</Collection>
+				</Annotation>
+				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="TotalAmount">
+					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
+						<PropertyValue Property="Value" Path="TotalAmount"/>
+						<PropertyValue Property="NumberFormat">
+							<Record>
+								<PropertyValue Property="ScaleFactor" Int="0"/>
+								<PropertyValue Property="NumberOfFractionalDigits" Int="3"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<!--===============================================================================
+                Annotations to remove extra fields from the Worklist personalization
+                ================================================================================-->
+			<!-- Existing Fields -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TransportationOrderUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TranspOrdGrossWeight">
+				<!--<Annotation Term="Common.Label" String="{i18n>GrossWeight}"/>-->
+				<Annotation Term="CQP.Scale" Int="2"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TotalAmount">
+				<!--<Annotation Term="Common.Label" String="{i18n>TotalAmount}"/>-->
+				<Annotation Term="CQP.ISOCurrency" path="TotalAmountCurrency"/>
+			</Annotations>
+			<!-- Newly Added Fields -->
+			<!-- Carrier -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/Carrier">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- CarrierUUID -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/CarrierUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedGrossVolumeValue -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedGrossVolumeValue">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedGrossVolumeUnit -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedGrossVolumeUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedGrossWeight -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedGrossWeight">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedGrossWeightUnit -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedGrossWeightUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedTotalDistance -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedTotalDistance">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedTotalDistanceUnit -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedTotalDistanceUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedTotalAmount -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedTotalAmount">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ChangedTotalAmountCurrency -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ChangedTotalAmountCurrency">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Confirmed Delivery Date -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/DesCarrierConfimedDate">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Confirmed Pickup Date -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/SrcCarrierConfimedDate">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- ConsigneeName -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/ConsigneeName">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- DistanceChangeAllowed -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/DistanceChangeAllowed">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- RateChangeAllowed -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/RateChangeAllowed">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- QuantityChangeAllowed -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/QuantityChangeAllowed">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TransportationOrder (Document) -->
+			<!--<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TransportationOrder">-->
+			<!--	<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>-->
+			<!--</Annotations>-->
+			<!-- TranspOrdGrossWeightUnit -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TranspOrdGrossWeightUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TranspOrdGrossVolumeUnit -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TranspOrdGrossVolumeUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- GrossVolumeChangeAllowed -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/GrossVolumeChangeAllowed">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- GrossWeightChangeAllowed -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/GrossWeightChangeAllowed">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- DistanceChangeAllowed -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/DistanceChangeAllowed">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- NewChargeAllowed -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/NewChargeAllowed">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Planned Delivery Date -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/DesTransportationPlanningDate">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Planned Delivery Date -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/SrcTransportationPlanningDate">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Purchasing Org. Name -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/PurchasingOrganizationName">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Ship to Party -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/Consignee">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TotalDistanceUnit -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TotalDistanceUnit">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- TransportationMode -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TransportationMode">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- InvoiceUUID -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/InvoiceUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Src country -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/SourceCountry">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Dest country -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/DestCountry">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<!-- Total Amount Int (Newly added for $Select issue) -->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/total_amount_int">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/AcceptInvoiceFC">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

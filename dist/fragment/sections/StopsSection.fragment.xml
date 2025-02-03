@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:t="sap.ui.table">
+	<Tree id="Tree" class="treetablesbackgroundborder" items="{path: '_TreeItems>/to_Stages', parameters: { numberOfExpandedLevels: 1}}"
+		mode="None">
+		<headerToolbar>
+			<Toolbar design="Solid">
+				<Title text="{i18nhome>Stages}"/>
+			</Toolbar>
+		</headerToolbar>
+		<CustomTreeItem>
+			<VBox alignItems="Start" width="100%" visible="{= ${_TreeItems>TransportationOrderStageUUID} ? true : false}">
+				<items>
+					<HBox>
+						<!--{i18nhome>sourceLabel}-->
+						<Label text="{to_Stages/SrcLocationDescription/#@sap:label}:" labelFor="Source" class="sapUiSmallMarginEnd"/>
+						<Text text="{_TreeItems>SrcLocationDescription}" id="Source"/>
+					</HBox>
+					<HBox>
+						<!--{i18nhome>destinationLabel}-->
+						<Label text="{to_Stages/DesLocationDescription/#@sap:label}:" labelFor="Dest" class="sapUiSmallMarginEnd"/>
+						<Text text="{_TreeItems>DesLocationDescription}" id="Dest"/>
+					</HBox>
+				</items>
+			</VBox>
+			<VBox visible="{= ${_TreeItems>TransportationOrderStageUUID} ? false : true}">
+				<HBox alignContent="SpaceBetween" justifyContent="SpaceBetween">
+					<VBox class="sapUiTinyMarginBegin sapUiTinyMarginTopBottom sapUiLargeMarginEnd">
+						<Title text="{_TreeItems>TranspOrdItemDesc}"/>
+						<Label text="{_TreeItems>TransportationActivityDesc}"/>
+					</VBox>
+					<HBox alignContent="Center" alignItems="Center" justifyContent="Center" class="sapUiLargeMarginEnd">
+						<core:Icon src="sap-icon://compare" class="sapUiSmallMarginEnd"
+							tooltip="{_TreeItems>TranspOrdItemGrossWeight} {_TreeItems>TranspOrdItemGrossWeightUnit}"/>
+						<Text text="{_TreeItems>TranspOrdItemGrossWeight} {_TreeItems>TranspOrdItemGrossWeightUnit}"/>
+					</HBox>
+					<HBox alignContent="Center" alignItems="Center" justifyContent="Center">
+						<core:Icon src="sap-icon://dimension" class="sapUiSmallMarginEnd"
+							tooltip="{_TreeItems>TranspOrdItemQuantity} {_TreeItems>TranspOrdItemQuantityUnit}"/>
+						<Text text="{_TreeItems>TranspOrdItemQuantity} {_TreeItems>TranspOrdItemQuantityUnit}"/>
+					</HBox>
+					<!--<HBox alignContent="Center" alignItems="Center" justifyContent="Center">-->
+					<!--	<core:Icon class="sapUiSmallMarginEnd"-->
+					<!--		tooltip="Dangerous Good: {_TreeItems>TranspOrdItemIsDangerousGood}"/>-->
+					<!--	<Text text="Dangerous Good: {_TreeItems>TranspOrdItemIsDangerousGood}"/>-->
+					<!--</HBox>-->
+				</HBox>
+			</VBox>
+		</CustomTreeItem>
+	</Tree>
+</core:FragmentDefinition>

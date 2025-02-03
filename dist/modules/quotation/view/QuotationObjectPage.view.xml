@@ -1,0 +1,138 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.suite.ui.commons"
+	controllerName="com.westernacher.collaborationPortal.quotation.controller.QuotationObjectPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<f:DynamicPage preserveHeaderStateOnScroll="false" headerExpanded="true" class="sapUiNoContentPadding" showNavButton="true"
+		navButtonPress="onNavBack">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<!--{i18n>FONumberLabel}-->
+					<Title text="{TransportationOrder/#@sap:label} {TransportationOrder}" wrapping="true"/>
+				</f:heading>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18nhome>Detail}">
+						<Link text="{i18nhome>Home}" press="onHomeLinkPress"/>
+						<Link text="{i18n>FreightOrderQuotationList}" press="onPressBack"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:actions>
+					<Button text="{i18n>Accept}" type="Transparent" visible="{_AM>/V_ASetAccept}" customData:actionName="accept"
+						customData:entitySet="ZWCP_C_RFQ" enabled="{_AM>/E_ASetAccept}" press="onAcceptFOPress">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow"/>
+						</layoutData>
+					</Button>
+					<Button text="{i18n>Reject}" type="Transparent" visible="{_AM>/V_ASetRejected}" customData:actionName="reject"
+						customData:entitySet="ZWCP_C_RFQ" enabled="{_AM>/E_ASetRejected}" press="onRejectFOPress">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow"/>
+						</layoutData>
+					</Button>
+					<Button text="{i18n>AcceptWithChange}" type="Transparent" visible="{_AM>/V_ASetAcceptChange}" customData:actionName="accept_with_change"
+						customData:entitySet="ZWCP_C_RFQ" enabled="{_AM>/E_ASetAcceptChange}" press="onAcceptWithChange">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="High"/>
+						</layoutData>
+					</Button>
+					<Button press="onRefreshObjectView" icon="sap-icon://synchronize" tooltip="{i18nhome>refreshBtn}"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<layout:Grid hSpacing="1" defaultSpan="L4 M12 S12">
+					<layout:content>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>GeneralInfoFormTitle}" labelSpanXL="4" labelSpanL="4"
+							width="100%" labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="1" emptySpanL="1" emptySpanM="1" emptySpanS="0"
+							columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+							<form:content>
+								<!--{i18n>FreightRFQ}-->
+								<Label text="{TenderingRequestNumber/#@sap:label}"></Label>
+								<Text text="{TenderingRequestNumber}"/>
+								<!--{i18n>TransportationModeFormLabel}-->
+								<Label text="{TransportationModeDesc/#@sap:label}"/>
+								<Text text="{TransportationModeDesc}"/>
+								<!--{i18n>MeansOfTransportFormLabel}-->
+								<Label text="{MeansOfTransportDesc/#@sap:label}"/>
+								<Text text="{MeansOfTransportDesc}"/>
+								<!--{i18n>VolumeLDMFormLabel}-->
+								<Label text="{TotalDistance/#@sap:label}"/>
+								<Text
+									text="{parts : [ 'TotalDistance', 'TotalDistanceUnit' ], formatter:'.coreFormatter.customUnitForDistanceOnlyNumber'} {path:'TotalDistanceUnit', formatter:'.coreFormatter.customUnitForDistanceOnlyUnit'}"/>
+								<Label text="{TranspOrdGrossWeight/#@sap:label}"/>
+								<Text
+									text="{parts : [ 'TranspOrdGrossWeight', 'TranspOrdGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {= ${TranspOrdGrossWeight}? ${TranspOrdGrossWeightUnit} : ''}"/>
+								<Label text="{TranspOrdGrossVolume/#@sap:label}"/>
+								<Text
+									text="{parts : [ 'TranspOrdGrossVolume', 'TranspOrdGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'} {= ${TranspOrdGrossVolume}? ${TranspOrdGrossVolumeUnit} : ''}"/>
+								<!--{i18n>DG}-->
+								<Label text="{DangerousGoods/#@sap:label}"/>
+								<core:Icon src="{path:'DangerousGoods', formatter:'.coreFormatter.formatDGCustomIcon'}" color="Negative" tooltip="{i18n>DangerousGoods}"
+									width="30px"></core:Icon>
+								<!--{i18n>Resource}-->
+								<Label text="{TranspOrdItemCategory/#@sap:label}"/>
+								<Text text="{TranspOrdItemCategory} "/>
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>Pickup/DelInfoForm}" labelSpanXL="6" labelSpanL="6"
+							width="100%" labelSpanM="6" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+							columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<Label text="{SourceLocationName/#@sap:label}"/>
+								<Text text="{SourceLocationName}"/>
+								<!--{i18n>PlannedPickupDateFormLabel}-->
+								<Label text="{SrcTransportationPlanningDateF/#@sap:label}"/>
+								<Text
+									text="{path:'SrcTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime' , formatOptions: {UTC: true}} {SrcLocationTimeZone}"/>
+								<!--{i18n>DeliveryLocationFormLabel}-->
+								<Label text="{DestinationLocationName/#@sap:label}"/>
+								<Text text="{DestinationLocationName}"/>
+								<!--{i18n>PlannedDeliveryTimeFormLabel}-->
+								<Label text="{DesTransportationPlanningDateF/#@sap:label}"/>
+								<Text
+									text="{path:'DesTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime' , formatOptions: {UTC: true}} {DesLocationTimeZone}"/>
+							</form:content>
+						</form:SimpleForm>
+						<form:SimpleForm editable="false" layout="ResponsiveGridLayout" title="{i18n>PriceInfo}" labelSpanXL="4" labelSpanL="4" width="100%"
+							labelSpanM="5" labelSpanS="5" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+							columnsL="1" columnsM="1" singleContainerFullSize="true">
+							<form:content>
+								<!--{i18n>TndrgReqAbsolutePriceLimit}-->
+								<Label text="{TndrgReqAbsolutePriceLimit/#@sap:label}"/>
+								<Text text="{parts : [ 'TndrgReqAbsolutePriceLimit', 'TenderingPreferredCurrency' ], formatter:'.coreFormatter.customNumberUnit'}"/>
+								<!--{i18n>PriceProposal}-->
+								<!--<Label text="{to_Quotes/TndrgRspSubmdAmt/#@sap:label}"/>-->
+								<!--<Text text="{to_Quotes/TndrgRspSubmdAmt} {to_Quotes/TndrgRspSubmdAmtCrcy}"/>-->
+								<!--{i18n>PricingDeadline}-->
+								<Label text="{FreightQuotationDueDateTime/#@sap:label}"/>
+								<Text text="{path:'FreightQuotationDueDateTime', formatter:'.coreFormatter.toUserSettingTimezoneDate'}"/>
+							</form:content>
+						</form:SimpleForm>
+					</layout:content>
+				</layout:Grid>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<layout:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L8 M12 S12">
+				<layout:content>
+					<VBox>
+						<core:Fragment id="idCargoTreeFragment"
+							fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsExecutionSection" type="XML"/>
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.StopsSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.PackagesSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.ResourceSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.AttachmentsSection" type="XML"/>-->
+					</VBox>
+					<VBox>
+						<layoutData>
+							<layout:GridData span="L4 M12 S12" linebreakL="false" linebreakM="true" linebreakS="true"/>
+						</layoutData>
+						<core:Fragment fragmentName="com.westernacher.collaborationPortal.quotation.fragment.QuotationsTimeline" type="XML"/>
+					</VBox>
+				</layout:content>
+			</layout:Grid>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,201 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f"
+	controllerName="com.westernacher.collaborationPortal.fosExecution.controller.FOsExecutionTable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<f:DynamicPage class="sapUiResponsiveContentPadding sapUiLargeMarginBottom">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs currentLocationText="{i18n>FreightOrderExecutionList}">
+						<Link text="{i18nhome>Home}" press="onHomeLinkPress"/>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" persistencyKey="UniqueAndStablePersistencyKey" considerSelectionVariants="true"
+						entitySet="ZWCP_C_Execution" useDateRangeType="true">
+						<smartFilterBar:layoutData>
+							<FlexItemData shrinkFactor="0"/>
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable id="fosExecutionTable" persistencyKey="fiori.test.application2.view.S4.SmartTable" smartFilterId="smartFilterBar"
+				tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="false" useTablePersonalisation="true"
+				header="{i18n>tableHeaderText}" showRowCount="true" enableAutoBinding="true" entitySet="ZWCP_C_Execution" demandPopin="true"
+				tableBindingPath="/ZWCP_C_Execution" beforeRebindTable="onBeforeRebindTable">
+				<smartTable:customToolbar>
+					<OverflowToolbar>
+						<ToolbarSeparator></ToolbarSeparator>
+						<FlexBox visible="{= !${device>/system/phone} }">
+							<SegmentedButton id="idSegmentedFilter" width="40%" selectionChange="onSelectingQuickFilter" selectedKey="InExecution">
+								<items>
+									<SegmentedButtonItem id="idAll" width="5em" text="{i18n>allBtn}" key="All" customData:property="All"/>
+									<SegmentedButtonItem id="idExecutionReady" icon="sap-icon://inventory" text="{i18n>readyForExecutionBtn}" key="ReadyForExecution"
+										customData:status="07" customData:property="TransportationOrderExecSts"/>
+									<SegmentedButtonItem id="idInExecution" icon="sap-icon://shipping-status" text="{i18n>inExecutionBtn}" key="InExecution"
+										customData:status="03" customData:property="TransportationOrderExecSts"/>
+									<SegmentedButtonItem id="idExecuted" icon="sap-icon://complete" text="{i18n>executedBtn}" key="Executed" customData:status="04"
+										customData:property="TransportationOrderExecSts"/>
+								</items>
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="Low"/>
+								</layoutData>
+							</SegmentedButton>
+						</FlexBox>
+						<Select id="idToolbarFilters" change="onSelectingQuickFilter" selectedKey="All" visible="{device>/system/phone}">
+							<core:ListItem text="{i18n>allBtn}" key="All" customData:property="All"></core:ListItem>
+							<core:ListItem icon="sap-icon://inventory" text="{i18n>readyForExecutionBtn}" key="ReadyForExecution" customData:status="07"
+								customData:property="TransportationOrderExecSts"></core:ListItem>
+							<core:ListItem icon="sap-icon://shipping-status" text="{i18n>inExecutionBtn}" key="InExecution" customData:status="03"
+								customData:property="TransportationOrderExecSts"></core:ListItem>
+							<core:ListItem icon="sap-icon://complete" text="{i18n>executedBtn}" key="Executed" customData:status="04"
+								customData:property="TransportationOrderExecSts"></core:ListItem>
+						</Select>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+				<Table mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" selectionChange="onTabeSelectionChange" itemPress="onTableItemPress">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Button press="onRefreshList" icon="sap-icon://synchronize" text="{i18nhome>refreshBtn}" tooltip="{i18nhome>refreshBtn}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<ToolbarSpacer/>
+							<Button text="{i18n>acceptBtn}" type="Transparent" visible="{_AM>/V_ASetAccept}" customData:actionName="accept"
+								customData:entitySet="ZWCP_C_Execution" enabled="{_AM>/E_ASetAccept}" press="onAcceptFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>rejectBtn}" type="Transparent" visible="{_AM>/V_ASetRejected}" customData:actionName="reject"
+								customData:entitySet="ZWCP_C_Execution" enabled="{_AM>/E_ASetRejected}" press="onRejectFOPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+							<!--<Button text="{i18n>SetToComplete}" type="Transparent" visible="{_AM>/V_ASetComplete}" customData:actionName="setComplete"-->
+							<!--	customData:entitySet="ZWCP_C_Execution" enabled="{_AM>/E_ASetComplete}" press="onCompleteFOPress">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="High"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+							<!--<Button text="{i18n>SetToCancel}" type="Transparent" visible="{_AM>/V_ASetCancelled}" customData:actionName="setCancelled"-->
+							<!--	customData:entitySet="ZWCP_C_Execution" enabled="{_AM>/E_ASetCancelled}" press="onCancelFOPress">-->
+							<!--	<layoutData>-->
+							<!--		<OverflowToolbarLayoutData shrinkable="true" priority="High"/>-->
+							<!--	</layoutData>-->
+							<!--</Button>-->
+							<Button text="{i18n>UpdateFO}" type="Transparent" customData:actionName="update" customData:entitySet="ZWCP_C_Execution"
+								press="onUpdateFOPress" enabled="{_AM>/E_AUpdateFreightOrder}" visible="{_AM>/V_AUpdateFreightOrder}">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+							<Button text="{i18n>UploadAttachments}" type="Transparent" customData:entitySet="ZWCP_C_ExecutionAttach"
+								enabled="{_AM>/E_AUploadAttachments}" visible="{_AM>/V_AUploadAttachments}" press="onUploadAttachPress">
+								<layoutData>
+									<OverflowToolbarLayoutData shrinkable="true" priority="High"/>
+								</layoutData>
+							</Button>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Center" width="6rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TransportationOrderExecSts", "sortProperty":"TransportationOrderExecSts", "filterProperty":"TransportationOrderExecSts", "leadingProperty":"TransportationOrderExecSts"}'></core:CustomData>
+							</customData>
+							<header>
+								<!--{i18n>Status}-->
+								<Text text="{/#ZWCP_C_ExecutionType/TransportationOrderExecSts/@sap:label}"/>
+							</header>
+						</Column>
+						<!--<Column hAlign="Center" width="8rem">-->
+						<!--	<customData>-->
+						<!--		<core:CustomData key="p13nData"-->
+						<!--			value='\{"columnKey":"DangerousGoodsAreContained", "columnIndex":"7", "sortProperty":"DangerousGoodsAreContained", "filterProperty":"DangerousGoodsAreContained", "leadingProperty":"DangerousGoodsAreContained"}'></core:CustomData>-->
+						<!--	</customData>-->
+						<!--	<header>-->
+						<!--		<Text text="{i18n>DangerousGood}"/>-->
+						<!--	</header>-->
+						<!--</Column>-->
+						<Column hAlign="Center" width="15rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"SrcTransportationPlanningDateF", "columnIndex":"2", "sortProperty":"SrcTransportationPlanningDateF", "filterProperty":"SrcTransportationPlanningDateF", "leadingProperty":"SrcTransportationPlanningDateF"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ExecutionType/SrcTransportationPlanningDateF/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Center" width="15rem">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"DesTransportationPlanningDateF", "columnIndex":"3", "sortProperty":"DesTransportationPlanningDateF", "filterProperty":"DesTransportationPlanningDateF", "leadingProperty":"DesTransportationPlanningDateF"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ExecutionType/DesTransportationPlanningDateF/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TotalDistance", "columnIndex":"7", "sortProperty":"TotalDistance", "filterProperty":"TotalDistance", "leadingProperty":"TotalDistance"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ExecutionType/TotalDistance/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TranspOrdGrossWeight", "columnIndex":"8", "sortProperty":"TranspOrdGrossWeight", "filterProperty":"TranspOrdGrossWeight", "leadingProperty":"TranspOrdGrossWeight"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ExecutionType/TranspOrdGrossWeight/@sap:label}"/>
+							</header>
+						</Column>
+						<Column hAlign="Right">
+							<customData>
+								<core:CustomData key="p13nData"
+									value='\{"columnKey":"TranspOrdGrossVolume", "columnIndex":"9", "sortProperty":"TranspOrdGrossVolume", "filterProperty":"TranspOrdGrossVolume", "leadingProperty":"TranspOrdGrossVolume"}'></core:CustomData>
+							</customData>
+							<header>
+								<Text text="{/#ZWCP_C_ExecutionType/TranspOrdGrossVolume/@sap:label}"/>
+							</header>
+						</Column>
+					</columns>
+					<items bindingPath="/ZWCP_C_Execution">
+						<ColumnListItem type="Navigation">
+							<cells>
+								<core:Icon src="{path:'TransportationOrderExecSts', formatter:'.coreFormatter.formatFreightOrderStatusIcon'}"
+									color="{path:'TransportationOrderExecSts', formatter:'.coreFormatter.formatFreightOrderStatusIconColor'}"/>
+								<!--<core:Icon src="{path:'DangerousGoodsAreContained', formatter:'.coreFormatter.formatDGIcon'}" tooltip="{i18n>dangerousGoodTooltip}"-->
+								<!--	color="{path:'DangerousGoodsAreContained', formatter:'.coreFormatter.formatDGIconColor'}" size="1rem"/>-->
+								<Text
+									text="{path:'SrcTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime' , formatOptions: {UTC: true}} {SrcLocationTimeZone}"/>
+								<Text
+									text="{path:'DesTransportationPlanningDateF', type:'sap.ui.model.odata.type.DateTime' , formatOptions: {UTC: true}} {DesLocationTimeZone}"/>
+								<ObjectNumber number="{parts : [ 'TotalDistance', 'TotalDistanceUnit' ], formatter:'.coreFormatter.customUnitForDistanceOnlyNumber'}"
+									unit="{path:'TotalDistanceUnit', formatter:'.coreFormatter.customUnitForDistanceOnlyUnit'}"/>
+								<ObjectNumber
+									number="{parts : [ 'TranspOrdGrossWeight', 'TranspOrdGrossWeightUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+									unit="{TranspOrdGrossWeightUnit}"/>
+								<ObjectNumber
+									number="{parts : [ 'TranspOrdGrossVolume', 'TranspOrdGrossVolumeUnit' ], formatter:'.coreFormatter.customNumberUnitOnlyNumber'}"
+									unit="{TranspOrdGrossVolumeUnit}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

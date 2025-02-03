@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form">
+	<Table inset="false" items="{ path: 'to_ChargeItems'}" class="tablesborder sapUiMediumMarginTop" backgroundDesign="Transparent">
+		<headerToolbar>
+			<Toolbar>
+				<Title text="Charges"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" tooltip="Upload File" press="onAddCharge" type="Transparent"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column minScreenWidth="Small" hAlign="Begin" demandPopin="true" vAlign="Middle">
+				<!--Description-->
+				<Text text="{to_ChargeItems/ItemDesc/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" hAlign="Begin" vAlign="Middle" demandPopin="true">
+				<!--Quantity-->
+				<Text text="{to_ChargeItems/Quantity/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="Begin">
+				<Text text="Event"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="Begin">
+				<!--Amount-->
+				<Text text="{to_ChargeItems/RateAmount/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="End">
+				<Text text="Actions"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{ItemDesc/#@sap:label}" wrapping="true"/>
+					<Text text="{path:'Quantity', formatter:'.formatter.onFormatNumber'}" wrapping="true"/>
+					<Text text="" wrapping="true"/>
+					<Text text="{RateAmount} {RateCurrency}" wrapping="true"/>
+					<OverflowToolbar class="noborders">
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://edit" press="onUpdateCharge" type="Transparent"/>
+					</OverflowToolbar>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

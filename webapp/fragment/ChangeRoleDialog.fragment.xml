@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form">
+	<Dialog title="{i18n>ChangeRoleTableHeader}" afterClose="afterCloseChangeRoleDialog">
+		<content>
+			<f:SimpleForm id="idChangeRoleForm" editable="false" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"
+				singleContainerFullSize="false">
+				<f:content>
+					<!--{i18n>UserRole}-->
+					<Label text="{/#ZWCP_I_PartnerRoleType/BusinessPartnerRole/@sap:label}"/>
+					<Select forceSelection="true" id="idSelectRole" items="{path:'_MD>/UserRoles'}" selectedKey="{_MD>/UserInfo/BusinessPartnerRole}">
+						<items>
+							<core:Item key="{path:'_MD>BusinessPartnerRole'}" text="{_MD>BusinessPartnerRoleShortName}"/>
+						</items>
+					</Select>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="{i18n>Cancel}" press="onChangeRoleCancel"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>OK}" press="onChangeRoleConfirm"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

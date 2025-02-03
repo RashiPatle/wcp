@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form">
+	<Table inset="false" id="idPackageTable" items="{ path: 'to_Items', filters:[{path:'TranspOrdItemCategory', operator:'EQ', value1:'PKG'}]}"
+		class="tablesborder sapUiMediumMarginTop" backgroundDesign="Solid">
+		<headerToolbar>
+			<Toolbar design="Solid">
+				<Title text="{i18nhome>Packages}"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="7rem" hAlign="Begin" demandPopin="false" vAlign="Middle">
+				<!--{i18nhome>PackageID}-->
+				<Text text="{to_Items/PackageID/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Medium" hAlign="Begin" vAlign="Middle" demandPopin="true">
+				<!--{i18nhome>PackageType}-->
+				<Text text="{to_Items/TranspOrdItemType/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="Begin">
+				<!--{i18nhome>GrossWeight}-->
+				<Text text="{to_Items/TranspOrdItemGrossWeight/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" width="12rem" demandPopin="true" vAlign="Middle" hAlign="Begin">
+				<!--{i18nhome>Measurements}-->
+				<Text text="{to_Items/TranspOrdItemLength/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="Center">
+				<!--{i18nhome>DG}-->
+				<Text text="{to_Items/TranspOrdItemIsDangerousGood/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="Center">
+				<!--{i18nhome>stackableGoods}-->
+				<Text text="{to_Items/NonStackablePackages/#@sap:label}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{PackageID}" wrapping="true"/>
+					<Text text="{path:'TranspOrdItemType'}" wrapping="true"/>
+					<Text text="{path:'TranspOrdItemGrossWeight', formatter: '.formatter.onFormatNumber'} {TranspOrdItemGrossWeightUnit}" wrapping="true"/>
+					<Text
+						text="{path:'TranspOrdItemLength', formatter: '.formatter.onFormatNumber'} x {path:'TranspOrdItemWidth', formatter: '.formatter.onFormatNumber'} x {path:'TranspOrdItemHeight', formatter: '.formatter.onFormatNumber'} {TranspOrdItemLengthUnit}"
+						wrapping="true"/>
+					<!--<Text text="{path:'TranspOrdItemIsDangerousGood', formatter: '.formatter.onDGFormat'}" wrapping="true"/>-->
+					<Button icon="{path:'TranspOrdItemIsDangerousGood', formatter:'.formatter.formatDGIcon'}" enabled="false" iconFirst="true" width="2rem"
+						tooltip="{/#ZWCP_C_ConfirmationItemsType/TranspOrdItemIsDangerousGood/@sap:label}"></Button>
+					<!--<Text text="{NonStackablePackages}" wrapping="true"/>-->
+					<Button icon="{path:'NonStackablePackages', formatter:'.formatter.formatNonStackableIcon'}" enabled="false" iconFirst="true" width="2rem"
+						tooltip="{/#ZWCP_C_ConfirmationItemsType/NonStackablePackages/@sap:label}"></Button>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

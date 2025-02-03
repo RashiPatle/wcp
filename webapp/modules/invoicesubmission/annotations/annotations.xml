@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns:tt="http://www.sap.com/transformation-templates" Version="4.0">
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/Communication.xml">
+		<edmx:Include Alias="Communication" Namespace="com.sap.vocabularies.Communication.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/cs01/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="CQP" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="/sap/opu/odata/sap/ZWCP_SETL_CRM010_SRV/$metadata">
+		<edmx:Include Alias="SETLEMENT" Namespace="ZWCP_SETL_CRM010_SRV"/>
+	</edmx:Reference>
+	<!--xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"-->
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata-data-aggregation-ext/v4.0/cs02/vocabularies/Org.OData.Aggregation.V1.xml">
+		<edmx:Include Alias="Aggregation" Namespace="Org.OData.Aggregation.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Capabilities.V1.xml">
+		<edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="http://docs.oasis-open.org/odata/odata/v4.0/errata03/os/complete/vocabularies/Org.OData.Core.V1.xml">
+		<edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ZWCP_SETL_CRM010_SRV">
+			<!--===============================================================================
+                Entity Type from chosen collection 
+                ================================================================================-->
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="TransportationOrder"/>
+							<!--<PropertyValue Property="Label" String="{i18n>FO}"/>-->
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="PurchasingOrganizationName"/>
+							<!--<PropertyValue Property="Label" String="{i18n>PurchasingOrganizationName}"/>-->
+						</Record>
+				
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="TotalDistance"/>
+							<!--<PropertyValue Property="Label" String="{i18n>TotalDistance}"/>-->
+						</Record>
+								<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ChangedTotalDistance"/>
+							<!--<PropertyValue Property="Label" String="{i18n>ChangedTotalDistance}"/>-->
+						</Record>
+						<Record Type="UI.DataField">
+
+							<PropertyValue Property="Value" Path="TotalAmount"/>
+							<!--<PropertyValue Property="Label" String="{i18n>TotalAmount}"/>-->
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="ChangedTotalAmount"/>
+							<!--<PropertyValue Property="Label" String="{i18n>ChangedTotalAmount}"/>-->
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="SourceLocationName"/>
+							<!--<PropertyValue Property="Label" String="{i18n>SourceLocation}"/>-->
+						</Record>
+						<Record Type="UI.DataField">
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Value" Path="DestinationLocationName"/>
+							<!--<PropertyValue Property="Label" String="{i18n>DestinationLocation}"/>-->
+						</Record>
+						<!--<Record Type="UI.DataField">-->
+						<!--	<PropertyValue Property="Value" Path="TndrgStepAbsolutePriceLimit"/>-->
+						<!--	<PropertyValue Property="Label" String="{i18n>Price}"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>-->
+						<!--	<PropertyValue Property="Value" Path="SrcTransportationPlanningDate"/>-->
+						<!--	<PropertyValue Property="Label" String="{i18n>PickupDate}"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>-->
+						<!--	<PropertyValue Property="Value" Path="DesTransportationPlanningDate"/>-->
+						<!--	<PropertyValue Property="Label" String="{i18n>DelDate}"/>-->
+						<!--</Record>-->
+						<!--<Record Type="UI.DataField">-->
+						<!--	<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>-->
+						<!--	<PropertyValue Property="Value" Path="FreightQuotationDueDateTime"/>-->
+						<!--	<PropertyValue Property="Label" String="{i18n>FreightQuotationDueDateTime}"/>-->
+						<!--</Record>-->
+					</Collection>
+				</Annotation>
+				<!--<Annotation Term="UI.Identification">-->
+				<!--	<Collection>-->
+				<!--		<Record Type="UI.DataField">-->
+				<!--			<PropertyValue Property="Value" Path="Consignee"/>-->
+				<!--		</Record>-->
+				<!--	</Collection>-->
+				<!--</Annotation>-->
+				<!--<Annotation Term="UI.Identification">-->
+				<!--	<Collection>-->
+				<!--		<Record Type="UI.DataField">-->
+				<!--			<PropertyValue Property="Value" Path="Consignee"/>-->
+				<!--		</Record>-->
+				<!--	</Collection>-->
+				<!--</Annotation>-->
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>PurchasingOrganizationName</PropertyPath>
+						<PropertyPath>DisputeCaseStatus</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TransportationOrderUUID">
+				<Annotation Term="com.sap.vocabularies.UI.v1.Hidden"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TranspOrdGrossWeight">
+				<!--<Annotation Term="Common.Label" String="{i18n>GrossWeight}"/>-->
+				<Annotation Term="CQP.Scale" Int="2"/>
+			</Annotations>
+			<Annotations Target="SETLEMENT.ZWCP_C_SETLFreightOrdersType/TotalAmount">
+				<!--<Annotation Term="Common.Label" String="{i18n>TotalAmount}"/>-->
+				<Annotation Term="CQP.ISOCurrency" path="TotalAmountCurrency"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.ui.layout.form"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Table id="idAttachmentsTable" inset="false" items="{path: 'to_Attachments', sorter:{path:'ChangedOn', descending:true}}"
+		class="tablesborder sapUiMediumMarginTop" backgroundDesign="Solid">
+		<headerToolbar>
+			<Toolbar design="Solid">
+				<Title text="{i18nhome>Attachments}"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://upload" tooltip="{i18n>attachmentUploadTooltip}" press="onUploadAttachmentPress" type="Transparent"
+					visible="{_AM>/V_AUploadAttachments}" enabled="{_AM>/E_AUploadAttachments}"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column hAlign="Begin" demandPopin="false" vAlign="Middle">
+				<!--{i18nhome>Name}-->
+				<Text text="{to_Attachments/Description/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" hAlign="Begin" vAlign="Middle" demandPopin="true">
+				<!--{i18nhome>Type}-->
+				<Text text="{to_Attachments/AttachmentType/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="Begin">
+				<!--{i18nhome>ChangedBy}-->
+				<Text text="{to_Attachments/ChangedBy/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" demandPopin="true" vAlign="Middle" hAlign="Begin">
+				<!--{i18nhome>ChangeTime}-->
+				<Text text="{to_Attachments/ChangedOn/#@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Large" width="5em" demandPopin="true" vAlign="Middle" hAlign="End">
+				<Text text="{i18nhome>Action}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Link text="{Description}" subtle="false" customData:url="{__metadata/media_src}" press="onFetchAttachmentPress"/>
+					<Text text="{AttachmentTypeDescripton}" wrapping="true"/>
+					<Text text="{ChangedByName}" wrapping="true"/>
+					<Text text="{path:'ChangedOn', type:'sap.ui.model.odata.type.DateTime'}" wrapping="true"/>
+					<OverflowToolbar class="noborders sapUiNoMarginBottom">
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://delete" press="onDeleteAttachmentPress" type="Transparent" tooltip="{i18n>attachmentDeleteTooltip}"
+							visible="{_AM>/V_ADeleteAttachments}" enabled="{_AM>/E_AUploadAttachments}"/>
+					</OverflowToolbar>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

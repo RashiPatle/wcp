@@ -1,0 +1,42 @@
+/* Enter your custom styles here */
+
+.tablesborder {
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-width: 1px;
+}
+.treetablesbackgroundborder {
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-width: 1px;
+    background-color: white;
+}
+.timelineborder {
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: rgb(229, 229, 229);
+    border-width: 1px;
+}
+
+.noborders {
+  border-color : transparent ;
+}
+
+.sapUiSizeCompact .sapMTreeItemBaseExpander, .sapUiSizeCozy .sapMTreeItemBaseExpander {
+      /* pointer-events: none; !important;*/
+        visibility: hidden;
+   
+} 
+.sapMTreeItemBaseChildren{
+	padding-left: 1.5rem !important;
+	border-color: rgb(229, 229, 229);
+	border-bottom-style: solid;
+}
+/**/

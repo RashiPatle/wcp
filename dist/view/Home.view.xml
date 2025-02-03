@@ -1,0 +1,58 @@
+<mvc:View controllerName="com.westernacher.collaborationPortal.core.controller.Home" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:grid="sap.ui.layout.cssgrid" xmlns:core="sap.ui.core" xmlns:uxap="sap.uxap" xmlns:f="sap.f" xmlns:l="sap.ui.layout">
+	<uxap:ObjectPageLayout headerContentPinnable="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false"
+		upperCaseAnchorBar="false">
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle>
+				<uxap:expandedHeading>
+					<FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<Title text="{i18n>UserInfoSectionTitle}" wrapping="true" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+					</FlexBox>
+				</uxap:expandedHeading>
+				<uxap:snappedHeading>
+					<FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<Title text="{i18n>UserInfoSectionTitle}" wrapping="true" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+					</FlexBox>
+				</uxap:snappedHeading>
+			</uxap:ObjectPageDynamicHeaderTitle>
+		</uxap:headerTitle>
+		<uxap:headerContent>
+			<f:GridList id="gridList2">
+				<f:customLayout>
+					<grid:GridBoxLayout boxesPerRowConfig="XL2 L2 M2 S1"/>
+				</f:customLayout>
+				<!-- moved user info item to home controller -> onInit() -->
+			</f:GridList>
+		</uxap:headerContent>
+		<uxap:sections>
+			<uxap:ObjectPageSection title="{i18n>Modules}" titleUppercase="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>Modules}" mode="Expanded" id="ModulesSection">
+						<uxap:blocks>
+							<uxap:ObjectPageLazyLoader stashed="true" id="ModulesSectionStashed">
+								<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.ModulesList" type="XML"/>
+							</uxap:ObjectPageLazyLoader>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection title="{i18n>quickOverview}" titleUppercase="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>quickOverview}" mode="Expanded" id="QuickActionsSection">
+						<l:Grid id="gridList3" defaultSpan="XL6 L6 M12 S12" hSpacing="2" vSpacing="2">
+							<CustomListItem class="customBorder" id="idQA1"></CustomListItem>
+							<CustomListItem class="customBorder" id="idQA2"></CustomListItem>
+						</l:Grid>
+						<!--	<f:GridList id="gridList3">
+							<f:customLayout>
+								<grid:GridBoxLayout boxesPerRowConfig="XL2 L2 M1 S1"/>
+							</f:customLayout>
+							<CustomListItem id="idQA1"></CustomListItem>
+							<CustomListItem id="idQA2"></CustomListItem>
+						</f:GridList>-->
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+	</uxap:ObjectPageLayout>
+</mvc:View>
