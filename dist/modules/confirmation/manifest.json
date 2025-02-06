@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "com.westernacher.collaborationPortal.confirmation",
+		"id": "com.westernacher.collaborationportal.confirmation",
 		"type": "component",
 		"i18n": "i18n/i18n.properties",
 		"title": "",
@@ -46,7 +46,7 @@
 	},
 	"sap.ui5": {
 		"resourceRoots": {
-			"com.westernacher.collaborationPortal.confirmation": "./"
+			"com.westernacher.collaborationportal.confirmation": "./"
 		},
 		"autoPrefixId": true,
 		"dependencies": {
@@ -64,13 +64,13 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName":  "com.westernacher.collaborationPortal.core.modules.confirmation.i18n.i18n"
+					"bundleName":  "com.westernacher.collaborationportal.core.modules.confirmation.i18n.i18n"
 				}
 			},
 			"i18nhome": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.i18n.i18n"
 				}
 			},
 			"_AM": {
@@ -100,7 +100,7 @@
 			"cozy": true
 		},
 		"rootView": {
-			"viewName": "com.westernacher.collaborationPortal.confirmation.view.ConfirmationApp",
+			"viewName": "com.westernacher.collaborationportal.confirmation.view.ConfirmationApp",
 			"id": "rootViewOfConfirmationComponent",
 			"type": "XML",
 			"async": true
@@ -137,7 +137,7 @@
 				"routerClass": "sap.f.routing.Router",
 				"async": true,
 				"viewType": "XML",
-				"viewPath": "com.westernacher.collaborationPortal.confirmation.view",
+				"viewPath": "com.westernacher.collaborationportal.confirmation.view",
 				"controlId": "idAppControlConfirmation",
 				"controlAggregation": "pages"
 			}

@@ -1,14 +1,14 @@
 	sap.ui.define([
-		"com/westernacher/collaborationPortal/core/util/ComponentParent",
+		"com/westernacher/collaborationportal/core/util/ComponentParent",
 		"sap/ui/core/AppCacheBuster",
-		"com/westernacher/collaborationPortal/fosExecution/util/ExecutionHandler",
+		"com/westernacher/collaborationportal/fosExecution/util/ExecutionHandler",
 		"sap/ui/Device",
 		"./model/models"
 	], function (ComponentParent, AppCacheBuster, ExecutionHandler, Device, models) {
 		"use strict";
 
-		return ComponentParent.extend("com.westernacher.collaborationPortal.fosExecution.Component", {
-			defaultAnnotation: "com/westernacher/collaborationPortal/fosExecution/annotations",
+		return ComponentParent.extend("com.westernacher.collaborationportal.fosExecution.Component", {
+			defaultAnnotation: "com/westernacher/collaborationportal/fosExecution/annotations",
 			metadata: {
 				manifest: "json"
 			},

@@ -1,11 +1,11 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast"
 ], function (ParentModuleHandler, MessageBox, MessageToast) {
 	"use strict";
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.core.util.FreightOrderModuleHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.core.util.FreightOrderModuleHandler", {
 
 		constructor: function (oController, sUpdateFODialogId) {
 			this._oResourceBundle = oController.getModel("i18n");
@@ -15,7 +15,7 @@ sap.ui.define([
 		onUpdateFreightOrderPress: function (SuccessCallback, ErrorCallback) {
 			if (!this.oUpdateFODialog) {
 				var oFragment = sap.ui.xmlfragment(this.updateFOId,
-					"com.westernacher.collaborationPortal.core.fragment.UpdateFreightOrder",
+					"com.westernacher.collaborationportal.core.fragment.UpdateFreightOrder",
 					this);
 				this.oUpdateFODialog = oFragment;
 				this._bindModelsToFragment(this.oUpdateFODialog);

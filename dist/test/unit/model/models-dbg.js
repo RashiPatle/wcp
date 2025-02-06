@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/model/models",
+	"com/westernacher/collaborationportal/core/model/models",
 	"sap/ui/Device"
 ], function (models, Device) {
 	"use strict";

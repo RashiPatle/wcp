@@ -1,11 +1,11 @@
 {
 
 	"UNEXPECTEDEVENTS": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.microCharts.UnexpectedEvents",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.microCharts.UnexpectedEvents",
 		"dataModule": "EXECUTION"
 	},
 	"RFQAwardedRatio": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.microCharts.AwardedRFQ",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.microCharts.AwardedRFQ",
 		"dataModule": "EXECUTION",
 		"modelName": "_RFQAWARDEDRATIO",
 		"idFragment": "mc1",
@@ -13,19 +13,19 @@
 		"idBox": "idMC1"
 	},
 	"IMPORTSCUSTOMSDECLARATION": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.microCharts.ImportsCustomsDeclaration",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.microCharts.ImportsCustomsDeclaration",
 		"dataModule": "EXECUTION"
 	},
 	"EXPORTSCUSTOMDECLARATION": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.microCharts.ExportsCustomsDeclaration",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.microCharts.ExportsCustomsDeclaration",
 		"dataModule": "EXECUTION"
 	},
 	"MOSTRECENTUNEXPECTEDEVENTS": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.quickActions.MostRecentUnexpectedEvents",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.quickActions.MostRecentUnexpectedEvents",
 		"dataModule": "QUOTE"
 	},
 	"FreightOrdersWithPickupDeadline": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.quickActions.FreightOrdersWithClosePickup",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.quickActions.FreightOrdersWithClosePickup",
 		"dataModule": "CONFIRMATION",
 		"modelName": "_CONFPICKUPDUE",
 		"mainEntity": "ZWCP_C_ConfPickupDue",
@@ -35,7 +35,7 @@
 		"idListItem": "idListItemFOClosePickup"
 	},
 	"RFQWithExpiringDueDate": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.quickActions.RFQWithExpiringDueDate",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.quickActions.RFQWithExpiringDueDate",
 		"dataModule": "EXECUTION",
 		"modelName": "_RFQQUOTEDUE",
 		"mainEntity": "ZWCP_C_RFQQuoteDue",
@@ -45,11 +45,11 @@
 		"idListItem": "idListItemExpiringRFQ"
 	},
 	"FREIGHTORDERSTOBELAODED": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.quickActions.FreightOrdersToBeLoaded",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.quickActions.FreightOrdersToBeLoaded",
 		"dataModule": "EXECUTION"
 	},
 	"REJECTEDFREIGHTQUOTES": {
-		"fragmentPath": "com.westernacher.collaborationPortal.core.fragment.quickActions.RejectedFreightQuotations",
+		"fragmentPath": "com.westernacher.collaborationportal.core.fragment.quickActions.RejectedFreightQuotations",
 		"dataModule": "QUOTE"
 	}
 

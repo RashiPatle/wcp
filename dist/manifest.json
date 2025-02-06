@@ -1,7 +1,7 @@
 {
 	"_version": "1.9.0",
 	"sap.app": {
-		"id": "com.westernacher.collaborationPortal.core",
+		"id": "com.westernacher.collaborationportal.core",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -58,16 +58,16 @@
 			]
 		},
 		"resourceRoots": {
-			"com.westernacher.collaborationPortal.quotation": "./modules/quotation",
-			"com.westernacher.collaborationPortal.confirmation": "./modules/confirmation",
-			"com.westernacher.collaborationPortal.fosExecution": "./modules/execution",
-			"com.westernacher.collaborationPortal.invoicesubmission": "./modules/invoicesubmission",
-			"com.westernacher.collaborationPortal.invoices": "./modules/invoices",
-			"com.westernacher.collaborationPortal.freightUnit": "./modules/freightUnit",
-			"com.westernacher.collaborationPortal.freightBooking": "./modules/freightBooking"
+			"com.westernacher.collaborationportal.quotation": "./modules/quotation",
+			"com.westernacher.collaborationportal.confirmation": "./modules/confirmation",
+			"com.westernacher.collaborationportal.fosExecution": "./modules/execution",
+			"com.westernacher.collaborationportal.invoicesubmission": "./modules/invoicesubmission",
+			"com.westernacher.collaborationportal.invoices": "./modules/invoices",
+			"com.westernacher.collaborationportal.freightUnit": "./modules/freightUnit",
+			"com.westernacher.collaborationportal.freightBooking": "./modules/freightBooking"
 		},
 		"rootView": {
-			"viewName": "com.westernacher.collaborationPortal.core.view.App",
+			"viewName": "com.westernacher.collaborationportal.core.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "app"
@@ -89,13 +89,13 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.i18n.i18n"
 				}
 			},
 			"i18nhome": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.i18n.i18n"
 				}
 			},
 			"": {
@@ -156,7 +156,7 @@
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "com.westernacher.collaborationPortal.core.view",
+				"viewPath": "com.westernacher.collaborationportal.core.view",
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"clearControlAggregation": true,
@@ -248,7 +248,7 @@
 				},
 				"CONFIRMATION": {
 					"type": "Component",
-					"name": "com.westernacher.collaborationPortal.confirmation",
+					"name": "com.westernacher.collaborationportal.confirmation",
 					"containerOptions": {
 						"propagateModel": false,
 						"height": "100%",
@@ -257,7 +257,7 @@
 				},
 				"EXECUTION": {
 					"type": "Component",
-					"name": "com.westernacher.collaborationPortal.fosExecution",
+					"name": "com.westernacher.collaborationportal.fosExecution",
 					"containerOptions": {
 						"propagateModel": false,
 						"height": "100%",
@@ -266,7 +266,7 @@
 				},
 				"QUOTE": {
 					"type": "Component",
-					"name": "com.westernacher.collaborationPortal.quotation",
+					"name": "com.westernacher.collaborationportal.quotation",
 					"containerOptions": {
 						"propagateModel": false,
 						"height": "100%",
@@ -275,7 +275,7 @@
 				},
 				"INVOICE_SUBMISSION": {
 					"type": "Component",
-					"name": "com.westernacher.collaborationPortal.invoicesubmission",
+					"name": "com.westernacher.collaborationportal.invoicesubmission",
 					"containerOptions": {
 						"propagateModel": false,
 						"height": "100%",
@@ -284,7 +284,7 @@
 				},
 				"INVOICE": {
 					"type": "Component",
-					"name": "com.westernacher.collaborationPortal.invoices",
+					"name": "com.westernacher.collaborationportal.invoices",
 					"containerOptions": {
 						"propagateModel": false,
 						"height": "100%",
@@ -293,7 +293,7 @@
 				},
 				"FU": {
 					"type": "Component",
-					"name": "com.westernacher.collaborationPortal.freightUnit",
+					"name": "com.westernacher.collaborationportal.freightUnit",
 					"containerOptions": {
 						"propagateModel": false,
 						"height": "100%",
@@ -302,7 +302,7 @@
 				},
 				"FB": {
 					"type": "Component",
-					"name": "com.westernacher.collaborationPortal.freightBooking",
+					"name": "com.westernacher.collaborationportal.freightBooking",
 					"containerOptions": {
 						"propagateModel": false,
 						"height": "100%",

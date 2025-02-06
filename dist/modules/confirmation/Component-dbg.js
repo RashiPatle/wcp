@@ -1,13 +1,13 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ComponentParent",
-	"com/westernacher/collaborationPortal/confirmation/util/ConfirmationHandler",
+	"com/westernacher/collaborationportal/core/util/ComponentParent",
+	"com/westernacher/collaborationportal/confirmation/util/ConfirmationHandler",
 	"sap/ui/Device",
 	"./model/models"
 ], function (ComponentParent, ConfirmationHandler, Device, models) {
 	"use strict";
 
-	return ComponentParent.extend("com.westernacher.collaborationPortal.confirmation.Component", {
-		defaultAnnotation: "com/westernacher/collaborationPortal/confirmation/annotations",
+	return ComponentParent.extend("com.westernacher.collaborationportal.confirmation.Component", {
+		defaultAnnotation: "com/westernacher/collaborationportal/confirmation/annotations",
 		metadata: {
 			manifest: "json"
 		},

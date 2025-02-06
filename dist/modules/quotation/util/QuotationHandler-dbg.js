@@ -1,12 +1,12 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
 	"sap/m/MessageBox",
 	"sap/ui/model/Filter",
-	"com/westernacher/collaborationPortal/core/model/formatter"
+	"com/westernacher/collaborationportal/core/model/formatter"
 ], function (ParentModuleHandler, MessageBox, Filter, CoreFormatter) {
 	"use strict";
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.quotation.util.QuotationHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.quotation.util.QuotationHandler", {
 		formatter: CoreFormatter,
 		acceptPriceChangeId: 'idFOPriceChangeDialog',
 		rejectFOId: 'idRejectFODialog',
@@ -18,7 +18,7 @@ sap.ui.define([
 		onAcceptWithChangePress: function (SuccessCallback, ErrorCallback, oController) {
 			if (!this.oAcceptPriceChangeDialog) {
 				var oFragment = sap.ui.xmlfragment(this.acceptPriceChangeId,
-					"com.westernacher.collaborationPortal.quotation.fragment.AcceptPriceChange",
+					"com.westernacher.collaborationportal.quotation.fragment.AcceptPriceChange",
 					this);
 				this.oAcceptPriceChangeDialog = oFragment;
 				this._bindModelsToFragment(this.oAcceptPriceChangeDialog);
@@ -32,7 +32,7 @@ sap.ui.define([
 		onRejectFOPress: function (SuccessCallback, ErrorCallback, oController) {
 			if (!this.oRejectFOQDialog) {
 				var oFragment = sap.ui.xmlfragment(this.rejectFOId,
-					"com.westernacher.collaborationPortal.quotation.fragment.RejectionReasonCode",
+					"com.westernacher.collaborationportal.quotation.fragment.RejectionReasonCode",
 					this);
 				this.oRejectFOQDialog = oFragment;
 				this._bindModelsToFragment(this.oRejectFOQDialog);

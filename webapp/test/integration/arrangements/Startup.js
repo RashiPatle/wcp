@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
-	"com/westernacher/collaborationPortal/core/localService/mockserver",
+	"com/westernacher/collaborationportal/core/localService/mockserver",
 	"sap/ui/model/odata/v2/ODataModel"
 ], function(Opa5, mockserver, ODataModel) {
 	"use strict";
 
-	return Opa5.extend("com.westernacher.collaborationPortal.core.test.integration.arrangements.Startup", {
+	return Opa5.extend("com.westernacher.collaborationportal.core.test.integration.arrangements.Startup", {
 
 		/**
 		 * Initializes mock server, then starts the app component
@@ -29,7 +29,7 @@ sap.ui.define([
 			// start the app UI component
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "com.westernacher.collaborationPortal.core",
+					name: "com.westernacher.collaborationportal.core",
 					async: true
 				},
 				hash: oOptions.hash,

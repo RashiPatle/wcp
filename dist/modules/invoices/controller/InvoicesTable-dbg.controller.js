@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/controller/BaseController",
+	"com/westernacher/collaborationportal/core/controller/BaseController",
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/format/DateFormat",
 	"sap/ui/model/Filter",
@@ -7,12 +7,12 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/Fragment",
 	"sap/ui/model/json/JSONModel",
-	"com/westernacher/collaborationPortal/invoices/model/formatter",
-	"com/westernacher/collaborationPortal/core/model/formatter"
+	"com/westernacher/collaborationportal/invoices/model/formatter",
+	"com/westernacher/collaborationportal/core/model/formatter"
 ], function (BaseController, Controller, DateFormat, Filter, FilterOperator, MessageBox, Fragment, JSONModel, formatter, coreFormatter) {
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.invoices.controller.InvoicesTable", {
+	return BaseController.extend("com.westernacher.collaborationportal.invoices.controller.InvoicesTable", {
 
 		coreFormatter: coreFormatter,
 		formatter: formatter,

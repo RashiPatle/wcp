@@ -1,7 +1,7 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
 	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-	controllerName="com.westernacher.collaborationPortal.confirmation.controller.ConfirmationObjectPage"
+	controllerName="com.westernacher.collaborationportal.confirmation.controller.ConfirmationObjectPage"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<f:DynamicPage preserveHeaderStateOnScroll="false" headerExpanded="true" class="sapUiNoContentPadding" showNavButton="true"
 		navButtonPress="onNavBack">
@@ -107,11 +107,11 @@
 			<layout:Grid class="sapUiSmallMarginTop" hSpacing="2" defaultSpan="L12 M12 S12">
 				<layout:content>
 					<VBox>
-						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsSection" type="XML"/>-->
-						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.PackagesSection" type="XML"/>-->
-						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsExecutionSection" type="XML"/>
-						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.ResourceSection" type="XML"/>
-						<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.AttachmentsSection" type="XML"/>
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.CargoItemsSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.PackagesSection" type="XML"/>-->
+						<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.CargoItemsExecutionSection" type="XML"/>
+						<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.ResourceSection" type="XML"/>
+						<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.AttachmentsSection" type="XML"/>
 					</VBox>
 				</layout:content>
 			</layout:Grid>

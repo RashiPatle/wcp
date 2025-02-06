@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, HashChanger) {
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.core.controller.App", {
+	return BaseController.extend("com.westernacher.collaborationportal.core.controller.App", {
 
 		onInit: function () {
 			var oViewModel,

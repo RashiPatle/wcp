@@ -1,13 +1,13 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
-	"com/westernacher/collaborationPortal/core/util/ParentHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentHandler",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast",
-	"com/westernacher/collaborationPortal/core/model/formatter",
-	"com/westernacher/collaborationPortal/core/util/ErrorHandler"
+	"com/westernacher/collaborationportal/core/model/formatter",
+	"com/westernacher/collaborationportal/core/util/ErrorHandler"
 ], function (ParentModuleHandler, ParentHandler, MessageBox, MessageToast, formatter, ErrorHandler) {
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.core.util.CargoItemExecutionSectionHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.core.util.CargoItemExecutionSectionHandler", {
 
 		formatter: formatter,
 

@@ -14,7 +14,7 @@ sap.ui.define([
 	// shortcut for sap.m.URLHelper
 	var URLHelper = mobileLibrary.URLHelper;
 
-	return Controller.extend("com.westernacher.collaborationPortal.core.controller.BaseController", {
+	return Controller.extend("com.westernacher.collaborationportal.core.controller.BaseController", {
 		coreFormatter: formatter,
 		/**
 		 * Convenience method for accessing the router.

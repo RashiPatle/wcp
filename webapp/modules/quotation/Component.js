@@ -1,13 +1,13 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ComponentParent",
-	"com/westernacher/collaborationPortal/quotation/util/QuotationHandler",
+	"com/westernacher/collaborationportal/core/util/ComponentParent",
+	"com/westernacher/collaborationportal/quotation/util/QuotationHandler",
 	"sap/ui/Device",
 	"./model/models"
 ], function (ComponentParent, QuotationHandler, Device, models) {
 	"use strict";
 
-	return ComponentParent.extend("com.westernacher.collaborationPortal.quotation.Component", {
-		defaultAnnotation: "com/westernacher/collaborationPortal/quotation/annotations",
+	return ComponentParent.extend("com.westernacher.collaborationportal.quotation.Component", {
+		defaultAnnotation: "com/westernacher/collaborationportal/quotation/annotations",
 		metadata: {
 			manifest: "json"
 		},

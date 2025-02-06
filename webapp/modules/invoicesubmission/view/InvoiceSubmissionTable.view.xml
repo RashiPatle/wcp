@@ -1,5 +1,5 @@
 <mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f"
-	controllerName="com.westernacher.collaborationPortal.invoicesubmission.controller.InvoiceSubmissionTable"
+	controllerName="com.westernacher.collaborationportal.invoicesubmission.controller.InvoiceSubmissionTable"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants"
 	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<f:DynamicPage class="sapUiResponsiveContentPadding sapUiLargeMarginBottom" preserveHeaderStateOnScroll="false" headerExpanded="true">

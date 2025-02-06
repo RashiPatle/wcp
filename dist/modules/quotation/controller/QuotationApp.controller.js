@@ -1,1 +1,1 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(o){"use strict";return o.extend("com.westernacher.collaborationPortal.quotation.controller.QuotationApp",{onInit:function(){}})});
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(o){"use strict";return o.extend("com.westernacher.collaborationportal.quotation.controller.QuotationApp",{onInit:function(){}})});

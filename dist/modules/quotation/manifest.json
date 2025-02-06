@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "com.westernacher.collaborationPortal.quotation",
+		"id": "com.westernacher.collaborationportal.quotation",
 		"type": "component",
 		"i18n": "i18n/i18n.properties",
 		"title": "",
@@ -46,7 +46,7 @@
 	},
 	"sap.ui5": {
 		"resourceRoots": {
-			"com.westernacher.collaborationPortal.quotation": "./"
+			"com.westernacher.collaborationportal.quotation": "./"
 		},
 		"autoPrefixId": true,
 		"dependencies": {
@@ -64,13 +64,13 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.modules.quotation.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.modules.quotation.i18n.i18n"
 				}
 			},
 			"i18nhome": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.i18n.i18n"
 				}
 			},
 			"_AM": {
@@ -100,7 +100,7 @@
 			"cozy": true
 		},
 		"rootView": {
-			"viewName": "com.westernacher.collaborationPortal.quotation.view.QuotationApp",
+			"viewName": "com.westernacher.collaborationportal.quotation.view.QuotationApp",
 			"id": "rootViewOfFOsQuotationComponent",
 			"type": "XML",
 			"async": true
@@ -134,7 +134,7 @@
 				"routerClass": "sap.f.routing.Router",
 				"async": true,
 				"viewType": "XML",
-				"viewPath": "com.westernacher.collaborationPortal.quotation.view",
+				"viewPath": "com.westernacher.collaborationportal.quotation.view",
 				"controlId": "idAppControlQuotation",
 				"controlAggregation": "pages"
 			}

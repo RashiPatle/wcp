@@ -1,1 +1,1 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";return n.extend("com.westernacher.collaborationPortal.confirmation.controller.ConfirmationApp",{onInit:function(){}})});
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";return n.extend("com.westernacher.collaborationportal.confirmation.controller.ConfirmationApp",{onInit:function(){}})});

@@ -1,21 +1,21 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/controller/BaseController",
+	"com/westernacher/collaborationportal/core/controller/BaseController",
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/core/format/DateFormat",
-	"com/westernacher/collaborationPortal/core/model/formatter",
+	"com/westernacher/collaborationportal/core/model/formatter",
 	"sap/ui/core/routing/HashChanger",
 	"sap/ui/core/routing/History"
 ], function (BaseController, Controller, Filter, FilterOperator, DateFormat, formatter, HashChanger, History) {
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.quotation.controller.QuotationObjectPage", {
+	return BaseController.extend("com.westernacher.collaborationportal.quotation.controller.QuotationObjectPage", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf com.westernacher.collaborationPortal.confirmation.WCP_EXECUTION.view.ConfirmationObjectPage
+		 * @memberOf com.westernacher.collaborationportal.confirmation.WCP_EXECUTION.view.ConfirmationObjectPage
 		 */
 		formatter: formatter,
 

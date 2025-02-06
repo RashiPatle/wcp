@@ -1,13 +1,13 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentHandler",
+	"com/westernacher/collaborationportal/core/util/ParentHandler",
 	"sap/m/MessageBox",
-	"com/westernacher/collaborationPortal/core/model/formatter",
+	"com/westernacher/collaborationportal/core/model/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/core/Fragment", "sap/ui/model/FilterOperator"
 ], function (ParentHandler, MessageBox, formatter, Filter, Fragment, FilterOperator) {
 	"use strict";
 
-	return ParentHandler.extend("com.westernacher.collaborationPortal.core.util.MasterData", {
+	return ParentHandler.extend("com.westernacher.collaborationportal.core.util.MasterData", {
 		formatter: formatter,
 		constructor: function (oComponent) {
 			this._oResourceBundle = oComponent.getModel("i18n").getResourceBundle();

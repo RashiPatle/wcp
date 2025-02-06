@@ -1,7 +1,7 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/controller/BaseController",
-	"com/westernacher/collaborationPortal/confirmation/model/formatter",
-	"com/westernacher/collaborationPortal/core/model/formatter",
+	"com/westernacher/collaborationportal/core/controller/BaseController",
+	"com/westernacher/collaborationportal/confirmation/model/formatter",
+	"com/westernacher/collaborationportal/core/model/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/m/MessageBox",
@@ -10,7 +10,7 @@ sap.ui.define([
 ], function (BaseController, formatter, coreFormatter, Filter, FilterOperator, MessageBox, Fragment, JSONModel) {
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.confirmation.controller.ConfirmationWorklistTable", {
+	return BaseController.extend("com.westernacher.collaborationportal.confirmation.controller.ConfirmationWorklistTable", {
 		_aFilters: [],
 		formatter: formatter,
 		coreFormatter: coreFormatter,

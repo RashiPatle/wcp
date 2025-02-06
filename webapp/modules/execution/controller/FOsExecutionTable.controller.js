@@ -1,17 +1,17 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/controller/BaseController",
+	"com/westernacher/collaborationportal/core/controller/BaseController",
 	"sap/ui/core/format/DateFormat",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/m/MessageBox",
 	"sap/ui/core/Fragment",
 	"sap/ui/model/json/JSONModel",
-	"com/westernacher/collaborationPortal/fosExecution/model/formatter",
-	"com/westernacher/collaborationPortal/core/model/formatter"
+	"com/westernacher/collaborationportal/fosExecution/model/formatter",
+	"com/westernacher/collaborationportal/core/model/formatter"
 ], function (BaseController, DateFormat, Filter, FilterOperator, MessageBox, Fragment, JSONModel, formatter, coreFormatter) {
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.fosExecution.controller.FOsExecutionTable", {
+	return BaseController.extend("com.westernacher.collaborationportal.fosExecution.controller.FOsExecutionTable", {
 		formatter: formatter,
 		coreFormatter: coreFormatter,
 		_aFilters: [],

@@ -1,13 +1,13 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ComponentParent",
-	"com/westernacher/collaborationPortal/invoices/util/InvoicesHandler",
+	"com/westernacher/collaborationportal/core/util/ComponentParent",
+	"com/westernacher/collaborationportal/invoices/util/InvoicesHandler",
 	"sap/ui/Device",
 	"./model/models"
 ], function (ComponentParent, InvoicesHandler, Device, models) {
 	"use strict";
 
-	return ComponentParent.extend("com.westernacher.collaborationPortal.invoices.Component", {
-		defaultAnnotation: "com/westernacher/collaborationPortal/invoices/annotations",
+	return ComponentParent.extend("com.westernacher.collaborationportal.invoices.Component", {
+		defaultAnnotation: "com/westernacher/collaborationportal/invoices/annotations",
 		metadata: {
 			manifest: "json"
 		},

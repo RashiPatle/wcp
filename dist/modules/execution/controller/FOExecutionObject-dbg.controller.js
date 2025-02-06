@@ -1,9 +1,9 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/controller/BaseController",
+	"com/westernacher/collaborationportal/core/controller/BaseController",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/core/format/DateFormat",
-	"com/westernacher/collaborationPortal/core/model/formatter",
+	"com/westernacher/collaborationportal/core/model/formatter",
 	"sap/m/PDFViewer",
 	"sap/m/Dialog",
 	"sap/ui/core/HTML",
@@ -14,12 +14,12 @@ sap.ui.define([
 
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.fosExecution.controller.FOExecutionObject", {
+	return BaseController.extend("com.westernacher.collaborationportal.fosExecution.controller.FOExecutionObject", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf com.westernacher.collaborationPortal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
+		 * @memberOf com.westernacher.collaborationportal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
 		 */
 		formatter: formatter,
 		onInit: function () {
@@ -372,7 +372,7 @@ sap.ui.define([
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf com.westernacher.collaborationPortal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
+		 * @memberOf com.westernacher.collaborationportal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
 		 */
 		// onBeforeRendering: function () {
 
@@ -381,7 +381,7 @@ sap.ui.define([
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf com.westernacher.collaborationPortal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
+		 * @memberOf com.westernacher.collaborationportal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
 		 */
 		//	onAfterRendering: function() {
 		//
@@ -389,7 +389,7 @@ sap.ui.define([
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf com.westernacher.collaborationPortal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
+		 * @memberOf com.westernacher.collaborationportal.fosExecution.WCP_EXECUTION.view.FOExecutionObject
 		 */
 		//	onExit: function() {
 		//

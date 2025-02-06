@@ -1,11 +1,11 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
 	"sap/m/MessageBox",
 	"sap/ui/model/Filter"
 ], function (ParentModuleHandler, MessageBox, Filter) {
 	"use strict";
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.freightUnit.util.freightUnitHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.freightUnit.util.freightUnitHandler", {
 		updateFUId: 'idUpdateFreightUnitDialog',
 		constructor: function (oComponent) {
 			this._oComponent = oComponent;

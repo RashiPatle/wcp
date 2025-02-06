@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/base/Object",
 	"sap/m/MessageBox",
-	"com/westernacher/collaborationPortal/core/model/formatter"
+	"com/westernacher/collaborationportal/core/model/formatter"
 ], function (UI5Object, MessageBox, formatter) {
 	"use strict";
 
-	return UI5Object.extend("com.westernacher.collaborationPortal.core.util.ErrorHandler", {
+	return UI5Object.extend("com.westernacher.collaborationportal.core.util.ErrorHandler", {
 		formatter: formatter,
 		constructor: function (oComponent) {
 			this._oResourceBundle = oComponent.getModel("i18n").getResourceBundle();
@@ -224,7 +224,7 @@ sap.ui.define([
 		_openErrorsDialog: function (oMessages) {
 			if (!this.oErrorTable) {
 				var oModel = new sap.ui.model.json.JSONModel(oMessages); //this.getView().getModel();
-				var oFragment = sap.ui.xmlfragment("com.westernacher.collaborationPortal.core.fragment.multipleErrorsDialog", this);
+				var oFragment = sap.ui.xmlfragment("com.westernacher.collaborationportal.core.fragment.multipleErrorsDialog", this);
 				this.oErrorTable = oFragment;
 				this.oErrorTable.setModel(oModel, "errorModel");
 				this.oErrorTable.setModel(this._oComponent.getModel("i18n"), "i18n");
@@ -233,7 +233,7 @@ sap.ui.define([
 		},
 		_initialiseErrorsDialog: function () {
 			if (!this.oErrorTable) {
-				var oFragment = sap.ui.xmlfragment("com.westernacher.collaborationPortal.core.fragment.multipleErrorsDialog", this);
+				var oFragment = sap.ui.xmlfragment("com.westernacher.collaborationportal.core.fragment.multipleErrorsDialog", this);
 				this.oErrorTable = oFragment;
 			}
 		},

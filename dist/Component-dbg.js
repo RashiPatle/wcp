@@ -3,14 +3,14 @@ sap.ui.define([
 	"sap/ui/core/AppCacheBuster",
 	"sap/ui/Device",
 	"./model/models",
-	"com/westernacher/collaborationPortal/core/util/ErrorHandler",
+	"com/westernacher/collaborationportal/core/util/ErrorHandler",
 	"sap/ui/model/json/JSONModel",
-	"com/westernacher/collaborationPortal/core/util/MasterData",
-	"com/westernacher/collaborationPortal/core/util/ActionHandler"
+	"com/westernacher/collaborationportal/core/util/MasterData",
+	"com/westernacher/collaborationportal/core/util/ActionHandler"
 ], function (UIComponent, AppCacheBuster, Device, models, ErrorHandler, JSONModel, MasterData, ActionHandler) {
 	"use strict";
 
-	return UIComponent.extend("com.westernacher.collaborationPortal.core.Component", {
+	return UIComponent.extend("com.westernacher.collaborationportal.core.Component", {
 
 		metadata: {
 			manifest: "json"

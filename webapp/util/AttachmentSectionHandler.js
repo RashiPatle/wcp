@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast",
@@ -7,7 +7,7 @@ sap.ui.define([
 ], function (ParentModuleHandler, JSONModel, MessageBox, MessageToast, PDFViewer) {
 	"use strict";
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.core.util.AttachmentSectionHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.core.util.AttachmentSectionHandler", {
 		uploadAttachmentId: 'idUpdateFreightOrdersDialog',
 		constructor: function (oController, sSlugPropertyName, sEntitySetName, bAttachmentsTypeVisibility, sAttachmentsTypeEntityName) {
 			this._oResourceBundle = oController.getModel("i18n");
@@ -34,7 +34,7 @@ sap.ui.define([
 			if (!this._oDialog) {
 				// create dialog via fragment factory
 				this._oDialog = sap.ui.xmlfragment(this.uploadAttachmentId,
-					"com.westernacher.collaborationPortal.core.fragment.UploadAttachment", this);
+					"com.westernacher.collaborationportal.core.fragment.UploadAttachment", this);
 
 				//setting upload url for the current role's odata service
 				oCore.byId(this.uploadAttachmentId + "--UploadCollection").setUploadUrl(sServiceUrl + this.sEntitySetName);

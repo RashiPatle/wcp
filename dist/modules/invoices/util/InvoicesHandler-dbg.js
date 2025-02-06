@@ -1,14 +1,14 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
 	"sap/m/MessageBox",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"com/westernacher/collaborationPortal/core/model/formatter",
+	"com/westernacher/collaborationportal/core/model/formatter",
 	"sap/ui/model/type/Currency"
 ], function (ParentModuleHandler, MessageBox, Filter, FilterOperator, formatter, Currency) {
 	"use strict";
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.invoices.util.InvoicesHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.invoices.util.InvoicesHandler", {
 		constructor: function (oComponent) {
 			this._oComponent = oComponent;
 			this._oModel = oComponent.getModel();
@@ -219,7 +219,7 @@ sap.ui.define([
 			oFOBindingContext.getModel().setDefaultBindingMode("OneWay");
 			if (!this.oUpdateFOQuantitiesDialog) {
 				var oFragment = sap.ui.xmlfragment(this.updateFOQuantitiesDialogId,
-					"com.westernacher.collaborationPortal.invoices.fragment.updateFOValues",
+					"com.westernacher.collaborationportal.invoices.fragment.updateFOValues",
 					this);
 				this.oUpdateFOQuantitiesDialog = oFragment;
 				this._bindModelsToFragment(this.oUpdateFOQuantitiesDialog);
@@ -375,7 +375,7 @@ sap.ui.define([
 			var oBindingContext = oEvent.getSource().getBindingContext("_CI");
 			if (!this.oAddTaxDialog) {
 				var oFragment = sap.ui.xmlfragment(this.addTaxDialogId,
-					"com.westernacher.collaborationPortal.invoices.fragment.addTax",
+					"com.westernacher.collaborationportal.invoices.fragment.addTax",
 					this);
 				this.oAddTaxDialog = oFragment;
 				this._bindModelsToFragment(this.oAddTaxDialog);
@@ -473,7 +473,7 @@ sap.ui.define([
 			var oBindingContext = oEvent.getSource().getBindingContext("_CI");
 			if (!this.oAddChargeDialog) {
 				var oFragment = sap.ui.xmlfragment(this.addChargeDialogId,
-					"com.westernacher.collaborationPortal.invoices.fragment.addCharge",
+					"com.westernacher.collaborationportal.invoices.fragment.addCharge",
 					this);
 				this.oAddChargeDialog = oFragment;
 				this._bindModelsToFragment(this.oAddChargeDialog);
@@ -572,7 +572,7 @@ sap.ui.define([
 			oChargeBindingContext.getModel().setDefaultBindingMode("OneWay");
 			if (!this.oUpdateChargeDialog) {
 				var oFragment = sap.ui.xmlfragment(this.updateChargeDialogId,
-					"com.westernacher.collaborationPortal.invoices.fragment.updateCharge",
+					"com.westernacher.collaborationportal.invoices.fragment.updateCharge",
 					this);
 				this.oUpdateChargeDialog = oFragment;
 				this._bindModelsToFragment(this.oUpdateChargeDialog);

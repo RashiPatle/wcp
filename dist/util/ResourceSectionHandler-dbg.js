@@ -1,12 +1,12 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
-	"com/westernacher/collaborationPortal/core/util/ParentHandler",
-	"com/westernacher/collaborationPortal/core/util/ErrorHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentHandler",
+	"com/westernacher/collaborationportal/core/util/ErrorHandler",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast"
 ], function (ParentModuleHandler, ParentHandler, ErrorHandler, MessageBox, MessageToast) {
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.core.util.ResourceSectionHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.core.util.ResourceSectionHandler", {
 		ResourceUpdateDialogId: 'idUpdateResourceDialog',
 
 		constructor: function (oController, sEntitySetName) {
@@ -22,7 +22,7 @@ sap.ui.define([
 		onUpdateResourcePress: function (oEvent) {
 			if (!this.oUpdateResourceDialog) {
 				var oFragment = sap.ui.xmlfragment(this.ResourceUpdateDialogId,
-					"com.westernacher.collaborationPortal.core.fragment.sections.UpdateResource",
+					"com.westernacher.collaborationportal.core.fragment.sections.UpdateResource",
 					this);
 				var oDedicatedModels = [];	
 				var oResourceContext = oEvent.getSource().getBindingContext();

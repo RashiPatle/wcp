@@ -1,11 +1,32 @@
-specVersion: '1.0'
+specVersion: "3.1"
 metadata:
-  name: wcp
+  name: com.westernacher.collaborationportal.core
 type: application
-framework:
-  name: SAPUI5
-  version: "1.71.0"
-  libraries:
-    - name: sap.m
-    - name: sap.ui.core
-    - name: sap.ui.layout
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        backend:
+          - path: /sap
+            url: http://td4.wup.services:5001
+            client: "100"
+            destination: TM_TD4_100_RAPTogether
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: 1.78.8
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.westernacher.collaborationportal.core
+        ui5Theme: sap_fiori_3

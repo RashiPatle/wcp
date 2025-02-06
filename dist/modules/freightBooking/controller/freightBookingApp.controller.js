@@ -1,1 +1,1 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(o){"use strict";return o.extend("com.westernacher.collaborationPortal.confirmation.controller.freightBookingApp",{onInit:function(){}})});
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(o){"use strict";return o.extend("com.westernacher.collaborationportal.confirmation.controller.freightBookingApp",{onInit:function(){}})});

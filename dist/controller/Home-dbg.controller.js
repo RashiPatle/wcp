@@ -16,7 +16,7 @@ sap.ui.define([
 	ChartContainerContent, HashChanger, MessageToast) {
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.core.controller.Home", {
+	return BaseController.extend("com.westernacher.collaborationportal.core.controller.Home", {
 
 		formatter: formatter,
 		changeRoleDialogId: "IdDialogChangeRoleWCP",
@@ -44,7 +44,7 @@ sap.ui.define([
 		 */
 		_addUserInfoToHeader: function () {
 			// User info fragment need to be loaded everytime, destroyItems will invalidate all the items
-			this._oUserInfo = sap.ui.xmlfragment("com.westernacher.collaborationPortal.core.fragment.UserInfoHeader", this);
+			this._oUserInfo = sap.ui.xmlfragment("com.westernacher.collaborationportal.core.fragment.UserInfoHeader", this);
 			this.getView().byId("gridList2").addItem(
 				new CustomListItem({
 					content: this._oUserInfo
@@ -303,7 +303,7 @@ sap.ui.define([
 
 		onEditRolePress: function (oEvent) {
 			if (!this.oChangeRoleDialog) {
-				var oFragment = sap.ui.xmlfragment(this.changeRoleDialogId, "com.westernacher.collaborationPortal.core.fragment.ChangeRoleDialog",
+				var oFragment = sap.ui.xmlfragment(this.changeRoleDialogId, "com.westernacher.collaborationportal.core.fragment.ChangeRoleDialog",
 					this);
 				this.oChangeRoleDialog = oFragment;
 				this.getView().addDependent(oFragment);
@@ -334,7 +334,7 @@ sap.ui.define([
 		onEditSettingPress: function () {
 			if (!this.oChangeSettingDialog) {
 				var oFragment = sap.ui.xmlfragment(this.changeSettingDialogId,
-					"com.westernacher.collaborationPortal.core.fragment.ChangeSettingDialog",
+					"com.westernacher.collaborationportal.core.fragment.ChangeSettingDialog",
 					this);
 				this.oChangeSettingDialog = oFragment;
 				this.getView().addDependent(oFragment);

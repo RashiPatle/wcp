@@ -1,10 +1,10 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentHandler",
+	"com/westernacher/collaborationportal/core/util/ParentHandler",
 	"sap/m/MessageBox"
 ], function (ParentHandler, MessageBox) {
 	"use strict";
 
-	return ParentHandler.extend("com.westernacher.collaborationPortal.core.util.StopSectionHandler", {
+	return ParentHandler.extend("com.westernacher.collaborationportal.core.util.StopSectionHandler", {
 
 		constructor: function (oController, sItemsPropertyName) {
 			this._oResourceBundle = oController.getModel("i18n");

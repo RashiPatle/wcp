@@ -1,1 +1,1 @@
-QUnit.config.autostart=false;sap.ui.getCore().attachInit(function(){"use strict";sap.ui.require(["com/westernacher/collaborationPortal/core/test/integration/AllJourneys"],function(){QUnit.start()})});
+QUnit.config.autostart=false;sap.ui.getCore().attachInit(function(){"use strict";sap.ui.require(["com/westernacher/collaborationportal/core/test/integration/AllJourneys"],function(){QUnit.start()})});

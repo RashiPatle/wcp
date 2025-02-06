@@ -1,1 +1,1 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";return n.extend("com.westernacher.collaborationPortal.invoices.controller.InvoiceSubmitionApp",{onInit:function(){}})});
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";return n.extend("com.westernacher.collaborationportal.invoices.controller.InvoiceSubmitionApp",{onInit:function(){}})});

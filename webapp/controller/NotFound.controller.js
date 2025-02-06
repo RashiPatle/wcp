@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("com.westernacher.collaborationPortal.core.controller.NotFound", {
+	return BaseController.extend("com.westernacher.collaborationportal.core.controller.NotFound", {
 
 		/**
 		 * Navigates to the worklist when the link is pressed

@@ -1,10 +1,10 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentHandler",
+	"com/westernacher/collaborationportal/core/util/ParentHandler",
 	"sap/m/MessageBox"
 ], function (ParentHandler, MessageBox) {
 	"use strict";
 
-	return ParentHandler.extend("com.westernacher.collaborationPortal.core.util.ParentModuleHandler", {
+	return ParentHandler.extend("com.westernacher.collaborationportal.core.util.ParentModuleHandler", {
 
 		setRoleModel: function (isCurrent, oView, sModule, sAnnotation) {
 			var oMDModel = this._oComponent.ownerComponent.getModel("_MD");
@@ -51,7 +51,7 @@ sap.ui.define([
 		_openBusyDialog: function () {
 			// instantiate busy dialog
 			if (!this._oBusyDialog) {
-				this._oBusyDialog = sap.ui.xmlfragment("com.westernacher.collaborationPortal.core.fragment.BusyDialog",
+				this._oBusyDialog = sap.ui.xmlfragment("com.westernacher.collaborationportal.core.fragment.BusyDialog",
 					this);
 			}
 

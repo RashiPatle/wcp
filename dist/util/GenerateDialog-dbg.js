@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (UI5Object, MessageBox) {
 	"use strict";
 
-	return UI5Object.extend("com.westernacher.collaborationPortal.core.util.GenerateDialog", {
+	return UI5Object.extend("com.westernacher.collaborationportal.core.util.GenerateDialog", {
 
 		constructor: function (oController, oView) {
 			this._oResourceBundle = oController.getModel("i18n");

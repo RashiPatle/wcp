@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentHandler",
+	"com/westernacher/collaborationportal/core/util/ParentHandler",
 	"sap/m/MessageBox"
 ], function (ParentHandler, MessageBox) {
 	"use strict";

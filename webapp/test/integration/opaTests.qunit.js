@@ -6,7 +6,7 @@ sap.ui.getCore().attachInit(function() {
 	"use strict";
 
 	sap.ui.require([
-		"com/westernacher/collaborationPortal/core/test/integration/AllJourneys"
+		"com/westernacher/collaborationportal/core/test/integration/AllJourneys"
 	], function() {
 		QUnit.start();
 	});

@@ -1,7 +1,7 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:t="sap.ui.table" xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form"
 	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:commons="sap.suite.ui.commons"
-	controllerName="com.westernacher.collaborationPortal.quotation.controller.QuotationObjectPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	controllerName="com.westernacher.collaborationportal.quotation.controller.QuotationObjectPage" xmlns:html="http://www.w3.org/1999/xhtml">
 	<f:DynamicPage preserveHeaderStateOnScroll="false" headerExpanded="true" class="sapUiNoContentPadding" showNavButton="true"
 		navButtonPress="onNavBack">
 		<f:title>
@@ -118,18 +118,18 @@
 				<layout:content>
 					<VBox>
 						<core:Fragment id="idCargoTreeFragment"
-							fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsExecutionSection" type="XML"/>
-						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.StopsSection" type="XML"/>-->
-						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.CargoItemsSection" type="XML"/>-->
-						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.PackagesSection" type="XML"/>-->
-						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.ResourceSection" type="XML"/>-->
-						<!--<core:Fragment fragmentName="com.westernacher.collaborationPortal.core.fragment.sections.AttachmentsSection" type="XML"/>-->
+							fragmentName="com.westernacher.collaborationportal.core.fragment.sections.CargoItemsExecutionSection" type="XML"/>
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.StopsSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.CargoItemsSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.PackagesSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.ResourceSection" type="XML"/>-->
+						<!--<core:Fragment fragmentName="com.westernacher.collaborationportal.core.fragment.sections.AttachmentsSection" type="XML"/>-->
 					</VBox>
 					<VBox>
 						<layoutData>
 							<layout:GridData span="L4 M12 S12" linebreakL="false" linebreakM="true" linebreakS="true"/>
 						</layoutData>
-						<core:Fragment fragmentName="com.westernacher.collaborationPortal.quotation.fragment.QuotationsTimeline" type="XML"/>
+						<core:Fragment fragmentName="com.westernacher.collaborationportal.quotation.fragment.QuotationsTimeline" type="XML"/>
 					</VBox>
 				</layout:content>
 			</layout:Grid>

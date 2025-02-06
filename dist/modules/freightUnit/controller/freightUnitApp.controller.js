@@ -1,1 +1,1 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";return n.extend("com.westernacher.collaborationPortal.confirmation.controller.freightUnitApp",{onInit:function(){}})});
+sap.ui.define(["sap/ui/core/mvc/Controller"],function(n){"use strict";return n.extend("com.westernacher.collaborationportal.confirmation.controller.freightUnitApp",{onInit:function(){}})});

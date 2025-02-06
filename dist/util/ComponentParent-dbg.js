@@ -1,25 +1,25 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
-	"com/westernacher/collaborationPortal/core/util/ActionHandler",
-	"com/westernacher/collaborationPortal/core/util/ButtonsEnableHandler",
-	"com/westernacher/collaborationPortal/core/util/MasterData",
-	"com/westernacher/collaborationPortal/core/util/AttachmentSectionHandler",
-	"com/westernacher/collaborationPortal/core/util/CargoItemSectionHandler",
-	"com/westernacher/collaborationPortal/core/util/ResourceSectionHandler",
-	"com/westernacher/collaborationPortal/core/util/EventSectionHandler",
-	"com/westernacher/collaborationPortal/core/util/FreightOrderModuleHandler",
-	"com/westernacher/collaborationPortal/core/util/StopSectionHandler",
-	"com/westernacher/collaborationPortal/core/util/ErrorHandler",
-	"com/westernacher/collaborationPortal/core/util/CargoItemExecutionSectionHandler",
-	"com/westernacher/collaborationPortal/core/util/FreightUnitModuleHandler",
-	"com/westernacher/collaborationPortal/core/util/FreightBookingModuleHandler",
-	"com/westernacher/collaborationPortal/core/util/ContainerSectionHandler"
+	"com/westernacher/collaborationportal/core/util/ActionHandler",
+	"com/westernacher/collaborationportal/core/util/ButtonsEnableHandler",
+	"com/westernacher/collaborationportal/core/util/MasterData",
+	"com/westernacher/collaborationportal/core/util/AttachmentSectionHandler",
+	"com/westernacher/collaborationportal/core/util/CargoItemSectionHandler",
+	"com/westernacher/collaborationportal/core/util/ResourceSectionHandler",
+	"com/westernacher/collaborationportal/core/util/EventSectionHandler",
+	"com/westernacher/collaborationportal/core/util/FreightOrderModuleHandler",
+	"com/westernacher/collaborationportal/core/util/StopSectionHandler",
+	"com/westernacher/collaborationportal/core/util/ErrorHandler",
+	"com/westernacher/collaborationportal/core/util/CargoItemExecutionSectionHandler",
+	"com/westernacher/collaborationportal/core/util/FreightUnitModuleHandler",
+	"com/westernacher/collaborationportal/core/util/FreightBookingModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ContainerSectionHandler"
 ], function (UIComponent, ActionHandler, ButtonsEnableHandler, MasterData, AttachmentSectionHandler, CargoItemSectionHandler,
 	ResourceSectionHandler, EventSectionHandler, FreightOrderModuleHandler, StopSectionHandler, ErrorHandler,
 	CargoItemExecutionSectionHandler, FreightUnitModuleHandler, FreightBookingModuleHandler, ContainerSectionHandler) {
 	"use strict";
 
-	return UIComponent.extend("com.westernacher.collaborationPortal.core.util.ComponentParent", {
+	return UIComponent.extend("com.westernacher.collaborationportal.core.util.ComponentParent", {
 		initializeUtilHandlers: function () {
 			var oConfig = this._utilHandlersConfig;
 			if (!oConfig) {

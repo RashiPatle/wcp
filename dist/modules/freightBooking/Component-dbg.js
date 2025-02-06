@@ -1,13 +1,13 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ComponentParent",
-	"com/westernacher/collaborationPortal/freightBooking/util/freightBookingHandler",
+	"com/westernacher/collaborationportal/core/util/ComponentParent",
+	"com/westernacher/collaborationportal/freightBooking/util/freightBookingHandler",
 	"sap/ui/Device",
 	"./model/models"
 ], function (ComponentParent, freightBookingHandler, Device, models) {
 	"use strict";
 
-	return ComponentParent.extend("com.westernacher.collaborationPortal.freightBooking.Component", {
-		defaultAnnotation: "com/westernacher/collaborationPortal/freightBooking/annotations",
+	return ComponentParent.extend("com.westernacher.collaborationportal.freightBooking.Component", {
+		defaultAnnotation: "com/westernacher/collaborationportal/freightBooking/annotations",
 		metadata: {
 			manifest: "json"
 		},

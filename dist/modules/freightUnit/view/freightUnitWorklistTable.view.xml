@@ -1,5 +1,5 @@
 <mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f"
-	controllerName="com.westernacher.collaborationPortal.freightUnit.controller.freightUnitWorklistTable"
+	controllerName="com.westernacher.collaborationportal.freightUnit.controller.freightUnitWorklistTable"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:sv="sap.ui.comp.smartvariants"
 	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<f:DynamicPage id="synamicPage" class="sapUiResponsiveContentPadding sapUiLargeMarginBottom">

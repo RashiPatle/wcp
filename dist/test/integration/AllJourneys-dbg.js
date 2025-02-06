@@ -10,7 +10,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "com.westernacher.collaborationPortal.core.view.",
+		viewNamespace: "com.westernacher.collaborationportal.core.view.",
 		autoWait: true
 	});
 

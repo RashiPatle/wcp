@@ -1,11 +1,11 @@
 sap.ui.define([
 	"sap/ui/base/Object",
 	"sap/m/MessageBox",
-	"com/westernacher/collaborationPortal/core/model/formatter"
+	"com/westernacher/collaborationportal/core/model/formatter"
 ], function (UI5Object, MessageBox, formatter) {
 	"use strict";
 
-	return UI5Object.extend("com.westernacher.collaborationPortal.core.util.ParentHandler", {
+	return UI5Object.extend("com.westernacher.collaborationportal.core.util.ParentHandler", {
 		coreFormatter: formatter,
 		getModel: function () {
 			if (!this._oModel) {

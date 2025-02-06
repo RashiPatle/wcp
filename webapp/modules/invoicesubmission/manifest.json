@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "com.westernacher.collaborationPortal.invoicesubmission",
+		"id": "com.westernacher.collaborationportal.invoicesubmission",
 		"type": "component",
 		"i18n": "i18n/i18n.properties",
 		"title": "",
@@ -27,7 +27,7 @@
 	},
 	"sap.ui5": {
 		"resourceRoots": {
-			"com.westernacher.collaborationPortal.invoicesubmission": "./"
+			"com.westernacher.collaborationportal.invoicesubmission": "./"
 		},
 		"autoPrefixId": true,
 		"dependencies": {
@@ -45,13 +45,13 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.modules.invoicesubmission.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.modules.invoicesubmission.i18n.i18n"
 				}
 			},
 			"i18nhome": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.i18n.i18n"
 				}
 			},
 			"_CI": {
@@ -85,7 +85,7 @@
 			"cozy": true
 		},
 		"rootView": {
-			"viewName": "com.westernacher.collaborationPortal.invoicesubmission.view.InvoiceSubmissionApp",
+			"viewName": "com.westernacher.collaborationportal.invoicesubmission.view.InvoiceSubmissionApp",
 			"id": "rootViewOfFOsINvoiceSubmssionComponent",
 			"type": "XML",
 			"async": true
@@ -119,7 +119,7 @@
 				"routerClass": "sap.f.routing.Router",
 				"async": true,
 				"viewType": "XML",
-				"viewPath": "com.westernacher.collaborationPortal.invoicesubmission.view",
+				"viewPath": "com.westernacher.collaborationportal.invoicesubmission.view",
 				"controlId": "idAppControlInvoiceSubmission",
 				"controlAggregation": "pages"
 			}

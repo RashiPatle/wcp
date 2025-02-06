@@ -1,1 +1,1 @@
-sap.ui.define(["./BaseController"],function(o){"use strict";return o.extend("com.westernacher.collaborationPortal.core.controller.NotFound",{onLinkPressed:function(){this.getRouter().navTo("worklist")}})});
+sap.ui.define(["./BaseController"],function(o){"use strict";return o.extend("com.westernacher.collaborationportal.core.controller.NotFound",{onLinkPressed:function(){this.getRouter().navTo("worklist")}})});

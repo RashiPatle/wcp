@@ -1,12 +1,12 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
-	"com/westernacher/collaborationPortal/core/util/ParentHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/util/ParentHandler",
 	"sap/m/MessageBox",
 	"sap/m/MessageToast",
-	"com/westernacher/collaborationPortal/core/model/formatter"
+	"com/westernacher/collaborationportal/core/model/formatter"
 ], function (ParentModuleHandler, ParentHandler, MessageBox, MessageToast, formatter) {
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.core.util.CargoItemSectionHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.core.util.CargoItemSectionHandler", {
 		cargoItemUpdateDialogId: 'idUpdateCargoItemDialog',
 
 		formatter: formatter,
@@ -25,7 +25,7 @@ sap.ui.define([
 		onUpdateCargoItemPress: function (oEvent) {
 			if (!this.oUpdateCargoItemDialog) {
 				var oFragment = sap.ui.xmlfragment(this.cargoItemUpdateDialogId,
-					"com.westernacher.collaborationPortal.core.fragment.sections.UpdateCargoItem",
+					"com.westernacher.collaborationportal.core.fragment.sections.UpdateCargoItem",
 					this);
 				var oDedicatedModels = [];	
 				var oResourceContext = oEvent.getSource().getBindingContext();

@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "com.westernacher.collaborationPortal.freightUnit",
+		"id": "com.westernacher.collaborationportal.freightUnit",
 		"type": "component",
 		"i18n": "i18n/i18n.properties",
 		"title": "",
@@ -30,7 +30,7 @@
 	},
 	"sap.ui5": {
 		"resourceRoots": {
-			"com.westernacher.collaborationPortal.freightUnit": "./"
+			"com.westernacher.collaborationportal.freightUnit": "./"
 		},
 		"autoPrefixId": true,
 		"dependencies": {
@@ -48,13 +48,13 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName":  "com.westernacher.collaborationPortal.core.modules.freightUnit.i18n.i18n"
+					"bundleName":  "com.westernacher.collaborationportal.core.modules.freightUnit.i18n.i18n"
 				}
 			},
 			"i18nhome": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.westernacher.collaborationPortal.core.i18n.i18n"
+					"bundleName": "com.westernacher.collaborationportal.core.i18n.i18n"
 				}
 			},
 			"_AM": {
@@ -84,7 +84,7 @@
 			"cozy": true
 		},
 		"rootView": {
-			"viewName": "com.westernacher.collaborationPortal.freightUnit.view.freightUnitApp",
+			"viewName": "com.westernacher.collaborationportal.freightUnit.view.freightUnitApp",
 			"id": "rootViewOffreightUnitComponent",
 			"type": "XML",
 			"async": true
@@ -121,7 +121,7 @@
 				"routerClass": "sap.f.routing.Router",
 				"async": true,
 				"viewType": "XML",
-				"viewPath": "com.westernacher.collaborationPortal.freightUnit.view",
+				"viewPath": "com.westernacher.collaborationportal.freightUnit.view",
 				"controlId": "idAppControlfreightUnit",
 				"controlAggregation": "pages"
 			}

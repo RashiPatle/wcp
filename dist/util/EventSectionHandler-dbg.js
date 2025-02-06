@@ -1,7 +1,7 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ParentModuleHandler",
-	"com/westernacher/collaborationPortal/core/model/formatter",
-	"com/westernacher/collaborationPortal/core/util/ErrorHandler",
+	"com/westernacher/collaborationportal/core/util/ParentModuleHandler",
+	"com/westernacher/collaborationportal/core/model/formatter",
+	"com/westernacher/collaborationportal/core/util/ErrorHandler",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
@@ -9,7 +9,7 @@ sap.ui.define([
 	"sap/ui/core/format/DateFormat"
 ], function (ParentModuleHandler, formatter, ErrorHandler, JSONModel, Filter, FilterOperator, MessageBox, DateFormat) {
 
-	return ParentModuleHandler.extend("com.westernacher.collaborationPortal.core.util.EventSectionHandler", {
+	return ParentModuleHandler.extend("com.westernacher.collaborationportal.core.util.EventSectionHandler", {
 
 		reportExpectedEventDialog: 'idReportExpectedEvent',
 		reportUnexpectedEventDialog: 'idReportUnexpectedEvent',
@@ -56,7 +56,7 @@ sap.ui.define([
 			//Loading Report Expected Event dialog
 			if (!this._reportEventDialog) {
 				this._reportEventDialog = sap.ui.xmlfragment(this.reportExpectedEventDialog,
-					"com.westernacher.collaborationPortal.core.fragment.sections.ReportExpectedEvent", this);
+					"com.westernacher.collaborationportal.core.fragment.sections.ReportExpectedEvent", this);
 				var oDedicatedModels = [];
 				oDedicatedModels.push({
 					model: oEventContext.getModel()
@@ -125,7 +125,7 @@ sap.ui.define([
 			//loading Unexpected events dialog
 			if (!this._unexpectedEventDialog) {
 				this._unexpectedEventDialog = sap.ui.xmlfragment(this.reportUnexpectedEventDialog,
-					"com.westernacher.collaborationPortal.core.fragment.sections.ReportUnexpectedEvent", this);
+					"com.westernacher.collaborationportal.core.fragment.sections.ReportUnexpectedEvent", this);
 				this._bindModelsToFragment(this._unexpectedEventDialog);
 				this._oComponent._MD.callEntitySetDataLoad("ZWCP_C_FOEvents", "ZWCP_C_FOEvents", this._oComponent.getModel("_EventsCode"));
 

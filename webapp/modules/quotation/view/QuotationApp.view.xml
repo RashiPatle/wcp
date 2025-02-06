@@ -1,5 +1,5 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-	controllerName="com.westernacher.collaborationPortal.quotation.controller.QuotationApp" height="100%"
+	controllerName="com.westernacher.collaborationportal.quotation.controller.QuotationApp" height="100%"
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<App id="idAppControlQuotation"></App>
 </mvc:View>

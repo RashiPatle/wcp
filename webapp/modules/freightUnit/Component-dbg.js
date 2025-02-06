@@ -1,13 +1,13 @@
 sap.ui.define([
-	"com/westernacher/collaborationPortal/core/util/ComponentParent",
-	"com/westernacher/collaborationPortal/freightUnit/util/freightUnitHandler",
+	"com/westernacher/collaborationportal/core/util/ComponentParent",
+	"com/westernacher/collaborationportal/freightUnit/util/freightUnitHandler",
 	"sap/ui/Device",
 	"./model/models"
 ], function (ComponentParent, freightUnitHandler, Device, models) {
 	"use strict";
 
-	return ComponentParent.extend("com.westernacher.collaborationPortal.freightUnit.Component", {
-		defaultAnnotation: "com/westernacher/collaborationPortal/freightUnit/annotations",
+	return ComponentParent.extend("com.westernacher.collaborationportal.freightUnit.Component", {
+		defaultAnnotation: "com/westernacher/collaborationportal/freightUnit/annotations",
 		metadata: {
 			manifest: "json"
 		},
